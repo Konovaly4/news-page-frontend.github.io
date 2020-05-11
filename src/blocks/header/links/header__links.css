@@ -1,0 +1,10 @@
+@import url(../link-container/header__link-container.css);
+@import url(../button/header__button.css);
+
+.header__links {
+  height: 100%;
+  margin: 0 104px 0 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}

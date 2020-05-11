@@ -1,0 +1,9 @@
+@import url(./newscard/newscard.css);
+
+.news-container {
+  margin: 0 auto 64px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 16px;
+}

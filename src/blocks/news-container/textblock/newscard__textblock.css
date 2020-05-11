@@ -1,0 +1,14 @@
+@import url(../date/newscard__date.css);
+@import url(../title/newscard__title.css);
+@import url(../article/newscard__article.css);
+@import url(../source/newscard__source.css);
+
+.newscard__textblock {
+  margin: 0 auto 24px;
+  padding-top: 20px;
+  width: 352px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}

@@ -1,0 +1,8 @@
+@import url(../search/search.css);
+@import url(../results/results.css);
+
+.root {
+  max-width: 1440px;
+  margin: 0 auto;
+  background-color: #ffffff;
+}

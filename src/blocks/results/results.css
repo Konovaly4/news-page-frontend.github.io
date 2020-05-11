@@ -1,0 +1,9 @@
+@import url(./loading/results__loading.css);
+@import url(./load-fail/results__load-fail.css);
+@import url(./active/results__load_active.css);
+@import url(./news/results__news.css);
+
+.results {
+  width: 100%;
+  background: #F5F6F7;
+}

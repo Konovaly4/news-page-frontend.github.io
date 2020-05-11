@@ -1,0 +1,17 @@
+@import url(../news__title/results__news-title.css);
+@import url(../../news-container/news-container.css);
+@import url(../button/results__button.css);
+
+.results__news {
+  max-width: 1232px;
+  margin: 0 auto;
+  padding-top: 80px;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.results__news_active {
+  display: flex;
+}

@@ -1,0 +1,13 @@
+@import url(../preloader/results__preloader.css);
+@import url(../loading-message/loading-message.css);
+@import url(../message/results__message.css);
+
+.results__loading {
+  max-width: 280px;
+  margin: 0 auto;
+  padding-top: 80px;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
