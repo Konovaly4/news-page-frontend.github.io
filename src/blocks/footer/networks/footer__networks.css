@@ -1,0 +1,7 @@
+.footer__networks {
+  margin: 0 28px 0 0;
+}
+
+.footer__networks:last-of-type {
+  margin: 0;
+}

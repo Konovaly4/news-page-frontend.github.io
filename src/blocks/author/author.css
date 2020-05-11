@@ -1,0 +1,11 @@
+@import url(./avatar/author__avatar.css);
+@import url(./about/author__about.css);
+
+.author {
+  width: 100%;
+  height: 624px;
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
