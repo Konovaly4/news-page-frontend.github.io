@@ -1,0 +1,5 @@
+@import url(./theme/black/header__link-container_active_theme_black.css);
+
+.header__link-container_active {
+  border-bottom: 3px solid #FFFFFF;
+}

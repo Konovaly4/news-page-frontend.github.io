@@ -1,5 +1,5 @@
-@import url(./avatar/author__avatar.css);
-@import url(./about/author__about.css);
+@import url(./__avatar/author__avatar.css);
+@import url(./__about/author__about.css);
 
 .author {
   width: 100%;
@@ -8,4 +8,5 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  font-family: Roboto, Roboto Slab, Source Sans Pro, sans-serif;
 }

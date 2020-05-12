@@ -1,0 +1,14 @@
+@import url(./_flag/newscard__navbar-button_flag.css);
+@import url(./_flag/saved/newscard__navbar-button_flag_saved.css);
+@import url(./_garbage/newscard__navbar-button_garbage.css);
+
+
+.newscard__navbar-button {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: #FFFFFF;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 8px;
+}

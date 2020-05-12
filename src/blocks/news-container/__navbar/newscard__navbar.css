@@ -1,0 +1,12 @@
+@import url(../__navbar__alert/newscard__navbar-alert.css);
+@import url(../__navbar-mainword/newscard__navbar-mainword.css);
+@import url(../__navbar__button/newscard__navbar-button.css);
+
+.newscard__navbar {
+  margin: 0 auto;
+  width: 352px;
+  height: 40px;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}

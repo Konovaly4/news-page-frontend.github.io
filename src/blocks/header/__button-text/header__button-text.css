@@ -1,0 +1,14 @@
+@import url(./style/black/header__button-text_style_black.css);
+
+.header__button-text {
+  margin: 0 19px ;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+}

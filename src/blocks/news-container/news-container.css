@@ -1,9 +1,11 @@
-@import url(./newscard/newscard.css);
+@import url(./__newscard/newscard.css);
 
 .news-container {
-  margin: 0 auto 64px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
-  grid-column-gap: 16px;
+  grid-gap: 16px;
+  justify-content: center;
+  font-family: Roboto, Roboto Slab, Source Sans Pro, sans-serif;
 }

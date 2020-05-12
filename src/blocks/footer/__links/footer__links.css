@@ -1,0 +1,9 @@
+@import url(../__link/footer__link.css);
+@import url(../__networks/footer__networks.css);
+
+.footer__links {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

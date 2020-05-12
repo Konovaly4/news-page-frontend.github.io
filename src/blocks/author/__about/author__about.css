@@ -1,0 +1,7 @@
+@import url(../__title/author__title.css);
+@import url(../__description/author__description.css);
+
+.author__about {
+  max-width: 600px;
+  height: 100%;
+}

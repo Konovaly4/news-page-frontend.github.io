@@ -1,6 +1,6 @@
-@import url(./copyright/footer__copyright.css);
-@import url(./links/footer__links.css);
-@import url(./social/footer__social.css);
+@import url(./__copyright/footer__copyright.css);
+@import url(./__links/footer__links.css);
+@import url(./__social/footer__social.css);
 
 .footer {
   margin: auto;
@@ -9,4 +9,5 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: Roboto, Roboto Slab, Source Sans Pro, sans-serif;
 }

@@ -1,0 +1,10 @@
+@import url(../news-container/news-container.css);
+
+.saved-news {
+  max-width:1232px;
+  margin: auto;
+  padding-top: 62px;
+  padding-bottom: 62px;
+  background: #F5F6F7;
+  font-family: Roboto, Roboto Slab, Source Sans Pro, sans-serif;
+}

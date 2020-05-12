@@ -1,0 +1,10 @@
+@import url(./__title/user__title.css);
+@import url(./__news-count/user__news-count.css);
+@import url(./__subtitle/user__subtitle.css);
+
+.user {
+  width: 100%;
+  max-width: 1232px;
+  margin: 0 auto;
+  font-family: Roboto, Roboto Slab, Source Sans Pro, sans-serif;
+}
