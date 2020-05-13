@@ -13,4 +13,16 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  position: relative;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .search__form {
+      height: 56px;
+  }
+
+  @media screen and (max-width: 600px) {
+    .search__form {
+      width: 100%;
+      justify-content: center;
   }

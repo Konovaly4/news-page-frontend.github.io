@@ -8,3 +8,13 @@
   line-height: 22px;
   color: #1A1B22;
 }
+
+@media screen and (max-width: 1024px) {
+  .search__input {
+    width: 268px;
+}
+
+@media screen and (max-width: 600px) {
+  .search__input {
+    width: calc(100% - 32px);
+}

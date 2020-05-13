@@ -14,3 +14,15 @@
   align-items: center;
   font-family: Roboto, Roboto Slab, Source Sans Pro, sans-serif;
 }
+
+@media screen and (max-width: 1024px) {
+  .search {
+    height: 400px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .search {
+    height: 536px;
+  }
+}
