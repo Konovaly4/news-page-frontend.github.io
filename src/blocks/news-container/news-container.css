@@ -2,10 +2,13 @@
 
 .news-container {
   margin: 0 auto;
+  max-width: 1232px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
   grid-gap: 16px;
-  justify-content: center;
+  justify-content: space-evenly;
+  justify-items: center;
+  align-items: center;
   font-family: Roboto, Roboto Slab, Source Sans Pro, sans-serif;
 }

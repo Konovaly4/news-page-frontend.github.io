@@ -1,7 +1,7 @@
 @import url(../news-container/news-container.css);
 
 .saved-news {
-  max-width:1232px;
+  width: 100%;
   margin: auto;
   padding-top: 62px;
   padding-bottom: 62px;

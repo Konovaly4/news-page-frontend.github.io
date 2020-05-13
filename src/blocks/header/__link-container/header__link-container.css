@@ -9,3 +9,9 @@
   justify-content: center;
   align-items: center;
 }
+
+@media screen and (max-width: 1024px) {
+  .header__link-container {
+    margin: 0 16px 0 0;
+  }
+}
