@@ -1,0 +1,12 @@
+.popup__button-note {
+  margin: 16px 0 0;
+  text-align: center;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #000000;
+  opacity: 0;
+}

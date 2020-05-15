@@ -1,0 +1,10 @@
+.popup__button-link {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #2F71E5;
+  cursor: url(../../../images/Cursor.svg), pointer;
+}

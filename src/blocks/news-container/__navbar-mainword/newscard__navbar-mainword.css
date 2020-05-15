@@ -1,3 +1,5 @@
+@import url(./_active/newscard__navbar-mainword_active.css);
+
 .newscard__navbar-mainword {
   position: absolute;
   top: 0;
@@ -12,14 +14,10 @@
   display: none;
   justify-content: center;
   align-items: center;
-  font-family: Roboto, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 24px;
   color: #000000;
-}
-
-.newscard__navbar-mainword_active {
-  display: flex;
 }

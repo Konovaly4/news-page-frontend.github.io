@@ -1,0 +1,9 @@
+.newscard__navbar-alert.newscard__navbar-alert_active {
+  display: flex;
+}
+
+@media screen and (max-width: 1279px) {
+  .newscard__navbar-alert.newscard__navbar-alert_active {
+    display: none;
+  }
+}

@@ -1,6 +1,6 @@
 .footer__link {
   margin: 0 50px 0 0;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -10,6 +10,14 @@
   color: #1A1B22;
 }
 
-.footer__link:last-of-type {
-  margin: 0;
+.footer__link:nth-of-type(2) {
+  margin: 0 60px 0 0;
+}
+
+@media screen and (max-width: 767px) {
+  .footer__link:nth-of-type(2) {
+    position: absolute;
+    top: 66px;
+    left:0;
+  }
 }

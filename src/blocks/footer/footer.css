@@ -3,11 +3,31 @@
 @import url(./__social/footer__social.css);
 
 .footer {
-  margin: auto;
+  margin: 0 104px;
   max-width: 1228px;
   height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-family: Roboto, Roboto Slab, Source Sans Pro, sans-serif;
+}
+
+@media screen and (max-width: 1279px) {
+  .footer {
+    margin: 0 80px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .footer {
+    margin: 0 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer {
+    height: 200px;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
 }

@@ -4,9 +4,21 @@
 
 .newscard__navbar {
   margin: 0 auto;
-  width: 352px;
+  width: calc(100% - 48px);
   height: 40px;
   display: flex;
   justify-content: flex-end;
   position: relative;
+}
+
+@media screen and (max-width: 1024px) {
+  .newscard__navbar {
+    width: calc(100% - 16px);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .newscard__navbar {
+    width: 256px;
+  }
 }

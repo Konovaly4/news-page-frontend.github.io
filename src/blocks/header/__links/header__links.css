@@ -1,6 +1,7 @@
 @import url(../__link-container/header__link-container.css);
 @import url(../__button/header__button.css);
-@import url(../__popup/header__popup.css);
+@import url(../__popup-button/header__popup-button.css);
+@import url(./header__links_visible.css);
 
 .header__links {
   height: 100%;
@@ -10,14 +11,22 @@
   align-items: center;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1279px) {
   .header__links {
     margin: 0 40px 0 0;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .header__links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
     display: none;
   }
 }

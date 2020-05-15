@@ -18,3 +18,10 @@
     height: 40px;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .header__button {
+    height: 56px;
+    margin-left: 16px;
+  }
+}

@@ -1,0 +1,7 @@
+@import url(../__networks/footer__networks.css);
+
+.footer__network-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

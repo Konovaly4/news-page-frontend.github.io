@@ -2,10 +2,24 @@
 
 .user__subtitle {
   margin: 0 0 56px 0;
-  font-family: Roboto, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 24px;
   color: #1A1B22;
+}
+
+@media screen and (max-width: 1023px) {
+  .user__subtitle {
+    font-size: 14px;
+    line-height: 24px;
+    margin: 0 0 32px 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .user__subtitle {
+    width: 288px;
+  }
 }

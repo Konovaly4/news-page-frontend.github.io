@@ -8,5 +8,19 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  font-family: Roboto, Roboto Slab, Source Sans Pro, sans-serif;
+  font-family: 'Roboto', 'Roboto Slab', 'Source Sans Pro', sans-serif;
+}
+
+@media screen and (max-width: 1279px) {
+  .author {
+    height: 354px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .author {
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

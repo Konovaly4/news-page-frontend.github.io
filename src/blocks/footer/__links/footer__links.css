@@ -1,9 +1,18 @@
 @import url(../__link/footer__link.css);
-@import url(../__networks/footer__networks.css);
+@import url(../__network-links/footer__network-links.css);
 
 .footer__links {
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+@media screen and (max-width: 767px) {
+  .footer__links {
+    margin-top: 20px;
+    width: 100%;
+    justify-content: space-between;
+  }
 }

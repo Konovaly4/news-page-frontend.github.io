@@ -6,5 +6,19 @@
   padding-top: 62px;
   padding-bottom: 62px;
   background: #F5F6F7;
-  font-family: Roboto, Roboto Slab, Source Sans Pro, sans-serif;
+  font-family: 'Roboto', 'Roboto Slab', 'Source Sans Pro', sans-serif;
+}
+
+@media screen and (max-width: 1023px) {
+  .saved-news {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .saved-news {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
 }

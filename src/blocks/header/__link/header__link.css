@@ -1,7 +1,7 @@
 @import url(./style/black/header__link_style_black.css);
 
 .header__link {
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;

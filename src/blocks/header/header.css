@@ -12,7 +12,9 @@
   align-items: center;
   background: rgba(255, 255, 255, 0.01);
   box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
-  font-family: Roboto, Roboto Slab, Source Sans Pro, sans-serif;
+  position: relative;
+  font-family: 'Roboto', 'Roboto Slab', 'Source Sans Pro', sans-serif;
+  z-index: 1;
 }
 
 @media screen and (max-width: 1024px) {
@@ -21,7 +23,7 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 767px) {
   .header {
     height: 56px;
   }

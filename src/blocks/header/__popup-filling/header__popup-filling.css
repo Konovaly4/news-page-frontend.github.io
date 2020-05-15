@@ -1,0 +1,8 @@
+@import url(./style/white/header__popup-filling_style_white.css);
+
+.header__popup-filling {
+  width: 100%;
+  height: 286px;
+  background: #1A1B22;
+  border-radius: 0 0  16px 16px;
+}

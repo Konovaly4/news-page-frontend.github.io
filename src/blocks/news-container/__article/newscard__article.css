@@ -1,9 +1,25 @@
 .newscard__article {
   margin: 0 0 18px 0;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 22px;
   color: #1A1B22;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1279px) {
+  .newscard__article {
+    margin: 0 0 12px 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .newscard__article {
+    margin: 0 0 8px 0;
+  }
 }

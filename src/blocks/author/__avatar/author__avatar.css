@@ -4,3 +4,19 @@
   border-radius: 50%;
   margin: 0 56px 0 104px;
 }
+
+@media screen and (max-width: 1279px) {
+  .author__avatar {
+    width: 232px;
+    height: 232px;
+    margin: 0 32px 0 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .author__avatar {
+    width: 272px;
+    height: 272px;
+    margin: 32px auto 24px;
+  }
+}

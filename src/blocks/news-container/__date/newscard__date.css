@@ -1,9 +1,21 @@
 .newscard__date {
   margin: 0 0 12px 0;
-  font-family: Source Sans Pro;
+  font-family: 'Source Sans Pro', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 24px;
   color: #B6BCBF;
+}
+
+@media screen and (max-width: 1279px) {
+  .newscard {
+    margin: 0 0 12px 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .newscard {
+    margin: 0 0 10px 0;
+  }
 }

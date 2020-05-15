@@ -2,7 +2,7 @@
 
 .header__title {
   margin-left: 104px;
-  font-family: Roboto Slab;
+  font-family: 'Roboto Slab', sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
@@ -10,13 +10,13 @@
   color: #FFFFFF;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1279px) {
   .header__title {
     margin-left: 40px;
   }
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 767px) {
   .header__title {
     margin-left: 16px;
     font-size: 16px;

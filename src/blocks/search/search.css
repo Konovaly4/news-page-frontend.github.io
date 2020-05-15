@@ -1,5 +1,6 @@
 @import url(../header/header.css);
 @import url(./__content/search__content.css);
+@import url(../header/__popup/header__popup.css);
 
 .search {
   margin: 0;
@@ -12,17 +13,16 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  font-family: Roboto, Roboto Slab, Source Sans Pro, sans-serif;
+  font-family: 'Roboto', 'Roboto Slab', 'Source Sans Pro', sans-serif;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
   .search {
     height: 400px;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 767px) {
   .search {
     height: 536px;
-  }
 }

@@ -10,3 +10,17 @@
   background-size: cover;
   background-position: center;
 }
+
+@media screen and (max-width: 1023px) {
+  .newscard__pic {
+    height: 150px;
+    padding-top: 8px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .newscard__pic {
+    height: 196px;
+    padding-top: 16px;
+  }
+}

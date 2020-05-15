@@ -1,0 +1,38 @@
+@import url(./__content/popup__content.css);
+@import url(./__close/popup__close.css);
+@import url(./__title/popup__title.css);
+@import url(./__form/popup__form.css);
+@import url(./__input/popup__input.css);
+@import url(./__button/popup__button.css);
+@import url(./_is-opened/popup_is-opened.css);
+@import url(./__picture/popup__picture.css);
+@import url(./__button/popup__button_active.css);
+@import url(./__error-message/popup__error-message.css);
+@import url(./__error-message/popup__error-message_active.css);
+@import url(./__button/popup__button_plus.css);
+@import url(./__note/popup__note.css);
+@import url(./__note/popup__note_active.css);
+@import url(./__button-err/popup__button-err.css);
+@import url(./__button-err/popup__button-err_active.css);
+@import url(./__button-note/popup__button-note.css);
+@import url(./__button-note/popup__button-note_active.css);
+@import url(./__button-link/popup__button-link.css);
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+@media screen and (max-width: 480px) {
+  .popup {
+    align-items: flex-end;
+  }
+}

@@ -1,9 +1,23 @@
 .newscard__title {
   margin: 0 0 16px 0;
-  font-family: Roboto Slab;
+  font-family: 'Roboto Slab', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 26px;
   line-height: 30px;
   color: #1A1B22;
+}
+
+@media screen and (max-width: 1279px) {
+  .newscard__title {
+    font-size: 22px;
+    line-height: 24px;
+    margin: 0 0 10px 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .newscard__title {
+    line-height: 26px;
+  }
 }
