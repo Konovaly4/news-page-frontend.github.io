@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="./images/N.jpg" type="image/jpg">
-  <link rel="stylesheet" href="./pages/user-news.css">
+  <meta name="description" content="Сайт поиска новостей по ключевым словам. Страница пользователя">
+  <meta name="author" content="Автор проекта: Максим Коновалов">
+  <link rel="shortcut icon" href="<%=require('./images/N.jpg').default%>" type="image/jpg">
+  <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css %>">
   <title>News Explorer Saved</title>
 </head>
 <body>
@@ -20,7 +22,7 @@
         </div>
         <button class="header__button header__button_style_black">
           <span class="header__button-text header__button-text_style_black">Авторизоваться</span>
-          <img class="header__button-logout header__button-logout_active" src="./images/Logout-black.svg" alt="sign-out-button">
+          <img class="header__button-logout header__button-logout_active" src="<%=require('./images/Logout-black.svg').default%>" alt="sign-out-button">
         </button>
       </nav>
       <button class="header__popup-button header__popup-button_style_black"></button>
@@ -119,14 +121,15 @@
         <a href="https://praktikum.yandex.ru" target="blank" class="footer__link">Яндекс.Практикум</a>
         <div class="footer__network-links">
           <a href="" target="blank" class="footer__networks">
-            <img class="footer__network_link" src="./images/Github.svg" alt="github-link">
+            <img class="footer__network_link" src="<%=require('./images/Github.svg').default%>" alt="github-link">
           </a>
           <a href="" target="blank" class="footer__networks">
-            <img class="footer__network_link" src="./images/Facebook.svg" alt="facebook-link">
+            <img class="footer__network_link" src="<%=require('./images/Facebook.svg').default%>" alt="facebook-link">
           </a>
         </div>
       </nav>
     </footer>
   </div>
+  <script type="module" src="<%= htmlWebpackPlugin.files.js %>"></script>
 </body>
 </html>

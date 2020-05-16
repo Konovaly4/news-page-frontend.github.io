@@ -2,9 +2,12 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Сайт поиска новостей по ключевым словам. Главная страница">
+    <meta name="author" content="Автор проекта: Максим Коновалов">
     <title>News Explorer</title>
-    <link rel="shortcut icon" href="./images/N.jpg" type="image/jpg">
-    <link rel="stylesheet" href="./pages/index.css">
+    <link rel="shortcut icon" href="<%=require('./images/N.jpg').default%>" type="image/jpg">
+    <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css %>">
 </head>
 <body>
   <div class="root">
@@ -20,7 +23,7 @@
           </div>
           <button class="header__button">
             <span class="header__button-text">Авторизоваться</span>
-            <img class="header__button-logout header__button-logout_active" src="./images/Logout-white.svg" alt="sign-out-button">
+            <img class="header__button-logout header__button-logout_active" src="<%=require('./images/Logout-white.svg').default%>" alt="sign-out-button">
           </button>
         </nav>
         <button class="header__popup-button"></button>
@@ -100,7 +103,7 @@
       </div>
     </section>
     <section class="author">
-      <img src="./images/avatar.jpg" alt="author-avatar" class="author__avatar">
+      <img src="<%=require('./images/avatar.jpg').default%>" alt="author-avatar" class="author__avatar">
       <div class="author__about">
         <h2 class="author__title">Об авторе</h2>
         <p class="author__description">Это блок с описанием автора проекта. Здесь следует указать, как вас зовут, чем вы занимаетесь, какими технологиями разработки владеете.</p>
@@ -114,10 +117,10 @@
         <a href="https://praktikum.yandex.ru" target="blank" class="footer__link">Яндекс.Практикум</a>
         <div class="footer__network-links">
           <a href="" target="blank" class="footer__networks">
-            <img class="footer__network_link" src="./images/Github.svg" alt="github-link">
+            <img class="footer__network_link" src="<%=require('./images/Github.svg').default%>" alt="github-link">
           </a>
           <a href="" target="blank" class="footer__networks">
-            <img class="footer__network_link" src="./images/Facebook.svg" alt="facebook-link">
+            <img class="footer__network_link" src="<%=require('./images/Facebook.svg').default%>" alt="facebook-link">
           </a>
         </div>
       </nav>
@@ -125,7 +128,7 @@
     <div class="popup">
       <!--popup_is-opened-->
       <div class="popup__content">
-        <img src="./images/close.svg" alt="close-image" class="popup__close" id="popup-close-button">
+        <img src="<%=require('./images/close.svg').default%>" alt="close-image" class="popup__close" id="popup-close-button">
         <h3 class="popup__title">Регистрация</h3>
         <form class="popup__form" novalidate name="new">
             <p id ="note-email" class="popup__note popup__note_active">Email</p>
@@ -144,5 +147,6 @@
       </div>
     </div>
   </div>
+  <script type="module" src="<%= htmlWebpackPlugin.files.js %>"></script>
 </body>
 </html>

@@ -24,6 +24,7 @@
   .search__button {
     width: 160px;
     height: 56px;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -34,6 +35,7 @@
     top: 72px;
     left: calc(50% - 144px);
     transform: none;
+  }
 }
 
 @media screen and (max-width: 288px) {
@@ -42,4 +44,5 @@
     top: 72px;
     left: 0;
     transform: none;
+  }
 }

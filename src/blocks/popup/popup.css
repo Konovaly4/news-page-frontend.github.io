@@ -5,11 +5,9 @@
 @import url(./__input/popup__input.css);
 @import url(./__button/popup__button.css);
 @import url(./_is-opened/popup_is-opened.css);
-@import url(./__picture/popup__picture.css);
 @import url(./__button/popup__button_active.css);
 @import url(./__error-message/popup__error-message.css);
 @import url(./__error-message/popup__error-message_active.css);
-@import url(./__button/popup__button_plus.css);
 @import url(./__note/popup__note.css);
 @import url(./__note/popup__note_active.css);
 @import url(./__button-err/popup__button-err.css);

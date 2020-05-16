@@ -1,6 +1,5 @@
 @import url(./__loading/results__loading.css);
 @import url(./__load-fail/results__load-fail.css);
-@import url(./__active/results__load_active.css);
 @import url(./__news/results__news.css);
 
 .results {

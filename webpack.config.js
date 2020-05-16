@@ -8,7 +8,10 @@ const isDev = process.env.NODE_ENV === 'development';
 
 
 module.exports = {
-  entry: { main: './src/index.js' },
+  entry: {
+    index: './src/index.js',
+    userNews:  './src/userNews.js',
+   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[chunkhash].js'
@@ -30,7 +33,7 @@ module.exports = {
               {
               test: /\.(gif|png|jpe?g|svg)$/i,
               use: [
-                'file-loader?name=../images/[name].[ext]',
+                'file-loader?name=./images/[name].[ext]',
                 {
                   loader: 'image-webpack-loader',
                   options: {},
@@ -45,7 +48,7 @@ module.exports = {
       },
       plugins: [
         new MiniCssExtractPlugin({
-          filename: 'style.[contenthash].css'
+          filename: '[name].[contenthash].css'
         }),
         new OptimizeCssAssetsPlugin({
           assetNameRegExp: /\.css$/g,
@@ -58,7 +61,14 @@ module.exports = {
         new HtmlWebpackPlugin({
           inject: false,
           template: './src/index.html',
-          filename: 'index.html'
+          filename: 'index.html',
+          chunks: ['index'],
+        }),
+        new HtmlWebpackPlugin({
+          inject: false,
+          template: './src/user-news.html',
+          filename: 'user-news.html',
+          chunks: ['index'],
         }),
         new webpack.DefinePlugin({
           'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
