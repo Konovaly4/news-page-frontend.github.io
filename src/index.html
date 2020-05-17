@@ -137,7 +137,7 @@
         </ul>
       </nav>
     </footer>
-    <div class="popup">
+    <div class="popup" id="popup">
       <!--popup_is-opened-->
       <div class="popup__content">
         <img src="<%=require('./images/close.svg').default%>" alt="close-image" class="popup__close" id="popup-close-button">
@@ -156,6 +156,14 @@
             <button name="submit" class="button popup__button popup__button_active">Зарегистрироваться</button>
             <p id="button-note" class="popup__button-note popup__button-note_active">или <span class="popup__button-link">Войти</span></p>
         </form>
+      </div>
+    </div>
+    <div class="popup" id="popup-authorized">
+      <!--popup_is-opened-->
+      <div class="popup__content popup__content_authorized">
+        <img src="<%=require('./images/close.svg').default%>" alt="close-image" class="popup__close" id="popup-close-button">
+        <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
+        <p id="login-note" class="popup__login-note">Выполнить вход</p>
       </div>
     </div>
   </div>
