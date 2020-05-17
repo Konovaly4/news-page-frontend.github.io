@@ -1,5 +1,7 @@
 # news-page-frontend.github.io
 
+v0.0.2 - Review issues fixed
+
 v0.0.1 - First edition
 
 ## О проекте

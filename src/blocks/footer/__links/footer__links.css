@@ -1,5 +1,8 @@
 @import url(../__link/footer__link.css);
 @import url(../__network-links/footer__network-links.css);
+@import url(../__links-list/footer__links-list.css);
+@import url(../__link-item/footer__link-item.css);
+@import url(../__social-item/footer__social-item.css);
 
 .footer__links {
   margin: 0;
@@ -13,6 +16,5 @@
   .footer__links {
     margin-top: 20px;
     width: 100%;
-    justify-content: space-between;
   }
 }

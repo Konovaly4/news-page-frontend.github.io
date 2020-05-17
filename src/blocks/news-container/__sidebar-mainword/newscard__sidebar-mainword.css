@@ -1,6 +1,6 @@
-@import url(./_active/newscard__navbar-mainword_active.css);
+@import url(./_active/newscard__sidebar-mainword_active.css);
 
-.newscard__navbar-mainword {
+.newscard__sidebar-mainword {
   position: absolute;
   top: 0;
   left: 0;

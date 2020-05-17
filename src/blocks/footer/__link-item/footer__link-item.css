@@ -1,0 +1,12 @@
+.footer__link-item {
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .footer__link-item:nth-of-type(2) {
+    position: absolute;
+    top: 66px;
+    left:0;
+  }
+}

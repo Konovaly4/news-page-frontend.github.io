@@ -15,12 +15,14 @@
       <header class="header">
         <p class="header__title">NewsExplorer</p>
         <nav class="header__links"> <!-- header__links_visible -->
-          <div class="header__link-container header__link-container_active header__link-container_visible">
-            <a href="./index.html" class="header__link">Главная</a>
-          </div>
-          <div class="header__link-container header__link-container_visible">
-            <a href="./user-news.html" class="header__link">Сохранённые статьи</a>
-          </div>
+          <ul class="header__link-list">
+            <li class="header__link-container header__link-container_active header__link-container_visible">
+              <a href="./index.html" class="header__link">Главная</a>
+            </li>
+            <li class="header__link-container header__link-container_visible">
+              <a href="./user-news.html" class="header__link">Сохранённые статьи</a>
+            </li>
+          </ul>
           <button class="header__button">
             <span class="header__button-text">Авторизоваться</span>
             <img class="header__button-logout header__button-logout_active" src="<%=require('./images/Logout-white.svg').default%>" alt="sign-out-button">
@@ -55,11 +57,11 @@
         <div class="news-container">
           <div class="newscard">
             <div class="newscard__pic">
-              <nav class="newscard__navbar">
-                  <p class="newscard__navbar-mainword"></p> <!-- newscard__navbar-mainword_active -->
-                  <p class="newscard__navbar-alert newscard__navbar-alert_active">Войдите, чтобы сохранять статьи</p>
-                <button class="newscard__navbar-button newscard__navbar-button_flag"></button>
-              </nav>
+              <div class="newscard__sidebar">
+                  <p class="newscard__sidebar-mainword"></p> <!-- newscard__navbar-mainword_active -->
+                  <p class="newscard__sidebar-alert newscard__sidebar-alert_active">Войдите, чтобы сохранять статьи</p>
+                <button class="newscard__sidebar-button newscard__sidebar-button_flag"></button>
+              </div>
             </div>
             <div class="newscard__textblock">
               <p class="newscard__date">2 августа, 2019</p>
@@ -70,11 +72,11 @@
           </div>
           <div class="newscard">
             <div class="newscard__pic">
-              <nav class="newscard__navbar">
-                  <p class="newscard__navbar-mainword"></p>
-                  <p class="newscard__navbar-alert newscard__navbar-alert_active">Войдите, чтобы сохранять статьи</p>
-                <button class="newscard__navbar-button newscard__navbar-button_flag newscard__navbar-button_flag_saved"></button>
-              </nav>
+              <div class="newscard__sidebar">
+                  <p class="newscard__sidebar-mainword"></p>
+                  <p class="newscard__sidebar-alert newscard__sidebar-alert_active">Войдите, чтобы сохранять статьи</p>
+                <button class="newscard__sidebar-button newscard__sidebar-button_flag newscard__sidebar-button_flag_saved"></button>
+              </div>
             </div>
             <div class="newscard__textblock">
               <p class="newscard__date">2 августа, 2019</p>
@@ -85,11 +87,11 @@
           </div>
           <div class="newscard newscard_last">
             <div class="newscard__pic">
-              <nav class="newscard__navbar">
-                  <p class="newscard__navbar-mainword"></p>
-                  <p class="newscard__navbar-alert">Войдите, чтобы сохранять статьи</p>
-                <button class="newscard__navbar-button newscard__navbar-button_flag"></button>
-              </nav>
+              <div class="newscard__sidebar">
+                  <p class="newscard__sidebar-mainword"></p>
+                  <p class="newscard__sidebar-alert">Войдите, чтобы сохранять статьи</p>
+                <button class="newscard__sidebar-button newscard__sidebar-button_flag"></button>
+              </div>
             </div>
             <div class="newscard__textblock">
               <p class="newscard__date">2 августа, 2019</p>
@@ -113,16 +115,26 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 News-Explorer</p>
       <nav class="footer__links">
-        <a href="./index.html" class="footer__link">Главная</a>
-        <a href="https://praktikum.yandex.ru" target="blank" class="footer__link">Яндекс.Практикум</a>
-        <div class="footer__network-links">
-          <a href="https://www.github.com" target="blank" class="footer__networks">
-            <img class="footer__network_link" src="<%=require('./images/Github.svg').default%>" alt="github-link">
-          </a>
-          <a href="https://www.facebook.com" target="blank" class="footer__networks">
-            <img class="footer__network_link" src="<%=require('./images/Facebook.svg').default%>" alt="facebook-link">
-          </a>
-        </div>
+        <ul class="footer__links-list">
+          <li class="footer__link-item">
+            <a href="./index.html" class="footer__link">Главная</a>
+          </li>
+          <li class="footer__link-item">
+            <a href="https://praktikum.yandex.ru" target="blank" class="footer__link">Яндекс.Практикум</a>
+          </li>
+        </ul>
+        <ul class="footer__network-links">
+          <li class="footer__social-item">
+            <a href="https://www.github.com" target="blank" class="footer__networks">
+              <img class="footer__network_link" src="<%=require('./images/Github.svg').default%>" alt="github-link">
+            </a>
+          </li>
+          <li class="footer__social-item">
+            <a href="https://www.facebook.com" target="blank" class="footer__networks">
+              <img class="footer__network_link" src="<%=require('./images/Facebook.svg').default%>" alt="facebook-link">
+            </a>
+          </li>
+        </ul>
       </nav>
     </footer>
     <div class="popup">

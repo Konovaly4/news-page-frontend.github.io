@@ -1,6 +1,6 @@
-@import url(./_active/newscard__navbar-alert_active.css);
+@import url(./_active/newscard__sidebar-alert_active.css);
 
-.newscard__navbar-alert {
+.newscard__sidebar-alert {
   margin: 0 5px 0 0;
   padding-left: 15px;
   padding-right: 15px;

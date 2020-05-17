@@ -1,8 +1,8 @@
-@import url(../__navbar__alert/newscard__navbar-alert.css);
-@import url(../__navbar-mainword/newscard__navbar-mainword.css);
-@import url(../__navbar__button/newscard__navbar-button.css);
+@import url(../__sidebar__alert/newscard__sidebar-alert.css);
+@import url(../__sidebar-mainword/newscard__sidebar-mainword.css);
+@import url(../__sidebar__button/newscard__sidebar-button.css);
 
-.newscard__navbar {
+.newscard__sidebar {
   margin: 0 auto;
   width: calc(100% - 48px);
   height: 40px;
@@ -12,25 +12,25 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .newscard__navbar {
+  .newscard__sidebar {
     width: calc(100% - 16px);
   }
 }
 
 @media screen and (max-width: 767px) {
-  .newscard__navbar {
-    width: 256px;
+  .newscard__sidebar {
+    width: calc(100% - 32px);
   }
 }
 
 @media screen and (max-width: 600px) {
-  .newscard__navbar {
+  .newscard__sidebar {
     width: calc(100% - 16px);
   }
 }
 
 @media screen and (max-width: 479px) {
-  .newscard__navbar {
-    width: 256px;
+  .newscard__sidebar {
+    width: calc(100% - 32px);
   }
 }

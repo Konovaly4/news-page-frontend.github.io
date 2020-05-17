@@ -1,7 +1,7 @@
-.newscard__navbar-button.newscard__navbar-button_flag {
+.newscard__sidebar-button.newscard__sidebar-button_flag {
   background-image: url(../../../../images/flag.svg);
 }
 
-.newscard__navbar-button_flag:hover {
+.newscard__sidebar-button_flag:hover {
   background-image: url(../../../../images/flag_hover.svg);
 }

@@ -2,6 +2,7 @@
 @import url(../__button/header__button.css);
 @import url(../__popup-button/header__popup-button.css);
 @import url(./header__links_visible.css);
+@import url(../__link-list/header__link-list.css);
 
 .header__links {
   height: 100%;
