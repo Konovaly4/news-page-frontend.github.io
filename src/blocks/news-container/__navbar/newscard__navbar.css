@@ -22,3 +22,15 @@
     width: 256px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .newscard__navbar {
+    width: calc(100% - 16px);
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .newscard__navbar {
+    width: 256px;
+  }
+}

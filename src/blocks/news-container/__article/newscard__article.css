@@ -23,3 +23,15 @@
     margin: 0 0 8px 0;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .newscard__article {
+    margin: 0 0 12px 0;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .newscard__article {
+    margin: 0 0 8px 0;
+  }
+}

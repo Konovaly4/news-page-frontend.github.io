@@ -1,5 +1,6 @@
 @import url(../__pic/newscard__pic.css);
 @import url(../__textblock/newscard__textblock.css);
+@import url(./_last/newscard_last.css);
 
 .newscard {
   margin: 0;
@@ -28,6 +29,20 @@
 }
 
 @media screen and (max-width: 767px) {
+  .newscard {
+    width: 288px;
+    height: 440px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .newscard {
+    width: 224px;
+    height: 420px;
+  }
+}
+
+@media screen and (max-width: 479px) {
   .newscard {
     width: 288px;
     height: 440px;

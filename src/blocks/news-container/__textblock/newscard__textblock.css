@@ -35,3 +35,17 @@
     height: 244px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .newscard__textblock {
+    width: 192px;
+    height: 280px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .newscard__textblock {
+    width: 256px;
+    height: 244px;
+  }
+}

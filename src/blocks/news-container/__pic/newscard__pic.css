@@ -24,3 +24,17 @@
     padding-top: 16px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .newscard__pic {
+    height: 150px;
+    padding-top: 8px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .newscard__pic {
+    height: 196px;
+    padding-top: 16px;
+  }
+}

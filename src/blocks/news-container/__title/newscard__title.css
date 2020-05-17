@@ -21,3 +21,15 @@
     line-height: 26px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .newscard__title {
+    line-height: 24px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .newscard__title {
+    line-height: 26px;
+  }
+}
