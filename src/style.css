@@ -1,9 +1,0 @@
-@import url('./pages/index.css');
-
-body {
-  margin: 0;
-}
-
-a, button {
-  cursor: url(./images/Cursor.svg), pointer;
-}

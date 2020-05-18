@@ -141,20 +141,8 @@
       <!--popup_is-opened-->
       <div class="popup__content">
         <img src="<%=require('./images/close.svg').default%>" alt="close-image" class="popup__close" id="popup-close-button">
-        <h3 class="popup__title">Регистрация</h3>
+        <h3 id="main-title" class="popup__title"></h3>
         <form class="popup__form" novalidate name="new">
-            <p id ="note-email" class="popup__note popup__note_active">Email</p>
-            <input type="text" required name="email" class="popup__input" placeholder="Введите почту">
-            <span id ="error-email" class="popup__error-message popup__error-message_active">Неправильный формат email</span>
-            <p id ="note-password" class="popup__note popup__note_active">Пароль</p>
-            <input type="text" required name="password" class="popup__input" placeholder="Введите пароль">
-            <span id="error-link" class="popup__error-message popup__error-message_active">Пароль должен быть не короче 5 символов</span>
-            <p id ="note-name" class="popup__note popup__note_active">Имя</p>
-            <input type="text" required name="name" class="popup__input" placeholder="Введите имя">
-            <span id="error-name" class="popup__error-message popup__error-message_active">Имя должно быть не короче 2 символов</span>
-            <p id ="button-err" class="popup__button-err popup__button-err_active">Такой пользователь уже есть</p>
-            <button name="submit" class="button popup__button popup__button_active">Зарегистрироваться</button>
-            <p id="button-note" class="popup__button-note popup__button-note_active">или <span class="popup__button-link">Войти</span></p>
         </form>
       </div>
     </div>
@@ -162,7 +150,7 @@
       <!--popup_is-opened-->
       <div class="popup__content popup__content_authorized">
         <img src="<%=require('./images/close.svg').default%>" alt="close-image" class="popup__close" id="popup-close-button">
-        <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
+        <h3 id="additional-title" class="popup__title">Пользователь успешно зарегистрирован!</h3>
         <p id="login-note" class="popup__login-note">Выполнить вход</p>
       </div>
     </div>
