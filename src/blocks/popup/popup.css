@@ -7,9 +7,7 @@
 @import url(./_is-opened/popup_is-opened.css);
 @import url(./__button/popup__button_active.css);
 @import url(./__error-message/popup__error-message.css);
-@import url(./__error-message/popup__error-message_active.css);
 @import url(./__note/popup__note.css);
-@import url(./__note/popup__note_active.css);
 @import url(./__button-err/popup__button-err.css);
 @import url(./__button-err/popup__button-err_active.css);
 @import url(./__button-note/popup__button-note.css);

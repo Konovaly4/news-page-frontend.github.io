@@ -7,3 +7,7 @@
   line-height: 22px;
   color: #2F71E5;
 }
+
+.popup__login-note:hover {
+  cursor: url(../../../images/Cursor.svg), pointer;
+}
