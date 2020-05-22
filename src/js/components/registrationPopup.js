@@ -47,9 +47,10 @@ export default class RegistrationPopup extends UserPopup {
   }
 
   // действия при открытии popup
-  _popupOpen () {
+  popupOpen () {
     this._popupExtension();
     this._openClose();
+    this.popup.form.reset;
     this.popup.head.textContent = this.popupTitles.regTitle;
     this.popup.noteEmail.textContent = this.formNotes.noteEmail;
     this.popup.notePassword.textContent = this.formNotes.notePassword;
@@ -76,6 +77,18 @@ export default class RegistrationPopup extends UserPopup {
   // действия при закрытии popup
   _popupClose () {
     super._popupClose();
+  }
+
+  // отправка формы
+  _submit (event) {
+    event.preventDefault();
+    this.api.login(this.popup.email.value, this.popup.password.value, this.popup.name.value);
+    this._popupClose();
+  }
+
+  _changePopup () {
+    this._popupClose();
+    registrationPopup.popupOpen();
   }
 
   // установка слушателей

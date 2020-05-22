@@ -1,25 +1,29 @@
 export default class MessagePopup {
-  constructor (popup) {
-    this.popup = popup;
+  constructor (mainPopupForm) {
+    this.mainPopupForm = mainPopupForm;
     this._popupClose = this._popupClose.bind(this);
+    this._openMainForm = this._openMainForm.bind(this);
   }
 
-  _popupToggle () {
-    this.popup.classList.toggle('popup_is-opened');
-  }
-
-  _popupOpen () {
-    this._popupToggle();
-    this.popup.closeButton = document.getElementById('popup-auth-close-button');
+  popupSetup () {
+    this.popup = document.getElementById('popup-authorized');
+    this.popup.classList.remove('popup_is-opened');
+    this.popupCloseButton = document.getElementById('popup-auth-close-button');
+    this.popupNote = document.getElementById('login-note');
     this.setEventListeners();
   }
 
-  _popupClose() {
-    this._popupToggle();
-    this.popup.closeButton.removeEventListener('click', this._popupClose);
+  _popupClose () {
+    this.popup.classList.remove('popup_is-opened');
+  }
+
+  _openMainForm() {
+    this.popup.classList.remove('popup_is-opened');
+    this.mainPopupForm.userPopupOpen();
   }
 
   setEventListeners () {
-    this.popup.closeButton.addEventListener('click', this._popupClose);
+    this.popupCloseButton.addEventListener('click', this._popupClose);
+    this.popupNote.addEventListener('click', this._openMainForm);
   }
 }

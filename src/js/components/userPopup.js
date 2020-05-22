@@ -1,15 +1,17 @@
 export default class UserPopup {
-  constructor(popup, popupTitles, placeholders, formNotes , formButtons , formvalidator) {
+  constructor(popup, popupTitles, placeholders, formNotes , formButtons , formvalidator, api) {
     this.popup = popup;
     this.popupTitles = popupTitles;
     this.placeholders = placeholders;
     this.formNotes = formNotes;
     this.formButtons = formButtons;
     this.formvalidator = formvalidator;
-    this._popupClose = this._popupClose.bind(this);
-    this._popupOpen = this._popupOpen.bind(this);
+    this.api = api;
+    this.popupClose = this.popupClose.bind(this);
+    this.popupOpen = this.popupOpen.bind(this);
     this._validation = this._validation.bind(this);
     this._setButtonState = this._setButtonState.bind(this);
+    this._submit = this._submit.bind(this);
   }
 
   // вставка формы в popup
@@ -51,9 +53,11 @@ export default class UserPopup {
   }
 
   // действия при открытии popup
-  _popupOpen () {
+  popupOpen () {
     this._popupExtension();
     this._openClose();
+    this.popup.removeAttribute('name', 'regPopup');
+    this.popup.form.reset;
     this.popup.head.textContent = this.popupTitles.loginTitle;
     this.popup.noteEmail.textContent = this.formNotes.noteEmail;
     this.popup.notePassword.textContent = this.formNotes.notePassword;
@@ -86,18 +90,27 @@ export default class UserPopup {
   }
 
   // действия при закрытии popup
-  _popupClose () {
+  popupClose () {
     this._openClose();
     this.popup.form.innerHTML = ``;
-    this.popup.closeButton.removeEventListener('click', this._popupClose);
+    this.popup.closeButton.removeEventListener('click', this.popupClose);
     this.popup.form.removeEventListener('input', this._validation);
     this.popup.form.removeEventListener('input', this._setButtonState);
+    this.popup.button.removeEventListener('submit', this._submit);
+  }
+
+  // отправка формы
+  _submit (event) {
+    event.preventDefault();
+    this.api.login(this.popup.email.value, this.popup.password.value);
+    this.popupClose();
   }
 
   // установка слушателей
   _setEventListeners() {
     this.popup.form.addEventListener('input', this._validation);
     this.popup.form.addEventListener('input', this._setButtonState);
-    this.popup.closeButton.addEventListener('click', this._popupClose);
+    this.popup.closeButton.addEventListener('click', this.popupClose);
+    this.popup.button.addEventListener('submit', this._submit);
   }
 }
