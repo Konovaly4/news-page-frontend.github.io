@@ -5,24 +5,16 @@ export default class UserLoginPopup extends RegistrationPopup {
     super(...args);
   }
 
-  // вставка формы в popup
-  _popupForm () {
-    let popupForm = document.forms.new;
-    popupForm.innerHTML = `
-      <p id ="note-email" class="popup__note popup__note_active"></p>
-      <input type="email" required name="email" class="popup__input">
-      <span id ="error-email" class="popup__error-message"></span>
-      <p id ="note-password" class="popup__note popup__note_active"></p>
-      <input type="text" required minlength="5" name="password" class="popup__input">
-      <span id="error-password" class="popup__error-message"></span>
-      <p id ="button-err" class="popup__button-err popup__button-err_active"></p>
-      <button name="submit" class="button popup__button"></button>
-      <p class="popup__button-note popup__button-note_active">или <span id="button-note" class="popup__button-link"></span></p>
-    `;
-  }
-
   setDependencies(dependencies) {
     this.dependencies = dependencies;
+  }
+
+  // вставка формы в popup
+  _popupForm () {
+    const { loginFormTemplate } = this.dependencies;
+    const popupForm = loginFormTemplate.cloneNode(true);
+    this.popupContent = this.popup.querySelector('.popup__content');
+    this.popupContent.append(popupForm);
   }
 
   _popupExtension () {

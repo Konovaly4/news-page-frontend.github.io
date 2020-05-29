@@ -21,21 +21,10 @@ export default class RegistrationPopup {
   }
 
   _popupForm () {
-    let popupForm = document.forms.new;
-    popupForm.innerHTML = `
-      <p id ="note-email" class="popup__note"></p>
-      <input type="email" required name="email" class="popup__input">
-      <span id ="error-email" class="popup__error-message"></span>
-      <p id ="note-password" class="popup__note"></p>
-      <input type="text" required minlength="5" name="password" class="popup__input">
-      <span id="error-password" class="popup__error-message"></span>
-      <p id ="note-name" class="popup__note"></p>
-      <input type="text" required minlength="2" maxlength="15" name="name" class="popup__input">
-      <span id="error-name" class="popup__error-message"></span>
-      <p id ="button-err" class="popup__button-err popup__button-err_active"></p>
-      <button name="submit" class="button popup__button"></button>
-      <p class="popup__button-note popup__button-note_active">или <span id="button-note" class="popup__button-link"></span></p>
-    `;
+    const { regFormTemplate } = this.dependencies;
+    const popupForm = regFormTemplate.cloneNode(true);
+    this.popupContent = this.popup.querySelector('.popup__content');
+    this.popupContent.append(popupForm);
   }
 
   _popupExtension () {
@@ -98,12 +87,12 @@ export default class RegistrationPopup {
 
   popupClose () {
     this._openClose();
-    this.popup.form.innerHTML = ``;
     this.popup.closeButton.removeEventListener('click', this.popupClose);
     this.popup.form.removeEventListener('input', this._validation);
     this.popup.form.removeEventListener('input', this._setButtonState);
     this.popup.closeButton.removeEventListener('click', this.popupClose);
     this.popup.removeEventListener('click', this._popupCloseByClick);
+    this.popup.form.remove();
   }
 
   _popupCloseByClick (event) {
@@ -120,18 +109,19 @@ export default class RegistrationPopup {
     event.preventDefault();
     this.api.createUser(this.popup.email.value, this.popup.password.value, this.popup.name.value)
     .then((res) => {
+      console.log(res);
+      console.log(secondaryPopup);
       if (res == 'Email is already exists') {
         this.popup.buttonErr.textContent = 'Такой пользователь уже есть';
         return;
       };
-      if (res != 'Email is already exists') {
+      if (res.includes('must be a valid')) {
         this.popup.buttonErr.textContent = 'Произошла ошибка при регистрации';
         return;
       }
       this.popupClose();
       this.pageReloader.setButtonState();
       secondaryPopup.classList.add('popup_is-opened');
-      console.log(res);
       return res;
     })
   }

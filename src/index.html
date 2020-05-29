@@ -97,11 +97,6 @@
       <div class="popup__content">
         <img src="<%=require('./images/close.svg').default%>" alt="close-image" class="popup__close" id="popup-close-button">
         <h3 id="main-title" class="popup__title"></h3>
-        <form class="popup__form" name="new">
-          <p id ="button-err" class="popup__button-err popup__button-err_active"></p>
-          <button name="submit" class="button popup__button"></button>
-          <p class="popup__button-note popup__button-note_active">или <span id="button-note" class="popup__button-link"></span></p>
-        </form>
       </div>
     </div>
     <div class="popup" id="popup-authorized">
@@ -112,6 +107,35 @@
         <p id="login-note" class="popup__login-note">Выполнить вход</p>
       </div>
     </div>
+    <template id="reg-form-template">
+      <form class="popup__form" name="new">
+        <p id ="note-email" class="popup__note"></p>
+        <input type="email" required name="email" class="popup__input">
+        <span id ="error-email" class="popup__error-message"></span>
+        <p id ="note-password" class="popup__note"></p>
+        <input type="text" required minlength="5" name="password" class="popup__input">
+        <span id="error-password" class="popup__error-message"></span>
+        <p id ="note-name" class="popup__note"></p>
+        <input type="text" required minlength="2" maxlength="15" name="name" class="popup__input">
+        <span id="error-name" class="popup__error-message"></span>
+        <p id ="button-err" class="popup__button-err popup__button-err_active"></p>
+        <button name="submit" class="button popup__button"></button>
+        <p class="popup__button-note popup__button-note_active">или <span id="button-note" class="popup__button-link"></span></p>
+      </form>
+    </template>
+    <template id="login-form-template">
+      <form class="popup__form" name="new">
+        <p id ="note-email" class="popup__note popup__note_active"></p>
+        <input type="email" required name="email" class="popup__input">
+        <span id ="error-email" class="popup__error-message"></span>
+        <p id ="note-password" class="popup__note popup__note_active"></p>
+        <input type="text" required minlength="5" name="password" class="popup__input">
+        <span id="error-password" class="popup__error-message"></span>
+        <p id ="button-err" class="popup__button-err popup__button-err_active"></p>
+        <button name="submit" class="button popup__button"></button>
+        <p class="popup__button-note popup__button-note_active">или <span id="button-note" class="popup__button-link"></span></p>
+      </form>
+    </template>
   </div>
   <script type="module" src="<%= htmlWebpackPlugin.files.js %>"></script>
 </body>

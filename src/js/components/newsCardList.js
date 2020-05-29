@@ -99,6 +99,10 @@ export default class NewsCardList {
     this.newsApi.getNews(this.input.value)
     .then((res) => {
       this._preloaderToggler();
+      if(!res) {
+        this._resultErrorBlockOpen();
+        return;
+      }
       if(res.articles.length === 0) {
         this._resultFailBlockOpen();
         return;
@@ -109,9 +113,6 @@ export default class NewsCardList {
       this.nextButton.classList.add('results__button_active');
       this._showCards();
     })
-    .catch((err) => {
-      console.log(err);
-    });
     this._setEventListeners();
   }
 

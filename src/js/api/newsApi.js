@@ -20,6 +20,8 @@ export default class NewsApi {
       }
     })
     .then((res) => {
+      console.log(res);
+      console.log(res.ok);
       if(res.ok) {
         return res.json();
       } else {

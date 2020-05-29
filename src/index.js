@@ -11,7 +11,6 @@ import UserApi from './js/api/userApi';
 import NewsApi from './js/api/newsApi';
 import MainHeaderRender from './js/components/mainHeaderRender';
 import MainPage from './js/components/mainPage';
-import Popup from './js/components/popup';
 import {newsReqData} from './js/constants/newsReqData';
 import SearchInput from './js/components/searchInput';
 import NewsCardList from './js/components/newsCardList';
@@ -22,14 +21,12 @@ import RegistrationPopup from './js/components/registrationPopup';
 import UserLoginPopup from './js/components/userLoginPopup';
 
 let popup = document.getElementById('popup');
-let popupNote = document.getElementById('button-note');
-let authPopup = document.getElementById('popup-authorized');
-let nextbutton = document.querySelector('.results__button');
 let container = document.querySelector('.news-container');
-let headerButton = document.querySelector('.header__button');
 let header = document.querySelector('.header');
 let secondaryPopup = document.getElementById('popup-authorized');
 const headerPopup = document.querySelector('.header__popup');
+const regFormTemplate = document.querySelector('#reg-form-template').content.querySelector('.popup__form');
+const loginFormTemplate = document.querySelector('#login-form-template').content.querySelector('.popup__form');
 
 
 // объявление класса валидации форм
@@ -50,15 +47,12 @@ let mainHeaderRender = new MainHeaderRender(userApi, header);
 const registrationPopup = new RegistrationPopup(popup, popupTitles, placeholders, formNotes, formButtons, formValidator, userApi, mainHeaderRender);
 const userLoginPopup = new UserLoginPopup(popup, popupTitles, placeholders, formNotes, formButtons, formValidator, userApi, mainHeaderRender);
 
-// вызов класса popup
-// let commonPopup = new Popup(headerButton, registrationPopup, userLoginPopup, mainHeaderRender, secondaryPopup);
-
 // объявление класса попапа-сообщения об успешной авторизации
 let messagePopup = new MessagePopup(userLoginPopup);
 messagePopup.popupSetup();
 
-registrationPopup.setDependencies({ userLoginPopup, messagePopup});
-userLoginPopup.setDependencies({ registrationPopup });
+registrationPopup.setDependencies({ userLoginPopup, secondaryPopup, regFormTemplate});
+userLoginPopup.setDependencies({ registrationPopup, loginFormTemplate });
 
 // объявление класса установки состояния главной страницы
 let mainPage = new MainPage(mainHeaderRender, header, userApi, registrationPopup, headerPopup);

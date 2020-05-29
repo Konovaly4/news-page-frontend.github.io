@@ -19,6 +19,7 @@ export default class UserApi {
       })
     })
     .then((res) => {
+      console.log(res);
       if(res.ok) {
         return res.json();
       } else {
@@ -26,6 +27,13 @@ export default class UserApi {
       };
     })
     .catch((err) => {
+      console.log(err);
+      console.log(err.status);
+      console.log(err.statusText);
+      if (err === 'TypeError: Failed to fetch') {
+        console.log('bug here');
+        return ('Ошибка соединения с сервером');
+      }
       return err.text()
       .then((text) => {
         return JSON.parse(text);

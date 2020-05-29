@@ -12,4 +12,5 @@ body {
 
 a, button {
   cursor: url(../images/Cursor.svg), pointer;
+  outline: none;
 }
