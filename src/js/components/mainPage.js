@@ -3,14 +3,18 @@ export default class MainPage {
   // header - константа, определение шапки сайта из разметки
   // logout - метод класса userApi, разлогинивающий пользователя
   // registrationPopupActivate - метод, вызывающий открытие регистрационного попапа
-  constructor (mainHeaderRender, header, userApi, popup, headerPopup) {
-    this.mainHeaderRender = mainHeaderRender;
+  constructor (headerRender, header, userApi, popup, headerPopup, serverData) {
+    this.headerRender = headerRender;
     this.header = header;
     this.userApi = userApi;
     this.popup = popup;
     this.headerPopup = headerPopup;
+    this.serverData = serverData;
     this._logout = this._logout.bind(this);
     this._headerPopupToggler = this._headerPopupToggler.bind(this);
+    this._changePage = this._changePage.bind(this);
+    this._mainpage = this._mainpage.bind(this);
+    this._buttonCheck = this._buttonCheck.bind(this);
   }
 
   // сбор данных о элементах шапки сайта
@@ -21,13 +25,14 @@ export default class MainPage {
     this.headerButtonName = this.header.querySelector('.header__button-text');
     this.headerButtonLogout = this.header.querySelector('.header__button-logout');
     this.headerNewsLink = this.header.querySelector('.header__link_newspage');
+    this.headerMainPageLink = this.header.querySelector('.header__link_mainpage');
     return;
   }
 
   _logout () {
     this.userApi.logout()
     .then((res) => {
-      this.mainHeaderRender.setButtonState();
+      this.headerRender.setButtonState();
       return res.status;
     })
   }
@@ -39,14 +44,31 @@ export default class MainPage {
     }
   }
 
+  _buttonCheck () {
+    this.headerButton.hasAttribute('name') ? this.popup.popupOpen() : this._logout();
+  }
+
+  _changePage () {
+    this.headerPopupButton.removeEventListener('click', this._headerPopupToggler);
+    this.headerButton.removeEventListener('click', this._buttonCheck);
+    this.headerNewsLink.removeEventListener('click', this._changePage);
+    this.headerMainPageLink.removeEventListener('click', this._mainpage)
+    document.location = '/user-news.html';
+  }
+
+  _mainpage () {
+    document.location = '/index.html';
+  }
+
   // установка слушателей на кнопки и ссылки
   pageState () {
     this._headerData();
-    this.mainHeaderRender.setButtonState();
+    this.headerRender.setButtonState();
     this.headerPopupButton.addEventListener('click', this._headerPopupToggler);
-    this.headerButton.addEventListener('click', () => {
-      this.headerButton.hasAttribute('name') ? this.popup.popupOpen() : this._logout();
-    });
+    this.headerButton.addEventListener('click', this._buttonCheck);
+    this.headerNewsLink.addEventListener('click', this._changePage);
+    this.headerMainPageLink.addEventListener('click', this._mainpage)
+    // this.header.addEventListener('click', (event) => { console.log(event.target) });
   }
 
 }

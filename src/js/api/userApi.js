@@ -124,7 +124,6 @@ export default class UserApi {
   // выход из системы
   logout () {
     console.log('logging out');
-    alert('Вы действительно хотите выйти?');
     return fetch(`${this.url}${this.ip}/users/me/signout`, {
       method: 'POST',
       credentials: 'include',

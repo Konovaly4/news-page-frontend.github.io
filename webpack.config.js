@@ -68,7 +68,7 @@ module.exports = {
           inject: false,
           template: './src/user-news.html',
           filename: 'user-news.html',
-          chunks: ['index'],
+          chunks: ['userNews'],
         }),
         new webpack.DefinePlugin({
           'NODE_ENV': JSON.stringify(process.env.NODE_ENV)

@@ -20,49 +20,49 @@ import SavedNewsApi from './js/api/savedNewsApi';
 import RegistrationPopup from './js/components/registrationPopup';
 import UserLoginPopup from './js/components/userLoginPopup';
 
-let popup = document.getElementById('popup');
-let container = document.querySelector('.news-container');
-let header = document.querySelector('.header');
-let secondaryPopup = document.getElementById('popup-authorized');
+const popup = document.getElementById('popup');
+const container = document.querySelector('.news-container');
+const header = document.querySelector('.header');
+const secondaryPopup = document.getElementById('popup-authorized');
 const headerPopup = document.querySelector('.header__popup');
 const regFormTemplate = document.querySelector('#reg-form-template').content.querySelector('.popup__form');
 const loginFormTemplate = document.querySelector('#login-form-template').content.querySelector('.popup__form');
 
 
 // объявление класса валидации форм
-let formValidator = new FormValidator(formErrors);
+const formValidator = new FormValidator(formErrors);
 
 // объявление класса userApi с данными сервера
-let userApi = new UserApi(serverData);
+const userApi = new UserApi(serverData);
 
 // объявление класса savedNewsApi с данными сервера
 const savedNewsApi = new SavedNewsApi(serverData);
 
 // объявление класса NewsApi с ключом
-let newsApi = new NewsApi(newsReqData);
+const newsApi = new NewsApi(newsReqData);
 
 // объявление класса установки состояния кнопок хедера
-let mainHeaderRender = new MainHeaderRender(userApi, header);
+const mainHeaderRender = new MainHeaderRender(userApi, header, serverData);
 
 const registrationPopup = new RegistrationPopup(popup, popupTitles, placeholders, formNotes, formButtons, formValidator, userApi, mainHeaderRender);
 const userLoginPopup = new UserLoginPopup(popup, popupTitles, placeholders, formNotes, formButtons, formValidator, userApi, mainHeaderRender);
 
 // объявление класса попапа-сообщения об успешной авторизации
-let messagePopup = new MessagePopup(userLoginPopup);
+const messagePopup = new MessagePopup(userLoginPopup);
 messagePopup.popupSetup();
 
 registrationPopup.setDependencies({ userLoginPopup, secondaryPopup, regFormTemplate});
 userLoginPopup.setDependencies({ registrationPopup, loginFormTemplate });
 
 // объявление класса установки состояния главной страницы
-let mainPage = new MainPage(mainHeaderRender, header, userApi, registrationPopup, headerPopup);
+const mainPage = new MainPage(mainHeaderRender, header, userApi, registrationPopup, headerPopup, serverData);
 mainPage.pageState();
 
 // объявление класса создания блока карточек
-let newsCardList = new NewsCardList(container, userApi, newsApi, savedNewsApi, searchMessages, cardAlerts);
+const newsCardList = new NewsCardList(container, userApi, newsApi, savedNewsApi, searchMessages, cardAlerts);
 
 // объявление класса поля ввода поиска новостей
-let searchInput = new SearchInput(newsCardList);
+const searchInput = new SearchInput(newsCardList);
 searchInput.setEventListeners();
 
 

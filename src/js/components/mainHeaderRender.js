@@ -2,9 +2,10 @@ export default class MainHeaderRender {
   // api - метод, запрашивающий инфо о юзере, если приходит ошибка - юзер не залогинен.
   // header - константа, данные о шапке из разметки сайта.
   // formButtons - константа, объект с заполнениями текстовых полей.
-  constructor(api, header) {
+  constructor(api, header, serverData) {
     this.api = api;
     this.header = header;
+    this.serverData = serverData;
   }
 
   // сбор данных об элементах шапки сайта
