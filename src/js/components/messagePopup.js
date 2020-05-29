@@ -19,7 +19,7 @@ export default class MessagePopup {
 
   _openMainForm() {
     this.popup.classList.remove('popup_is-opened');
-    this.mainPopupForm.userPopupOpen();
+    this.mainPopupForm.popupOpen();
   }
 
   setEventListeners () {

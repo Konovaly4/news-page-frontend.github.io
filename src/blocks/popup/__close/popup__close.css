@@ -5,6 +5,7 @@
   right: -46px;
   cursor: url(../../../images/Cursor.svg), pointer;
   display: block;
+  z-index: 1;
 }
 
 @media screen and (max-width: 767px) {

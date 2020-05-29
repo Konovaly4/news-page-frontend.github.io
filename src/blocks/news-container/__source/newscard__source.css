@@ -9,4 +9,7 @@
   text-transform: uppercase;
   text-decoration: none;
   color: #B6BCBF;
+  position: absolute;
+  left: 0;
+  bottom: 0;
 }

@@ -1,6 +1,5 @@
 @import url(../__pic/newscard__pic.css);
 @import url(../__textblock/newscard__textblock.css);
-@import url(./_last/newscard_last.css);
 
 .newscard {
   margin: 0;

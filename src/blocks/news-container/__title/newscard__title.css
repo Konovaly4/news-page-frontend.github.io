@@ -6,6 +6,10 @@
   font-size: 26px;
   line-height: 30px;
   color: #1A1B22;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 1279px) {
@@ -13,23 +17,33 @@
     font-size: 22px;
     line-height: 24px;
     margin: 0 0 10px 0;
+    -webkit-line-clamp: 2;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .newscard__title {
+    -webkit-line-clamp: 3;
   }
 }
 
 @media screen and (max-width: 767px) {
   .newscard__title {
     line-height: 26px;
+    -webkit-line-clamp: 2;
   }
 }
 
 @media screen and (max-width: 600px) {
   .newscard__title {
     line-height: 24px;
+    -webkit-line-clamp: 3;
   }
 }
 
 @media screen and (max-width: 479px) {
   .newscard__title {
     line-height: 26px;
+    -webkit-line-clamp: 2;
   }
 }

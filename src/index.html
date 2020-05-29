@@ -37,7 +37,7 @@
         <h1 class="search__title">Что в мире творится?</h1>
         <p class="search__subtitle">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
         <form class="search__form">
-          <input type="text" class="search__input" placeholder="Введите тему новости">
+          <input type="text" class="search__input" required placeholder="Введите тему новости">
           <button class="search__button">Искать</button>
         </form>
       </div>
@@ -55,53 +55,8 @@
       <div class="results__news"> <!-- results__news_active -->
         <h2 class="results__news-title">Результаты поиска</h2>
         <div class="news-container">
-          <div class="newscard">
-            <div class="newscard__pic">
-              <div class="newscard__sidebar">
-                  <p class="newscard__sidebar-mainword"></p> <!-- newscard__navbar-mainword_active -->
-                  <p class="newscard__sidebar-alert newscard__sidebar-alert_active">Войдите, чтобы сохранять статьи</p>
-                <button class="newscard__sidebar-button newscard__sidebar-button_flag"></button>
-              </div>
-            </div>
-            <div class="newscard__textblock">
-              <p class="newscard__date">2 августа, 2019</p>
-              <h3 class="newscard__title">Национальное достояние – парки</h3>
-              <p class="newscard__article">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться система национальных парков – охраняемых территорий, где и сегодня каждый может приобщиться к природе.</p>
-              <a href="https://lenta.ru/" target="blank" class="newscard__source">Лента.ру</a>
-           </div>
-          </div>
-          <div class="newscard">
-            <div class="newscard__pic">
-              <div class="newscard__sidebar">
-                  <p class="newscard__sidebar-mainword"></p>
-                  <p class="newscard__sidebar-alert newscard__sidebar-alert_active">Войдите, чтобы сохранять статьи</p>
-                <button class="newscard__sidebar-button newscard__sidebar-button_flag newscard__sidebar-button_flag_saved"></button>
-              </div>
-            </div>
-            <div class="newscard__textblock">
-              <p class="newscard__date">2 августа, 2019</p>
-              <h3 class="newscard__title">Национальное достояние – парки</h3>
-              <p class="newscard__article">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться система национальных парков – охраняемых территорий, где и сегодня каждый может приобщиться к природе.</p>
-              <a href="https://lenta.ru/" target="blank" class="newscard__source">Лента.ру</a>
-           </div>
-          </div>
-          <div class="newscard newscard_last">
-            <div class="newscard__pic">
-              <div class="newscard__sidebar">
-                  <p class="newscard__sidebar-mainword"></p>
-                  <p class="newscard__sidebar-alert">Войдите, чтобы сохранять статьи</p>
-                <button class="newscard__sidebar-button newscard__sidebar-button_flag"></button>
-              </div>
-            </div>
-            <div class="newscard__textblock">
-              <p class="newscard__date">2 августа, 2019</p>
-              <h3 class="newscard__title">Национальное достояние – парки</h3>
-              <p class="newscard__article">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться система национальных парков – охраняемых территорий, где и сегодня каждый может приобщиться к природе.</p>
-              <a href="https://lenta.ru/" target="blank" class="newscard__source">Лента.ру</a>
-           </div>
-          </div>
         </div>
-        <button class="results__button">Показать еще</button>
+        <button class="results__button  results__button_active">Показать еще</button>
       </div>
     </section>
     <section class="author">

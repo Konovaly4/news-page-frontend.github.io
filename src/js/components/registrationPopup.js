@@ -1,8 +1,25 @@
-import UserPopup from './userPopup';
+export default class RegistrationPopup {
+  constructor (popup, popupTitles, placeholders, formNotes, formButtons , formvalidator, api,  pageReloader) {
+      this.popup = popup;
+      this.popupTitles = popupTitles;
+      this.placeholders = placeholders;
+      this.formNotes = formNotes;
+      this.formButtons = formButtons;
+      this.formvalidator = formvalidator;
+      this.api = api;
+      this.pageReloader = pageReloader;
+      this.popupClose = this.popupClose.bind(this);
+      this._validation = this._validation.bind(this);
+      this._setButtonState = this._setButtonState.bind(this);
+      this._submit = this._submit.bind(this);
+      this._popupCloseByClick = this._popupCloseByClick.bind(this);
+      this._changePopup = this._changePopup.bind(this);
+  }
 
-export default class RegistrationPopup extends UserPopup {
-// без constructor - наследуется от родительского класса
-  // вставка формы в popup
+  setDependencies(dependencies) {
+    this.dependencies = dependencies;
+  }
+
   _popupForm () {
     let popupForm = document.forms.new;
     popupForm.innerHTML = `
@@ -13,7 +30,7 @@ export default class RegistrationPopup extends UserPopup {
       <input type="text" required minlength="5" name="password" class="popup__input">
       <span id="error-password" class="popup__error-message"></span>
       <p id ="note-name" class="popup__note"></p>
-      <input type="text" required minlength="2" maxlength="30" name="name" class="popup__input">
+      <input type="text" required minlength="2" maxlength="15" name="name" class="popup__input">
       <span id="error-name" class="popup__error-message"></span>
       <p id ="button-err" class="popup__button-err popup__button-err_active"></p>
       <button name="submit" class="button popup__button"></button>
@@ -21,7 +38,6 @@ export default class RegistrationPopup extends UserPopup {
     `;
   }
 
-  // сбор элементов popup
   _popupExtension () {
     this._popupForm()
     this.popup.head = document.getElementById('main-title');
@@ -41,12 +57,10 @@ export default class RegistrationPopup extends UserPopup {
     this.popup.buttonErr = document.getElementById('button-err');
   }
 
-  // открытие-закрытие popup
   _openClose () {
-    super._openClose();
+    this.popup.classList.toggle('popup_is-opened');
   }
 
-  // действия при открытии popup
   popupOpen () {
     this._popupExtension();
     this._openClose();
@@ -66,33 +80,75 @@ export default class RegistrationPopup extends UserPopup {
 
   // валидация полей popup
   _validation () {
-    super._validation();
+    this.formvalidator.validation(this.popup.form);
   }
 
-  // установка активности кнопки
   _setButtonState () {
-    super._setButtonState();
+    const errorList = Array.from(this.popup.querySelectorAll('.popup__error-message')).every((elem) => {
+      return elem.textContent === '';
+    });
+    if (!errorList) {
+      this.popup.button.classList.remove('popup__button_active');
+      this.popup.button.setAttribute('disabled', true);
+    } else {
+      this.popup.button.classList.add('popup__button_active')
+      this.popup.button.removeAttribute('disabled', true);
+    }
   }
 
-  // действия при закрытии popup
-  _popupClose () {
-    super._popupClose();
+  popupClose () {
+    this._openClose();
+    this.popup.form.innerHTML = ``;
+    this.popup.closeButton.removeEventListener('click', this.popupClose);
+    this.popup.form.removeEventListener('input', this._validation);
+    this.popup.form.removeEventListener('input', this._setButtonState);
+    this.popup.closeButton.removeEventListener('click', this.popupClose);
+    this.popup.removeEventListener('click', this._popupCloseByClick);
   }
 
-  // отправка формы
+  _popupCloseByClick (event) {
+    if (!event) {
+      return;
+    } else if (event.target.classList.contains('popup')) {
+      this.popupClose();
+    }
+  }
+
   _submit (event) {
+    console.log('regsubmit');
+    const { secondaryPopup } = this.dependencies;
     event.preventDefault();
-    this.api.login(this.popup.email.value, this.popup.password.value, this.popup.name.value);
-    this._popupClose();
+    this.api.createUser(this.popup.email.value, this.popup.password.value, this.popup.name.value)
+    .then((res) => {
+      if (res == 'Email is already exists') {
+        this.popup.buttonErr.textContent = 'Такой пользователь уже есть';
+        return;
+      };
+      if (res != 'Email is already exists') {
+        this.popup.buttonErr.textContent = 'Произошла ошибка при регистрации';
+        return;
+      }
+      this.popupClose();
+      this.pageReloader.setButtonState();
+      secondaryPopup.classList.add('popup_is-opened');
+      console.log(res);
+      return res;
+    })
   }
 
   _changePopup () {
-    this._popupClose();
-    registrationPopup.popupOpen();
+    const { userLoginPopup } = this.dependencies;
+    this.popupClose();
+    userLoginPopup.popupOpen();
   }
 
-  // установка слушателей
   _setEventListeners() {
-    super._setEventListeners();
+    this.popup.form.addEventListener('input', this._validation);
+    this.popup.form.addEventListener('input', this._setButtonState);
+    this.popup.button.addEventListener('click', this._submit);
+    this.popup.noteButton.addEventListener('click', this._changePopup);
+    this.popup.closeButton.addEventListener('click', this.popupClose);
+    this.popup.addEventListener('click', this._popupCloseByClick);
   }
+
 }

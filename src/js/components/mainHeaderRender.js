@@ -1,4 +1,4 @@
-export default class MainHeader {
+export default class MainHeaderRender {
   // api - метод, запрашивающий инфо о юзере, если приходит ошибка - юзер не залогинен.
   // header - константа, данные о шапке из разметки сайта.
   // formButtons - константа, объект с заполнениями текстовых полей.

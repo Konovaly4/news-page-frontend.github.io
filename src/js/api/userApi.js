@@ -22,11 +22,21 @@ export default class UserApi {
       if(res.ok) {
         return res.json();
       } else {
-        return Promise.reject(`${res.status}-${res.statusText}`);
+        return Promise.reject(res);
       };
     })
     .catch((err) => {
-      console.log(err);
+      return err.text()
+      .then((text) => {
+        return JSON.parse(text);
+      })
+      .then((text) => {
+        console.log(text.message);
+        return text.message;
+      })
+      .catch((err) => {
+        console.log(err);
+      })
     });
   }
 
