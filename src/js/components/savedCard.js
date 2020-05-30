@@ -1,12 +1,11 @@
-export default class NewsCard {
-  constructor (cardData, cardAlerts, inputValue, api) {
+export default class SavedCard {
+  constructor (cardData, cardAlerts, api) {
     this.cardData = cardData;
     this.cardAlerts = cardAlerts;
-    this.inputValue = inputValue;
     this.api = api;
     this._alertOn = this._alertOn.bind(this);
     this._alertOff = this._alertOff.bind(this);
-    this._sideBarButtonActivate = this._sideBarButtonActivate.bind(this);
+    this._deleteCard = this._deleteCard.bind(this);
   }
 
   _cardRender () {
@@ -40,76 +39,60 @@ export default class NewsCard {
     cardItem.append(textBlock);
     return cardItem;
   }
-// (elem.urlToImage, this.input.value, elem.publishedAt, elem.title, elem.description, elem.url, elem.source.name)
 
   _dataParser () {
-    return (new Date(this.cardData.publishedAt).toLocaleString('ru', {
+    return (new Date(this.cardData.date).toLocaleString('ru', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
     }));
   }
 
-  _wordParser (word) {
-    return word.substr(0, 1).toUpperCase() + word.substr(1).toLowerCase();
-  }
-
   setCardData () {
     this._element = this._cardRender();
     this.sideBarButton = this._element.querySelector('.newscard__sidebar-button');
-    this.sideBarButton.classList.add('newscard__sidebar-button_flag');
+    this.sideBarButton.classList.add('newscard__sidebar-button_garbage');
     this.sideBarAlert = this._element.querySelector('.newscard__sidebar-alert');
-    this.sideBarAlert.textContent = this.cardAlerts.mainPage;
+    this.sideBarAlert.textContent = this.cardAlerts.savedNews;
     this.newsCardPic = this._element.querySelector('.newscard__pic');
-    this.newsCardPic.style.backgroundImage = `url(${this.cardData.urlToImage})`;
+    this.newsCardPic.style.backgroundImage = `url(${this.cardData.image})`;
     this.searchword = this._element.querySelector('.newscard__sidebar-mainword');
-    this.searchword.textContent = this._wordParser(this.inputValue);
+    this.searchword.classList.add('newscard__sidebar-mainword_active');
+    this.searchword.textContent = this.cardData.keyword;
     this.cardDate = this._element.querySelector('.newscard__date');
     this.cardDate.textContent = this._dataParser();
     this.cardTitle = this._element.querySelector('.newscard__title');
     this.cardTitle.textContent = this.cardData.title;
     this.cardArticle = this._element.querySelector('.newscard__article');
-    this.cardArticle.textContent = this.cardData.description;
+    this.cardArticle.textContent = this.cardData.text;
     this.cardSource = this._element.querySelector('.newscard__source');
-    this.cardSource.setAttribute('href', this.cardData.url);
-    this.cardSource.textContent = this.cardData.source.name;
+    this.cardSource.setAttribute('href', this.cardData.link);
+    this.cardSource.textContent = this.cardData.source;
     this._setEventListeners();
-    console.log(this.searchword.textContent);
     return this._element;
   }
 
   _alertOn () {
-    if (document.querySelector('.header__button').hasAttribute('name')) {
-      this.sideBarAlert.classList.add('newscard__sidebar-alert_active');
-    }
+    this.sideBarAlert.classList.add('newscard__sidebar-alert_active');
   }
 
   _alertOff () {
-    if (document.querySelector('.header__button').hasAttribute('name')) {
-      this.sideBarAlert.classList.remove('newscard__sidebar-alert_active');
-    }
+    this.sideBarAlert.classList.remove('newscard__sidebar-alert_active');
   }
 
-  _sideBarButtonActivate () {
-    if (!document.querySelector('.header__button').hasAttribute('name')) {
-      if (event.target.classList.contains('newscard__sidebar-button_flag')) {
-        this.api.saveCard(this.cardData, this._wordParser(this.inputValue))
-        .then((res) => {
-          console.log(res);
-          this._element.setAttribute('id', res.data._id);
-        });
-      } else {
-        this.api.deleteCard(this._element.getAttribute('id'));
-      };
-      this.sideBarButton.classList.toggle('newscard__sidebar-button_flag');
-      this.sideBarButton.classList.toggle('newscard__sidebar-button_flag_saved');
-    };
+  _deleteCard () {
+    this.api.deleteCard(this.cardData._id)
+    .then((res) => {
+      console.log(res);
+      this._element.remove();
+    });
   }
 
   _setEventListeners () {
     this.sideBarButton.addEventListener('mouseover', this._alertOn);
     this.sideBarButton.addEventListener('mouseout', this._alertOff);
-    this.sideBarButton.addEventListener('click', this._sideBarButtonActivate);
+    this.sideBarButton.addEventListener('click', this._deleteCard);
   }
+
 }
 

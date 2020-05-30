@@ -30,9 +30,9 @@ export default class UserApi {
       console.log(err);
       console.log(err.status);
       console.log(err.statusText);
-      if (err === 'TypeError: Failed to fetch') {
+      if (!err.status) {
         console.log('bug here');
-        return ('Ошибка соединения с сервером');
+        return ('ServerConnectionError');
       }
       return err.text()
       .then((text) => {
@@ -71,6 +71,15 @@ export default class UserApi {
     })
     .catch((err) => {
       console.log(err);
+      console.log(err.status);
+      console.log(err.statusText);
+      if (err === '400-Bad Request') {
+        console.log(err);
+        return ('Bad Request');
+      }
+      if (!err) {
+        return ('Server connection error');
+      }
     });
   }
 
@@ -92,6 +101,7 @@ export default class UserApi {
       };
     })
     .catch((err) => {
+      alert('Ошибка при получении данных пользователя с сервера');
       console.log(err);
     });
   }
@@ -117,6 +127,7 @@ export default class UserApi {
       };
     })
     .catch((err) => {
+      alert('Ошибка при изменении данных пользователя');
       console.log(err);
     });
   }
@@ -140,6 +151,7 @@ export default class UserApi {
       };
     })
     .catch((err) => {
+      alert('Ошибка при выходе из системы');
       console.log(err);
     });
   }

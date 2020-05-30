@@ -1,10 +1,11 @@
 export default class RegistrationPopup {
-  constructor (popup, popupTitles, placeholders, formNotes, formButtons , formvalidator, api,  pageReloader) {
+  constructor (popup, popupTitles, placeholders, formNotes, formButtons, submitButtonAlerts, formvalidator, api,  pageReloader) {
       this.popup = popup;
       this.popupTitles = popupTitles;
       this.placeholders = placeholders;
       this.formNotes = formNotes;
       this.formButtons = formButtons;
+      this.submitButtonAlerts = submitButtonAlerts;
       this.formvalidator = formvalidator;
       this.api = api;
       this.pageReloader = pageReloader;
@@ -112,11 +113,15 @@ export default class RegistrationPopup {
       console.log(res);
       console.log(secondaryPopup);
       if (res == 'Email is already exists') {
-        this.popup.buttonErr.textContent = 'Такой пользователь уже есть';
+        this.popup.buttonErr.textContent = this.submitButtonAlerts.userIsExist;
         return;
       };
       if (res.includes('must be a valid')) {
-        this.popup.buttonErr.textContent = 'Произошла ошибка при регистрации';
+        this.popup.buttonErr.textContent = this.submitButtonAlerts.regError;
+        return;
+      };
+      if (res == 'ServerConnectionError') {
+        this.popup.buttonErr.textContent = this.submitButtonAlerts.connectionError;
         return;
       }
       this.popupClose();

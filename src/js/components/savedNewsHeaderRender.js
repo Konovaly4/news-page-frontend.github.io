@@ -27,6 +27,7 @@ export default class SavedNewsHeaderRender extends MainHeaderRender {
         this.headerButtonName.textContent = res.name;
       }
     })
+    return;
   }
 
 }

@@ -29,7 +29,7 @@ export default class SavedNewsApi extends UserApi {
     })
     .catch((err) => {
       console.log(err);
-      alert('Произошла ошибка при сохранении статьи');
+      alert('Ошибка при сохранении статьию Статья не сохранена');
     });
   }
 
@@ -43,9 +43,14 @@ export default class SavedNewsApi extends UserApi {
       },
     })
     .then((res) => {
-      res.ok ? res.status : Promise.reject(`${res.status}-${res.statusText}`);
+      if (res.ok) {
+        return res.status;
+      } else {
+        return Promise.reject(`${res.status}-${res.statusText}`);
+      };
     })
     .catch((err) => {
+      alert('Ошибка при удалении статьи. Статья не удалена');
       console.log(err);
     });
   }
@@ -60,9 +65,14 @@ export default class SavedNewsApi extends UserApi {
       },
     })
     .then((res) => {
-      res.ok ? res.json() : Promise.reject(`${res.status}-${res.statusText}`);
+      if (res.ok) {
+        return res.json();
+      } else {
+        return Promise.reject(`${res.status}-${res.statusText}`);
+      }
     })
     .catch((err) => {
+      alert('Ошибка при доступе к серверу');
       console.log(err);
     });
   }

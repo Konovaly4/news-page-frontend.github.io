@@ -34,10 +34,12 @@
     </div>
     <section class="user">
       <p class="user__title">Сохранённые статьи</p>
-      <h2 class="user__news-count">Грета, у вас 5 сохранённых статей</h2>
-      <p class="user__subtitle">По ключевым словам: <span class="user__keywords">Природа, Тайга</span> и <span class="user__keywords">2 другим</span></p>
+      <h2 class="user__news-count"></h2>
+      <p class="user__subtitle" id="user__subtitle">По ключевым словам: <span class="user__keywords" id="user__keywordslist"></span><span class="user__subtitle" id="user__span"> и </span><span class="user__keywords" id="user__keywordscount"></span></p>
     </section>
     <div class="saved-news">
+      <div class="news-container">
+      </div>
     </div>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 News-Explorer</p>
@@ -68,3 +70,4 @@
   <script type="module" src="<%= htmlWebpackPlugin.files.js %>"></script>
 </body>
 </html>
+

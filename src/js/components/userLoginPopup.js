@@ -77,6 +77,15 @@ export default class UserLoginPopup extends RegistrationPopup {
     event.preventDefault();
     this.api.login(this.popup.email.value, this.popup.password.value)
     .then((res) => {
+      console.log('res-' + res)
+      if (res === 'Bad Request') {
+        this.popup.buttonErr.textContent = 'Ошибка. Проверьте введенные данные';
+        return;
+      }
+      if (!res) {
+        this.popup.buttonErr.textContent = 'Ошибка соединения с сервером';
+        return;
+      }
       this.popupClose();
       this.pageReloader.setButtonState();
       return res;

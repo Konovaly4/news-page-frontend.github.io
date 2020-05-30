@@ -19,6 +19,7 @@ import searchMessages from './js/constants/searchMessages';
 import SavedNewsApi from './js/api/savedNewsApi';
 import RegistrationPopup from './js/components/registrationPopup';
 import UserLoginPopup from './js/components/userLoginPopup';
+import submitButtonAlerts from './js/constants/submitButtonAlerts';
 
 const popup = document.getElementById('popup');
 const container = document.querySelector('.news-container');
@@ -44,8 +45,8 @@ const newsApi = new NewsApi(newsReqData);
 // объявление класса установки состояния кнопок хедера
 const mainHeaderRender = new MainHeaderRender(userApi, header, serverData);
 
-const registrationPopup = new RegistrationPopup(popup, popupTitles, placeholders, formNotes, formButtons, formValidator, userApi, mainHeaderRender);
-const userLoginPopup = new UserLoginPopup(popup, popupTitles, placeholders, formNotes, formButtons, formValidator, userApi, mainHeaderRender);
+const registrationPopup = new RegistrationPopup(popup, popupTitles, placeholders, formNotes, formButtons, submitButtonAlerts, formValidator, userApi, mainHeaderRender);
+const userLoginPopup = new UserLoginPopup(popup, popupTitles, placeholders, formNotes, formButtons, submitButtonAlerts, formValidator, userApi, mainHeaderRender);
 
 // объявление класса попапа-сообщения об успешной авторизации
 const messagePopup = new MessagePopup(userLoginPopup);

@@ -1,8 +1,9 @@
 import MainPage from './mainPage';
 
 export default class NewsPage extends MainPage {
-  constructor(headerRender, header, userApi) {
+  constructor(headerRender, header, userApi, cardsRender) {
     super(headerRender, header, userApi);
+    this.cardsRender = cardsRender;
     this._headerPopupToggler = this._headerPopupToggler.bind(this);
     this._logout = this._logout.bind(this);
   }
@@ -30,6 +31,7 @@ export default class NewsPage extends MainPage {
   pageState () {
     this._headerData();
     this.headerRender.setButtonState();
+    this.cardsRender.createCardList();
     this.headerPopupButton.addEventListener('click', this._headerPopupToggler);
     this.headerButton.addEventListener('click', this._logout);
     this.headerMainPageLink.addEventListener('click', this._changePage)
