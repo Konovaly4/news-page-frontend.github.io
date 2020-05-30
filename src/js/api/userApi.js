@@ -101,7 +101,6 @@ export default class UserApi {
       };
     })
     .catch((err) => {
-      alert('Ошибка при получении данных пользователя с сервера');
       console.log(err);
     });
   }

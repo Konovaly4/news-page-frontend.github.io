@@ -1,6 +1,7 @@
 .author__avatar {
   width: 464px;
   height: 464px;
+  object-fit: cover;
   border-radius: 50%;
   margin: 0 56px 0 104px;
 }
