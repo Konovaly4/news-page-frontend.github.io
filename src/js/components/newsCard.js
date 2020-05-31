@@ -1,3 +1,4 @@
+// класс создания карточки с новостями, получаемыми с новостного ресурса
 export default class NewsCard {
   constructor (cardData, cardAlerts, inputValue, api) {
     this.cardData = cardData;
@@ -9,6 +10,7 @@ export default class NewsCard {
     this._sideBarButtonActivate = this._sideBarButtonActivate.bind(this);
   }
 
+  // разметка карточки
   _cardRender () {
     const cardItem = document.createElement('div');
     cardItem.classList.add('newscard');
@@ -40,8 +42,8 @@ export default class NewsCard {
     cardItem.append(textBlock);
     return cardItem;
   }
-// (elem.urlToImage, this.input.value, elem.publishedAt, elem.title, elem.description, elem.url, elem.source.name)
 
+  // преобразователь даты в нужный формат
   _dataParser () {
     return (new Date(this.cardData.publishedAt).toLocaleString('ru', {
       year: 'numeric',
@@ -50,10 +52,12 @@ export default class NewsCard {
     }));
   }
 
+  // установка формата ключевого слова
   _wordParser (word) {
     return word.substr(0, 1).toUpperCase() + word.substr(1).toLowerCase();
   }
 
+  // сбор данных DOM-элементов карточки
   setCardData () {
     this._element = this._cardRender();
     this.sideBarButton = this._element.querySelector('.newscard__sidebar-button');
@@ -74,28 +78,29 @@ export default class NewsCard {
     this.cardSource.setAttribute('href', this.cardData.url);
     this.cardSource.textContent = this.cardData.source.name;
     this._setEventListeners();
-    console.log(this.searchword.textContent);
     return this._element;
   }
 
+  // появление предупреждения о необходимости авторизации
   _alertOn () {
     if (document.querySelector('.header__button').hasAttribute('name')) {
       this.sideBarAlert.classList.add('newscard__sidebar-alert_active');
     }
   }
 
+  // скрытие предупреждения
   _alertOff () {
     if (document.querySelector('.header__button').hasAttribute('name')) {
       this.sideBarAlert.classList.remove('newscard__sidebar-alert_active');
     }
   }
 
+  // активация кнопки сохранения статей
   _sideBarButtonActivate () {
     if (!document.querySelector('.header__button').hasAttribute('name')) {
       if (event.target.classList.contains('newscard__sidebar-button_flag')) {
         this.api.saveCard(this.cardData, this._wordParser(this.inputValue))
         .then((res) => {
-          console.log(res);
           this._element.setAttribute('id', res.data._id);
         });
       } else {
@@ -106,6 +111,7 @@ export default class NewsCard {
     };
   }
 
+  // установка слушателей
   _setEventListeners () {
     this.sideBarButton.addEventListener('mouseover', this._alertOn);
     this.sideBarButton.addEventListener('mouseout', this._alertOff);

@@ -1,3 +1,4 @@
+// названия инпутов попапов
 const formNotes = {
   noteEmail: 'Email',
   notePassword: 'Пароль',

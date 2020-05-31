@@ -1,3 +1,4 @@
+// класс карточки сохраненной новости
 export default class SavedCard {
   constructor (cardData, cardAlerts, api) {
     this.cardData = cardData;
@@ -8,6 +9,7 @@ export default class SavedCard {
     this._deleteCard = this._deleteCard.bind(this);
   }
 
+  // отрисовка разметки карточки
   _cardRender () {
     const cardItem = document.createElement('div');
     cardItem.classList.add('newscard');
@@ -40,6 +42,7 @@ export default class SavedCard {
     return cardItem;
   }
 
+  // установка нужного формата даты
   _dataParser () {
     return (new Date(this.cardData.date).toLocaleString('ru', {
       year: 'numeric',
@@ -48,6 +51,7 @@ export default class SavedCard {
     }));
   }
 
+  // сбор DOM-элементов карточки
   setCardData () {
     this._element = this._cardRender();
     this.sideBarButton = this._element.querySelector('.newscard__sidebar-button');
@@ -72,22 +76,25 @@ export default class SavedCard {
     return this._element;
   }
 
+  // появление предупреждения об удалении карточки
   _alertOn () {
     this.sideBarAlert.classList.add('newscard__sidebar-alert_active');
   }
 
+  // скрытие предупреждения об удалении карточки
   _alertOff () {
     this.sideBarAlert.classList.remove('newscard__sidebar-alert_active');
   }
 
+  // удаление карточки
   _deleteCard () {
     this.api.deleteCard(this.cardData._id)
     .then((res) => {
-      console.log(res);
       this._element.remove();
     });
   }
 
+  // установка слушателей
   _setEventListeners () {
     this.sideBarButton.addEventListener('mouseover', this._alertOn);
     this.sideBarButton.addEventListener('mouseout', this._alertOff);

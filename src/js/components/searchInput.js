@@ -1,3 +1,4 @@
+// класс инпута поиска новостей
 export default class SearchInput {
   constructor(newsAction) {
     this.newsAction = newsAction;
@@ -5,6 +6,7 @@ export default class SearchInput {
     this._newsRequest = this._newsRequest.bind(this);
   }
 
+  // сбор DOM-элементов инпута
   _inputData () {
     this.form = document.querySelector('.search__form');
     this.input = document.querySelector('.search__input');
@@ -12,6 +14,7 @@ export default class SearchInput {
     this.button.setAttribute('disabled', true);
   }
 
+  // активация кнопки отправки данных из инпута
   _inputValidation () {
     if (this.input.value.length == 0) {
       this.button.setAttribute('disabled', true);
@@ -20,12 +23,14 @@ export default class SearchInput {
     }
   }
 
+  // действие при отправке данных инпута
   _newsRequest (event) {
     event.preventDefault();
     this._inputValidation();
     this.newsAction.createCardList();
   }
 
+  // установка слушателей
   setEventListeners () {
     this._inputData();
     this.input.addEventListener('input', this._inputValidation);

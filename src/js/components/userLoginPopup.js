@@ -1,15 +1,18 @@
+// попап входа пользователя в систему
 import RegistrationPopup from './registrationPopup';
 
+// наследование от попапа регистрации пользователя
 export default class UserLoginPopup extends RegistrationPopup {
   constructor(...args) {
     super(...args);
   }
 
+  // установка зависимостей
   setDependencies(dependencies) {
     this.dependencies = dependencies;
   }
 
-  // вставка формы в popup
+  // разметка popup
   _popupForm () {
     const { loginFormTemplate } = this.dependencies;
     const popupForm = loginFormTemplate.cloneNode(true);
@@ -17,6 +20,7 @@ export default class UserLoginPopup extends RegistrationPopup {
     this.popupContent.append(popupForm);
   }
 
+  // сбор DOM-элементов попапа
   _popupExtension () {
     this._popupForm()
     this.popup.head = document.getElementById('main-title');
@@ -33,10 +37,12 @@ export default class UserLoginPopup extends RegistrationPopup {
     this.popup.buttonErr = document.getElementById('button-err');
   }
 
+  // открытие/закрытие попапа
   _openClose () {
     super._openClose();
   }
 
+  // действия при открытии попапа
   popupOpen () {
     this._popupExtension();
     this._openClose();
@@ -52,18 +58,22 @@ export default class UserLoginPopup extends RegistrationPopup {
     this._setEventListeners();
   }
 
+  // Валидация полей попапа
   _validation () {
     super._validation();
   }
 
+  // установка состояния кнопки отправки формы
   _setButtonState () {
     super._setButtonState();
   }
 
+  // действия при закрытии попапа
   popupClose () {
     super.popupClose();
   }
 
+  // закрытие попапа при клике вне поля формы
   _popupCloseByClick (event) {
     if (!event) {
       return;
@@ -72,12 +82,11 @@ export default class UserLoginPopup extends RegistrationPopup {
     }
   }
 
+  // действия при отправке заполненной формы
   _submit (event) {
-    console.log('usersubmit');
     event.preventDefault();
     this.api.login(this.popup.email.value, this.popup.password.value)
     .then((res) => {
-      console.log('res-' + res)
       if (res === 'Bad Request') {
         this.popup.buttonErr.textContent = 'Ошибка. Проверьте введенные данные';
         return;
@@ -90,17 +99,17 @@ export default class UserLoginPopup extends RegistrationPopup {
       this.pageReloader.setButtonState();
       return res;
     });
-    console.log('user logged');
   }
 
+  // смена попапов
   _changePopup () {
     const { registrationPopup } = this.dependencies;
     this.popupClose();
     registrationPopup.popupOpen();
   }
 
+  // установка слушателей
   _setEventListeners() {
     super._setEventListeners();
   }
-
 }

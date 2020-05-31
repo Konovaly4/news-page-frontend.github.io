@@ -1,3 +1,4 @@
+// тексты ошибок заполнения форм
 const formErrors = {
   emailIncorrect: 'Неправильный формат email',
   emailRequired: 'Введите почту',

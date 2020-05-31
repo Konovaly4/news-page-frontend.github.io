@@ -1,5 +1,6 @@
 import MainPage from './mainPage';
 
+// класс страницы с сохраненными новостями
 export default class NewsPage extends MainPage {
   constructor(headerRender, header, userApi, cardsRender) {
     super(headerRender, header, userApi);
@@ -8,10 +9,12 @@ export default class NewsPage extends MainPage {
     this._logout = this._logout.bind(this);
   }
 
+  // Сбор данных шапки сайта
   _headerData () {
     super._headerData();
   }
 
+  // выход из системы
   _logout () {
     this.userApi.logout()
     .then((res) => {
@@ -20,14 +23,17 @@ export default class NewsPage extends MainPage {
     })
   }
 
+  // открытие/закрытие попапа в зависимости от ширины страницы
   _headerPopupToggler () {
     super._headerPopupToggler();
   }
 
+  // смена страницы на главную
   _changePage () {
     document.location = '/index.html';
   }
 
+  // основная функция по отрисовке и установке методов страницы сохраненных новостей
   pageState () {
     this._headerData();
     this.headerRender.setButtonState();

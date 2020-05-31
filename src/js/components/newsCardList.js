@@ -1,5 +1,6 @@
 import NewsCard from './newsCard';
 
+// класс создания блока с карточками
 export default class NewsCardList {
   constructor (container, userapi, newsApi, savedNewsApi, searchMessages, cardAlerts) {
     this.container = container;
@@ -14,6 +15,7 @@ export default class NewsCardList {
     this._showCards = this._showCards.bind(this);
   }
 
+  // сбор DOM-элементов блока с новостями
   _newsBlockItems () {
     this.nextButton = document.querySelector('.results__button');
     this.input = document.querySelector('.search__input');
@@ -24,27 +26,32 @@ export default class NewsCardList {
     this.resultsBlock = document.querySelector('.results__news');
   }
 
+  // прелоадер
   _preloaderToggler () {
     this.preloader.classList.toggle('results__loading_active');
   }
 
+  // сообщение "ничего не найдено"
   _resultFailBlockOpen () {
     this.resultErrorBlock.classList.add('results__load-fail_active');
     this.resultErrorTitle.textContent = this.searchMessages.searchFailTitle;
     this.resultErrorMessage.textContent = this.searchMessages.searchFailMessage;
   }
 
+  // сообщение "произошла ошибка при поиске"
   _resultErrorBlockOpen () {
     this.resultErrorBlock.classList.add('results__load-fail_active');
     this.resultErrorTitle.textContent = this.searchMessages.searchErrorTitle;
     this.resultErrorMessage.textContent = this.searchMessages.searchErrorMessage;
   }
 
+  // Закрытие всех блоков
   _allBlocksClose () {
     this.resultErrorBlock.classList.remove('results__load-fail_active');
     this.resultsBlock.classList.remove('results__news_active');
   }
 
+  // Обновление блока новостей при новом поиске
   _newsBlockRenewer() {
     const news = Array.from(this.container.querySelectorAll('.newscard'));
     console.log(news.length);
@@ -58,19 +65,12 @@ export default class NewsCardList {
     }
   }
 
-  // соответствие элементов класса card данным, передаваемым в ответе сервера news api:
-  // image - urlToImage
-  // mainword - input.value
-  // date - publishedAt
-  // title - title
-  // article - description
-  // source - url
-  // sourceName - source.name
-
+  // установка слушателей на карточку новостей
   _cardListeners() {
     this.card.setEventListeners();
   }
 
+  // добавление карточки в блок
   _addCard (newsCardData, cardAlerts, inputValue, api) {
     this.cardItem =  new NewsCard(newsCardData, cardAlerts, inputValue, api);
     this.card = this.cardItem.setCardData();
@@ -78,6 +78,7 @@ export default class NewsCardList {
     this.container.append(this.card);
   }
 
+  // отрисовка карточек в блоке
   _showCards () {
     const resSlicer = this.result.slice(this.count, this.count + 3);
     if (resSlicer.length < 3) {
@@ -90,6 +91,7 @@ export default class NewsCardList {
     return;
   }
 
+  // общий метод по заполнению блока новостей
   createCardList () {
     this._newsBlockRenewer();
     this._newsBlockItems();
@@ -107,7 +109,6 @@ export default class NewsCardList {
         this._resultFailBlockOpen();
         return;
       }
-      console.log(res);
       this.result = res.articles;
       this.resultsBlock.classList.add('results__news_active');
       this.nextButton.classList.add('results__button_active');
@@ -116,10 +117,12 @@ export default class NewsCardList {
     this._setEventListeners();
   }
 
+  // установка слушателей
   _setEventListeners() {
     this.nextButton.addEventListener('click', this._showCards);
   }
 
+  // снятие слушателей
   _removeEventListeners() {
     this.nextButton.removeEventListener('click', this._showCards);
   }

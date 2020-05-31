@@ -1,3 +1,4 @@
+// класс попапа регистрации
 export default class RegistrationPopup {
   constructor (popup, popupTitles, placeholders, formNotes, formButtons, submitButtonAlerts, formvalidator, api,  pageReloader) {
       this.popup = popup;
@@ -17,10 +18,12 @@ export default class RegistrationPopup {
       this._changePopup = this._changePopup.bind(this);
   }
 
+  // добавление зависимостей
   setDependencies(dependencies) {
     this.dependencies = dependencies;
   }
 
+  // отрисовка разметки попапа
   _popupForm () {
     const { regFormTemplate } = this.dependencies;
     const popupForm = regFormTemplate.cloneNode(true);
@@ -28,6 +31,7 @@ export default class RegistrationPopup {
     this.popupContent.append(popupForm);
   }
 
+  // сбор DOM-элементов попапа
   _popupExtension () {
     this._popupForm()
     this.popup.head = document.getElementById('main-title');
@@ -47,10 +51,12 @@ export default class RegistrationPopup {
     this.popup.buttonErr = document.getElementById('button-err');
   }
 
+  // открытие/закрытие
   _openClose () {
     this.popup.classList.toggle('popup_is-opened');
   }
 
+  // действия при октрытии попапа
   popupOpen () {
     this._popupExtension();
     this._openClose();
@@ -73,6 +79,7 @@ export default class RegistrationPopup {
     this.formvalidator.validation(this.popup.form);
   }
 
+  // установка активности кнопки сабмита
   _setButtonState () {
     const errorList = Array.from(this.popup.querySelectorAll('.popup__error-message')).every((elem) => {
       return elem.textContent === '';
@@ -86,6 +93,7 @@ export default class RegistrationPopup {
     }
   }
 
+  // действия при закрытии попапа
   popupClose () {
     this._openClose();
     this.popup.closeButton.removeEventListener('click', this.popupClose);
@@ -96,6 +104,7 @@ export default class RegistrationPopup {
     this.popup.form.remove();
   }
 
+  // закрытие попапа при щелчке вне поля формы
   _popupCloseByClick (event) {
     if (!event) {
       return;
@@ -104,8 +113,8 @@ export default class RegistrationPopup {
     }
   }
 
+  // отправка формы после заполнения
   _submit (event) {
-    console.log('regsubmit');
     const { secondaryPopup } = this.dependencies;
     event.preventDefault();
     this.api.createUser(this.popup.email.value, this.popup.password.value, this.popup.name.value)
@@ -131,12 +140,14 @@ export default class RegistrationPopup {
     })
   }
 
+  // смена попапа регистрации/входа
   _changePopup () {
     const { userLoginPopup } = this.dependencies;
     this.popupClose();
     userLoginPopup.popupOpen();
   }
 
+  // установка слушателей
   _setEventListeners() {
     this.popup.form.addEventListener('input', this._validation);
     this.popup.form.addEventListener('input', this._setButtonState);

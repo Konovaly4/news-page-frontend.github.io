@@ -1,3 +1,4 @@
+// класс рассчета и вывода количества новостей и ключевых слов
 export default class NewsCounter {
   constructor (userButtonText, userNewsCount, wordsList, userSubtitle, otherWordsCount, userSpan) {
     this.userButtonText = userButtonText;
@@ -8,13 +9,7 @@ export default class NewsCounter {
     this.userSpan = userSpan;
   }
 
-  /*
-  - userButton - кнопка пользователя в хедере
-  - userNewsCount - имя пользователя в колонке Сохраненные статьи
-  - wordsList - список ключевых слов в строке "По ключевым словам"
-  - otherWordsCount - добавочная строка "и "" другим"
-  */
-
+// вывод количества ключевых слов
   _keyWordsListRender (list) {
     if (list.length === 1) {
       this.wordsList.textContent = `${list[0]}`;
@@ -26,6 +21,7 @@ export default class NewsCounter {
     } else { this.otherWordsCount.textContent = `${list[2]}` }
   }
 
+  // сбор и сортировка ключевых слов по популярности
   _keyWordsList (result) {
     if (!result) return;
     const mainWordsArray = result.data.map((elem) => { return elem.keyword; })
@@ -35,13 +31,11 @@ export default class NewsCounter {
         mainWordsList.push(item);
       }
     })
-
     mainWordsList.sort((a, b) => {
       const arrayOne = mainWordsArray.filter((i) => {return i === a});
       const arrayTwo = mainWordsArray.filter((i) => {return i === b});
       return (arrayTwo.length - arrayOne.length);
     })
-
     this._keyWordsListRender(mainWordsList);
       if (mainWordsList.length <= 2) {
         this.otherWordsCount.style.display = 'none';
@@ -53,6 +47,7 @@ export default class NewsCounter {
     return mainWordsList;
   }
 
+  // вывод имени пользователя и количества сохраненных статей
   userBlockData (result) {
     if (!result) {
       this.userSubtitle.style.display = 'none';

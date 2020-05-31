@@ -21,7 +21,6 @@ export default class MainHeaderRender {
     this._buttonData();
     this.api.getUser()
     .then((res) => {
-      console.log(res);
       if(!res) {
         this.headerButton.setAttribute('name', 'authMode');
         this.headerButtonName.textContent = 'Авторизироваться';

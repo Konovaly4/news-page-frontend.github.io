@@ -1,8 +1,10 @@
 export default class MainPage {
   // setHeader - метод класса, устанавливающий надписи кнопок в шапке и активные ссылки
-  // header - константа, определение шапки сайта из разметки
-  // logout - метод класса userApi, разлогинивающий пользователя
-  // registrationPopupActivate - метод, вызывающий открытие регистрационного попапа
+  // header - DOM - элемент шапки сайта из разметки
+  // userApi - класс отвечающий за обращение к данным пользователя
+  // popup - DOM - элемент попапа
+  // headerPopup - DOM - элемент попапа хедера
+  // serverData - константа, данные запроса на сервер
   constructor (headerRender, header, userApi, popup, headerPopup, serverData) {
     this.headerRender = headerRender;
     this.header = header;
@@ -29,6 +31,7 @@ export default class MainPage {
     return;
   }
 
+  // разлогинивание
   _logout () {
     this.userApi.logout()
     .then((res) => {
@@ -37,6 +40,7 @@ export default class MainPage {
     })
   }
 
+  // открытие/закрытие попапа при изменении ширины страницы
   _headerPopupToggler () {
     if (getComputedStyle(this.headerPopupButton).display === 'block') {
       this.headerPopup.classList.toggle('header__popup_visible');
@@ -44,10 +48,12 @@ export default class MainPage {
     }
   }
 
+  // проверка состояния кнопки авторизации и выбор действия
   _buttonCheck () {
     this.headerButton.hasAttribute('name') ? this.popup.popupOpen() : this._logout();
   }
 
+  // смена страницы (переход на "сохраненные статьи")
   _changePage () {
     this.headerPopupButton.removeEventListener('click', this._headerPopupToggler);
     this.headerButton.removeEventListener('click', this._buttonCheck);
@@ -56,6 +62,7 @@ export default class MainPage {
     document.location = '/user-news.html';
   }
 
+  // переход на текущую статью  (в случае клика по кнопке "Главная")
   _mainpage () {
     document.location = '/index.html';
   }
@@ -68,7 +75,6 @@ export default class MainPage {
     this.headerButton.addEventListener('click', this._buttonCheck);
     this.headerNewsLink.addEventListener('click', this._changePage);
     this.headerMainPageLink.addEventListener('click', this._mainpage)
-    // this.header.addEventListener('click', (event) => { console.log(event.target) });
   }
 
 }

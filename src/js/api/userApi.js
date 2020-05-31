@@ -19,19 +19,15 @@ export default class UserApi {
       })
     })
     .then((res) => {
-      console.log(res);
       if(res.ok) {
         return res.json();
       } else {
         return Promise.reject(res);
       };
     })
+    // Проверка ошибки - текст приходит в методе err.text
     .catch((err) => {
-      console.log(err);
-      console.log(err.status);
-      console.log(err.statusText);
       if (!err.status) {
-        console.log('bug here');
         return ('ServerConnectionError');
       }
       return err.text()
@@ -39,7 +35,6 @@ export default class UserApi {
         return JSON.parse(text);
       })
       .then((text) => {
-        console.log(text.message);
         return text.message;
       })
       .catch((err) => {
@@ -70,9 +65,6 @@ export default class UserApi {
       };
     })
     .catch((err) => {
-      console.log(err);
-      console.log(err.status);
-      console.log(err.statusText);
       if (err === '400-Bad Request') {
         console.log(err);
         return ('Bad Request');

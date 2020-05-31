@@ -1,7 +1,9 @@
 import UserApi from "./userApi";
 
+// наследование класса от UserApi
 export default class SavedNewsApi extends UserApi {
 
+  // Сохранение карточки (клик на флаг)
   saveCard (cardData, inputValue) {
     return fetch(`${this.url}${this.ip}/articles`, {
       method: 'POST',
@@ -33,6 +35,7 @@ export default class SavedNewsApi extends UserApi {
     });
   }
 
+  // удаление карточки (клик на корзину)
   deleteCard(id) {
     return fetch(`${this.url}${this.ip}/articles/${id}`, {
       method: 'DELETE',
@@ -55,6 +58,8 @@ export default class SavedNewsApi extends UserApi {
     });
   }
 
+
+  // получение карточек
   getCards () {
     return fetch(`${this.url}${this.ip}/articles`, {
       method: 'GET',
@@ -76,5 +81,4 @@ export default class SavedNewsApi extends UserApi {
       console.log(err);
     });
   }
-
 }

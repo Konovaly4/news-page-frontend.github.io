@@ -1,3 +1,4 @@
+// валидация полей формы
 export default class FormValidator {
   constructor (errors) {
     this.errors = errors;
@@ -24,7 +25,6 @@ export default class FormValidator {
       elem.addEventListener('input', this.checkValidity(elem));
     });
     inputList.every((elem) => {
-      // console.log(elem.validity.valid);
       return elem.validity.valid;
     })
   }

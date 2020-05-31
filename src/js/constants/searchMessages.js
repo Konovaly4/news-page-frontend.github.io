@@ -1,3 +1,4 @@
+// сообщения ошибок при поиске
 const searchMessages = {
   searchFailTitle: 'Ничего не найдено',
   searchFailMessage: 'К сожалению по вашему запросу ничего не найдено.',
