@@ -48,6 +48,12 @@ export default class SavedCardList {
         alert('Ошибка при доступе к серверу');
         return;
       }
+      if (res === '404-Not Found') {
+        const emptyRes = {};
+        const counter = false;
+        newsCounter.userBlockData(counter);
+        this._showCards(emptyRes);
+      }
       newsCounter.userBlockData(res);
       this._showCards(res);
     })

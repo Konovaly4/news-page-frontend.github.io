@@ -83,8 +83,7 @@ export default class SavedNewsApi extends UserApi {
       }
     })
     .catch((err) => {
-      console.log(err);
-      return ('connection error'); // не удалось поймать текст ошибки, по этому возвращаю это значени
+      return err;
     });
   }
 }
