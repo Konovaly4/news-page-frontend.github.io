@@ -20,6 +20,7 @@ import SavedNewsApi from './js/api/savedNewsApi';
 import RegistrationPopup from './js/components/registrationPopup';
 import UserLoginPopup from './js/components/userLoginPopup';
 import submitButtonAlerts from './js/constants/submitButtonAlerts';
+import Authorization from './js/components/authorization';
 
 const popup = document.getElementById('popup');
 const container = document.querySelector('.news-container');
@@ -29,6 +30,8 @@ const headerPopup = document.querySelector('.header__popup');
 const regFormTemplate = document.querySelector('#reg-form-template').content.querySelector('.popup__form');
 const loginFormTemplate = document.querySelector('#login-form-template').content.querySelector('.popup__form');
 
+// объявление класса установки/снятия авторизации
+const authorization = new Authorization();
 
 // объявление класса валидации форм
 const formValidator = new FormValidator(formErrors);
@@ -43,10 +46,10 @@ const savedNewsApi = new SavedNewsApi(serverData);
 const newsApi = new NewsApi(newsReqData);
 
 // объявление класса установки состояния кнопок хедера
-const mainHeaderRender = new MainHeaderRender(userApi, header, serverData);
+const mainHeaderRender = new MainHeaderRender(userApi, header, serverData, authorization);
 
-const registrationPopup = new RegistrationPopup(popup, popupTitles, placeholders, formNotes, formButtons, submitButtonAlerts, formValidator, userApi, mainHeaderRender);
-const userLoginPopup = new UserLoginPopup(popup, popupTitles, placeholders, formNotes, formButtons, submitButtonAlerts, formValidator, userApi, mainHeaderRender);
+const registrationPopup = new RegistrationPopup(popup, popupTitles, placeholders, formNotes, formButtons, submitButtonAlerts, formValidator, userApi, mainHeaderRender, authorization);
+const userLoginPopup = new UserLoginPopup(popup, popupTitles, placeholders, formNotes, formButtons, submitButtonAlerts, formValidator, userApi, mainHeaderRender, authorization);
 
 // объявление класса попапа-сообщения об успешной авторизации
 const messagePopup = new MessagePopup(userLoginPopup);
@@ -56,7 +59,7 @@ registrationPopup.setDependencies({ userLoginPopup, secondaryPopup, regFormTempl
 userLoginPopup.setDependencies({ registrationPopup, loginFormTemplate });
 
 // объявление класса установки состояния главной страницы
-const mainPage = new MainPage(mainHeaderRender, header, userApi, registrationPopup, headerPopup, serverData);
+const mainPage = new MainPage(mainHeaderRender, header, userApi, registrationPopup, headerPopup, serverData, authorization);
 mainPage.pageState();
 
 // объявление класса создания блока карточек
@@ -65,5 +68,6 @@ const newsCardList = new NewsCardList(container, userApi, newsApi, savedNewsApi,
 // объявление класса поля ввода поиска новостей
 const searchInput = new SearchInput(newsCardList);
 searchInput.setEventListeners();
+console.log(localStorage);
 
 

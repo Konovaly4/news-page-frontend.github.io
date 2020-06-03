@@ -7,7 +7,9 @@ export default class UserApi {
   // создание пользователя
   createUser (userEmail, userPassword, userName) {
     return fetch(`${this.url}${this.ip}/signup`, {
+      redirect: 'follow',
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -47,19 +49,21 @@ export default class UserApi {
   login (userEmail, userPassword) {
     console.log('logging');
     return fetch(`${this.url}${this.ip}/signin`, {
+      redirect: 'follow',
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         email: `${userEmail}`,
-        password: `${userPassword}`,
+        password: `${userPassword}`
       })
     })
     .then((res) => {
       if(res.ok) {
-        return res.status;
+        return res.json();
       } else {
         return Promise.reject(`${res.status}-${res.statusText}`);
       };
@@ -78,11 +82,12 @@ export default class UserApi {
   // запрос данных пользователя
   getUser () {
     return fetch(`${this.url}${this.ip}/users/me`, {
-      method: 'GET',
+      redirect: 'follow',
       credentials: 'include',
+      method: 'GET',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       }
     })
     .then((res) => {
@@ -94,12 +99,14 @@ export default class UserApi {
     })
     .catch((err) => {
       console.log(err);
-    });
+    })
+    .finally(() => { return });
   }
 
   // изменение имени пользователя
   updateUser (userName) {
     return fetch(`${this.url}${this.ip}/users/me`, {
+      redirect: 'follow',
       method: 'PATCH',
       credentials: 'include',
       headers: {
@@ -127,6 +134,7 @@ export default class UserApi {
   logout () {
     console.log('logging out');
     return fetch(`${this.url}${this.ip}/users/me/signout`, {
+      redirect: 'follow',
       method: 'POST',
       credentials: 'include',
       headers: {

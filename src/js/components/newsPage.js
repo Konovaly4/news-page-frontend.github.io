@@ -2,8 +2,9 @@ import MainPage from './mainPage';
 
 // класс страницы с сохраненными новостями
 export default class NewsPage extends MainPage {
-  constructor(headerRender, header, userApi, cardsRender) {
+  constructor(headerRender, header, userApi, authorization, cardsRender) {
     super(headerRender, header, userApi);
+    this.authorization = authorization;
     this.cardsRender = cardsRender;
     this._headerPopupToggler = this._headerPopupToggler.bind(this);
     this._logout = this._logout.bind(this);
@@ -18,6 +19,7 @@ export default class NewsPage extends MainPage {
   _logout () {
     this.userApi.logout()
     .then((res) => {
+      this.authorization.removeAuthorization();
       this.headerRender.setButtonState();
       return res.status;
     })

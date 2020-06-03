@@ -5,13 +5,14 @@ export default class MainPage {
   // popup - DOM - элемент попапа
   // headerPopup - DOM - элемент попапа хедера
   // serverData - константа, данные запроса на сервер
-  constructor (headerRender, header, userApi, popup, headerPopup, serverData) {
+  constructor (headerRender, header, userApi, popup, headerPopup, serverData, authorization) {
     this.headerRender = headerRender;
     this.header = header;
     this.userApi = userApi;
     this.popup = popup;
     this.headerPopup = headerPopup;
     this.serverData = serverData;
+    this.authorization = authorization;
     this._logout = this._logout.bind(this);
     this._headerPopupToggler = this._headerPopupToggler.bind(this);
     this._changePage = this._changePage.bind(this);
@@ -35,6 +36,7 @@ export default class MainPage {
   _logout () {
     this.userApi.logout()
     .then((res) => {
+      this.authorization.removeAuthorization();
       this.headerRender.setButtonState();
       return res.status;
     })

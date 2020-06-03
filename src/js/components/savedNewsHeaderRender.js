@@ -20,17 +20,18 @@ export default class SavedNewsHeaderRender extends MainHeaderRender {
   setButtonState () {
     const { newsPage } = this.dependencies;
     this._buttonData();
+    if (!this.authorization.checkAuthorization()) {
+      this.headerButton.setAttribute('name', 'authMode');
+      newsPage._changePage();
+      return;
+    }
     this.api.getUser()
     .then((res) => {
       console.log(res);
-      if(!res) {
-        this.headerButton.setAttribute('name', 'authMode');
-        newsPage._changePage();
-      } else {
-        this.headerButton.removeAttribute('name', 'authMode');
-        this.headerButtonName.textContent = res.name;
+      this.headerButton.removeAttribute('name', 'authMode');
+      this.headerButtonName.textContent = res.name;
       }
-    })
-    return;
+    )
   }
+
 }

@@ -95,10 +95,16 @@ export default class UserLoginPopup extends RegistrationPopup {
         this.popup.buttonErr.textContent = 'Ошибка соединения с сервером';
         return;
       }
-      this.popupClose();
-      this.pageReloader.setButtonState();
       return res;
-    });
+    })
+    .then((res) => {
+      if (res) {
+        this.authorization.setAuthorization();
+        this.popupClose();
+        this.pageReloader.setButtonState();
+      }
+    })
+
   }
 
   // смена попапов

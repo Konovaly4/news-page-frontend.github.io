@@ -1,6 +1,6 @@
 // класс попапа регистрации
 export default class RegistrationPopup {
-  constructor (popup, popupTitles, placeholders, formNotes, formButtons, submitButtonAlerts, formvalidator, api,  pageReloader) {
+  constructor (popup, popupTitles, placeholders, formNotes, formButtons, submitButtonAlerts, formvalidator, api,  pageReloader, authorization) {
       this.popup = popup;
       this.popupTitles = popupTitles;
       this.placeholders = placeholders;
@@ -10,6 +10,7 @@ export default class RegistrationPopup {
       this.formvalidator = formvalidator;
       this.api = api;
       this.pageReloader = pageReloader;
+      this.authorization = authorization;
       this.popupClose = this.popupClose.bind(this);
       this._validation = this._validation.bind(this);
       this._setButtonState = this._setButtonState.bind(this);
@@ -125,7 +126,7 @@ export default class RegistrationPopup {
         this.popup.buttonErr.textContent = this.submitButtonAlerts.userIsExist;
         return;
       };
-      if (res.includes('must be a valid')) {
+      if (res == 'must be a valid') {
         this.popup.buttonErr.textContent = this.submitButtonAlerts.regError;
         return;
       };
