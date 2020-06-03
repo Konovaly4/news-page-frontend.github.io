@@ -2,7 +2,8 @@
 import SavedCard from './savedCard';
 
 export default class SavedCardList {
-  constructor (container, api, cardAlerts) {
+  constructor (cardItem, container, api, cardAlerts) {
+    this.cardItem = cardItem;
     this.container = container;
     this.api = api;
     this.cardAlerts = cardAlerts;
@@ -16,8 +17,7 @@ export default class SavedCardList {
 
   // добавление карточки
   _addCard (newsCardData, cardAlerts, api) {
-    this.cardItem =  new SavedCard(newsCardData, cardAlerts, api);
-    this.card = this.cardItem.setCardData();
+    this.card = this.cardItem(newsCardData, cardAlerts, api).setCardData();
     this.cards.push(this.card);
     this.container.append(this.card);
   }
@@ -31,9 +31,16 @@ export default class SavedCardList {
     return;
   }
 
+  _pageReloader () {
+    const news = Array.from(this.container.querySelectorAll('.newscard'));
+    if (news.length === 0) return;
+    news.forEach((item) => { item.remove() });
+  }
+
   // основной метод по отрисовке карточек в блоке
   createCardList () {
     const { newsCounter } = this.dependencies;
+    this._pageReloader();
     this.api.getCards()
     .then((res) => {
       newsCounter.userBlockData(res);

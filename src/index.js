@@ -21,6 +21,7 @@ import RegistrationPopup from './js/components/registrationPopup';
 import UserLoginPopup from './js/components/userLoginPopup';
 import submitButtonAlerts from './js/constants/submitButtonAlerts';
 import Authorization from './js/components/authorization';
+import NewsCard from './js/components/newsCard';
 
 const popup = document.getElementById('popup');
 const container = document.querySelector('.news-container');
@@ -45,6 +46,10 @@ const savedNewsApi = new SavedNewsApi(serverData);
 // объявление класса NewsApi с ключом
 const newsApi = new NewsApi(newsReqData);
 
+const cardItem = (cardData, cardAlerts, inputValue, api) => {
+  return new NewsCard(cardData, cardAlerts, inputValue, api);
+};
+
 // объявление класса установки состояния кнопок хедера
 const mainHeaderRender = new MainHeaderRender(userApi, header, serverData, authorization);
 
@@ -63,7 +68,7 @@ const mainPage = new MainPage(mainHeaderRender, header, userApi, registrationPop
 mainPage.pageState();
 
 // объявление класса создания блока карточек
-const newsCardList = new NewsCardList(container, userApi, newsApi, savedNewsApi, searchMessages, cardAlerts);
+const newsCardList = new NewsCardList(cardItem, container, userApi, newsApi, savedNewsApi, searchMessages, cardAlerts);
 
 // объявление класса поля ввода поиска новостей
 const searchInput = new SearchInput(newsCardList);

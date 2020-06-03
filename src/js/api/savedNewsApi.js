@@ -3,6 +3,11 @@ import UserApi from "./userApi";
 // наследование класса от UserApi
 export default class SavedNewsApi extends UserApi {
 
+  // создание зависимостей (подгрузка функции обновления страницы после удаления карточки)
+  setDependencies (dependencies) {
+    this.dependencies = dependencies;
+  }
+
   // Сохранение карточки (клик на флаг)
   saveCard (cardData, inputValue) {
     return fetch(`${this.url}${this.ip}/articles`, {
@@ -37,6 +42,7 @@ export default class SavedNewsApi extends UserApi {
 
   // удаление карточки (клик на корзину)
   deleteCard(id) {
+    const { savedCardList } = this.dependencies;
     return fetch(`${this.url}${this.ip}/articles/${id}`, {
       method: 'DELETE',
       credentials: 'include',
@@ -47,7 +53,8 @@ export default class SavedNewsApi extends UserApi {
     })
     .then((res) => {
       if (res.ok) {
-        return res.status;
+        savedCardList.createCardList();
+        return res;
       } else {
         return Promise.reject(`${res.status}-${res.statusText}`);
       };

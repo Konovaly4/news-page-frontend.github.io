@@ -22,6 +22,7 @@ export default class SavedNewsHeaderRender extends MainHeaderRender {
     this._buttonData();
     if (!this.authorization.checkAuthorization()) {
       this.headerButton.setAttribute('name', 'authMode');
+      this.authorization.removeAuthorization();
       newsPage._changePage();
       return;
     }
@@ -29,7 +30,7 @@ export default class SavedNewsHeaderRender extends MainHeaderRender {
     .then((res) => {
       console.log(res);
       this.headerButton.removeAttribute('name', 'authMode');
-      this.headerButtonName.textContent = res.name;
+      this.headerButtonName.textContent = localStorage.getItem('userName');
       }
     )
   }

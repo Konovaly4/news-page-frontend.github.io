@@ -2,8 +2,9 @@ import MainPage from './mainPage';
 
 // класс страницы с сохраненными новостями
 export default class NewsPage extends MainPage {
-  constructor(headerRender, header, userApi, authorization, cardsRender) {
+  constructor(headerRender, header, userApi, headerPopup, authorization, cardsRender) {
     super(headerRender, header, userApi);
+    this.headerPopup = headerPopup;
     this.authorization = authorization;
     this.cardsRender = cardsRender;
     this._headerPopupToggler = this._headerPopupToggler.bind(this);

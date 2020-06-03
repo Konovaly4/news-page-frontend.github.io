@@ -1,7 +1,6 @@
 // класс рассчета и вывода количества новостей и ключевых слов
 export default class NewsCounter {
-  constructor (userButtonText, userNewsCount, wordsList, userSubtitle, otherWordsCount, userSpan) {
-    this.userButtonText = userButtonText;
+  constructor (userNewsCount, wordsList, userSubtitle, otherWordsCount, userSpan) {
     this.userNewsCount = userNewsCount;
     this.wordsList = wordsList;
     this.userSubtitle = userSubtitle;
@@ -51,9 +50,11 @@ export default class NewsCounter {
   userBlockData (result) {
     if (!result) {
       this.userSubtitle.style.display = 'none';
-      this.userNewsCount.textContent = `${this.userButtonText.textContent}, у вас нет сохраненных статей`;
+      this.userNewsCount.textContent = `${localStorage.getItem('userName')}, у вас нет сохраненных статей`;
+    } else if (result.data.length <= 4) {
+      this.userNewsCount.textContent = `${localStorage.getItem('userName')}, у вас ${result.data.length} сохраненные статьи`;
     } else {
-      this.userNewsCount.textContent = `${this.userButtonText.textContent}, у вас ${result.data.length} сохраненных статей`;
+      this.userNewsCount.textContent = `${localStorage.getItem('userName')}, у вас ${result.data.length} сохраненных статей`;
     }
     this._keyWordsList(result);
   }

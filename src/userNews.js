@@ -8,10 +8,11 @@ import SavedCardList from './js/components/savedCardList';
 import cardAlerts from './js/constants/cardAlerts';
 import NewsCounter from './js/components/newsCounter';
 import Authorization from './js/components/authorization';
+import SavedCard from './js/components/savedCard';
 
 const header = document.querySelector('.header');
+const headerPopup = document.querySelector('.header__popup');
 const container = document.querySelector('.news-container');
-const userButtonText = document.querySelector('.header__button-text');
 const userNewsCount = document.querySelector('.user__news-count');
 const wordsList = document.querySelector('#user__keywordslist');
 const userSubtitle = document.querySelector('#user__subtitle');
@@ -25,16 +26,21 @@ const userApi = new UserApi(serverData);
 
 const savedNewsApi = new SavedNewsApi(serverData);
 
-const newsCounter = new NewsCounter(userButtonText, userNewsCount, wordsList, userSubtitle, otherWordsCount, userSpan);
+const cardItem = (cardData, cardAlerts, api) => {
+  return new SavedCard(cardData, cardAlerts, api);
+};
 
-const savedCardList = new SavedCardList(container, savedNewsApi, cardAlerts)
+const newsCounter = new NewsCounter(userNewsCount, wordsList, userSubtitle, otherWordsCount, userSpan);
+
+const savedCardList = new SavedCardList(cardItem, container, savedNewsApi, cardAlerts)
 
 const savedNewsHeaderRender = new SavedNewsHeaderRender(userApi, header, serverData, authorization);
 
-const newsPage = new NewsPage(savedNewsHeaderRender, header, userApi, authorization, savedCardList);
+const newsPage = new NewsPage(savedNewsHeaderRender, header, userApi, headerPopup, authorization, savedCardList);
 
 savedCardList.setDependencies({ newsCounter });
 savedNewsHeaderRender.setDependencies({ newsPage });
+savedNewsApi.setDependencies({savedCardList});
 
 newsPage.pageState();
 

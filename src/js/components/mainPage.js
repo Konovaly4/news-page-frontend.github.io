@@ -36,9 +36,13 @@ export default class MainPage {
   _logout () {
     this.userApi.logout()
     .then((res) => {
+      if (!res) {
+        console.log('ошибка при выходе из системы');
+        return;
+      }
       this.authorization.removeAuthorization();
       this.headerRender.setButtonState();
-      return res.status;
+      return res;
     })
   }
 

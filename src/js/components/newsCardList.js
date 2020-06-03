@@ -2,7 +2,8 @@ import NewsCard from './newsCard';
 
 // класс создания блока с карточками
 export default class NewsCardList {
-  constructor (container, userapi, newsApi, savedNewsApi, searchMessages, cardAlerts) {
+  constructor (cardItem, container, userapi, newsApi, savedNewsApi, searchMessages, cardAlerts) {
+    this.cardItem = cardItem;
     this.container = container;
     this.cards = [];
     this.result = [];
@@ -72,8 +73,7 @@ export default class NewsCardList {
 
   // добавление карточки в блок
   _addCard (newsCardData, cardAlerts, inputValue, api) {
-    this.cardItem =  new NewsCard(newsCardData, cardAlerts, inputValue, api);
-    this.card = this.cardItem.setCardData();
+    this.card = this.cardItem(newsCardData, cardAlerts, inputValue, api).setCardData();
     this.cards.push(this.card);
     this.container.append(this.card);
   }

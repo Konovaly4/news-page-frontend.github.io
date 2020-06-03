@@ -23,6 +23,7 @@ export default class MainHeaderRender {
     if (!this.authorization.checkAuthorization()) {
       this.headerButton.setAttribute('name', 'authMode');
       this.headerButtonName.textContent = 'Авторизироваться';
+      this.authorization.removeAuthorization();
       this.headerButtonLogout.classList.remove('header__button-logout_active');
       this.headerNewsLink.closest('.header__link-container').classList.remove('header__link-container_visible');
       return;
@@ -31,6 +32,7 @@ export default class MainHeaderRender {
     .then((res) => {
       this.headerButton.removeAttribute('name', 'authMode');
       this.headerButtonName.textContent = res.name;
+      this.authorization.setAuthorization(res.name);
       this.headerButtonLogout.classList.add('header__button-logout_active');
       this.headerNewsLink.closest('.header__link-container').classList.add('header__link-container_visible');
     })

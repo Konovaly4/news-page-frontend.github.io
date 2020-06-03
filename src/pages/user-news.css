@@ -10,7 +10,7 @@ body {
   margin: 0;
 }
 
-a, button {
+a, button, input {
   cursor: url(../images/Cursor.svg), pointer;
   outline: none;
 }
