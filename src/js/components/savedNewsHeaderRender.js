@@ -28,11 +28,15 @@ export default class SavedNewsHeaderRender extends MainHeaderRender {
     }
     this.api.getUser()
     .then((res) => {
-      console.log(res);
+      if (!res) {
+        alert(this.formErrors.serverConnectionError);
+        return;
+      }
       this.headerButton.removeAttribute('name', 'authMode');
       this.headerButtonName.textContent = localStorage.getItem('userName');
       }
     )
+    .catch((err) => console.log(err));
   }
 
 }

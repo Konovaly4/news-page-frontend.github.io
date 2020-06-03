@@ -1,7 +1,4 @@
 export default class MainHeaderRender {
-  // api - метод, запрашивающий инфо о юзере, если приходит ошибка - юзер не залогинен.
-  // header - константа, данные о шапке из разметки сайта.
-  // formButtons - константа, объект с заполнениями текстовых полей.
   constructor(api, header, serverData, authorization, formButtons, formErrors) {
     this.api = api;
     this.header = header;
@@ -19,6 +16,7 @@ export default class MainHeaderRender {
     this.headerNewsLink = this.header.querySelector('.header__link_newspage');
   }
 
+  // удаление элементов авторизации из локального хранилища
   _removeAuthorization () {
     this.headerButton.setAttribute('name', 'authMode');
     this.headerButtonName.textContent = this.formButtons.headerAuthButton;

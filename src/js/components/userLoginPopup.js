@@ -104,7 +104,7 @@ export default class UserLoginPopup extends RegistrationPopup {
         this.pageReloader.setButtonState();
       }
     })
-
+    .catch((err) => console.log(err));
   }
 
   // смена попапов

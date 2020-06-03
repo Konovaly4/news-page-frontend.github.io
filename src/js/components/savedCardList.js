@@ -44,9 +44,14 @@ export default class SavedCardList {
     this._pageReloader();
     this.api.getCards()
     .then((res) => {
+      if (!res || (res === 'connection error')) {
+        alert('Ошибка при доступе к серверу');
+        return;
+      }
       newsCounter.userBlockData(res);
       this._showCards(res);
     })
+    .catch((err) => console.log(err));
   }
 
 }

@@ -37,7 +37,7 @@ const savedCardList = new SavedCardList(cardItem, container, savedNewsApi, cardA
 
 const savedNewsHeaderRender = new SavedNewsHeaderRender(userApi, header, serverData, authorization);
 
-const newsPage = new NewsPage(savedNewsHeaderRender, header, userApi, headerPopup, authorization, savedCardList);
+const newsPage = new NewsPage(savedNewsHeaderRender, header, userApi, headerPopup, authorization, savedCardList, formErrors);
 
 savedCardList.setDependencies({ newsCounter });
 savedNewsHeaderRender.setDependencies({ newsPage });

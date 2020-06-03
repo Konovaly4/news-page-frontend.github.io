@@ -30,7 +30,7 @@ export default class UserApi {
     // Проверка ошибки - текст приходит в методе err.text
     .catch((err) => {
       if (!err.status) {
-        return ('ServerConnectionError');
+        return ('ServerConnectionError'); // не удалось поймать текст ошибки, по этому возвращаю это значени
       }
       return err.text()
       .then((text) => {
@@ -47,7 +47,6 @@ export default class UserApi {
 
   // вход в систему
   login (userEmail, userPassword) {
-    console.log('logging');
     return fetch(`${this.url}${this.ip}/signin`, {
       redirect: 'follow',
       method: 'POST',
@@ -74,7 +73,7 @@ export default class UserApi {
         return ('Bad Request');
       }
       if (!err) {
-        return ('Server connection error');
+        return ('Server connection error'); // не удалось поймать текст ошибки, по этому возвращаю это значени
       }
     });
   }
@@ -133,7 +132,6 @@ export default class UserApi {
 
   // выход из системы
   logout () {
-    console.log('logging out');
     return fetch(`${this.url}${this.ip}/users/me/signout`, {
       redirect: 'follow',
       method: 'POST',
@@ -151,8 +149,7 @@ export default class UserApi {
       };
     })
     .catch((err) => {
-      alert('Ошибка при выходе из системы');
-      console.log(err);
+      return err;
     });
   }
 }

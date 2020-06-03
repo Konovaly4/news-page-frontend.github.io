@@ -116,13 +116,17 @@ export default class NewsCard {
           return;
         })
       } else {
-        this.api.deleteCard(this._element.getAttribute('id'));
-        this.sideBarButton.classList.toggle('newscard__sidebar-button_flag');
-        this.sideBarButton.classList.toggle('newscard__sidebar-button_flag_saved');
-        return
+        this.api.deleteCard(this._element.getAttribute('id'))
+        .then((res) => {
+          if (!res || (res === 'connection error')) {
+            alert(this.formErrors.serverConnectionError);
+            return;
+          };
+          this.sideBarButton.classList.toggle('newscard__sidebar-button_flag');
+          this.sideBarButton.classList.toggle('newscard__sidebar-button_flag_saved');
+          return;
+        })
       };
-      // this.sideBarButton.classList.toggle('newscard__sidebar-button_flag');
-      // this.sideBarButton.classList.toggle('newscard__sidebar-button_flag_saved');
     };
   }
 

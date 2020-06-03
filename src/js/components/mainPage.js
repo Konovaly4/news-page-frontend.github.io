@@ -1,10 +1,4 @@
 export default class MainPage {
-  // setHeader - метод класса, устанавливающий надписи кнопок в шапке и активные ссылки
-  // header - DOM - элемент шапки сайта из разметки
-  // userApi - класс отвечающий за обращение к данным пользователя
-  // popup - DOM - элемент попапа
-  // headerPopup - DOM - элемент попапа хедера
-  // serverData - константа, данные запроса на сервер
   constructor (headerRender, header, userApi, popup, headerPopup, serverData, authorization) {
     this.headerRender = headerRender;
     this.header = header;
@@ -37,7 +31,7 @@ export default class MainPage {
     this.userApi.logout()
     .then((res) => {
       if (!res) {
-        console.log('ошибка при выходе из системы');
+        alert('ошибка при выходе из системы');
         return;
       }
       this.authorization.removeAuthorization();

@@ -97,7 +97,8 @@ export default class SavedCard {
       }
       this._element.remove();
       return;
-    });
+    })
+    .catch((err) => console.log(err));
   }
 
   // установка слушателей

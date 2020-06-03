@@ -36,7 +36,7 @@ export default class SavedNewsApi extends UserApi {
     })
     .catch((err) => {
       console.log(err);
-      return ('connection error');
+      return ('connection error'); // не удалось поймать текст ошибки, по этому возвращаю это значение
     });
   }
 
@@ -60,8 +60,7 @@ export default class SavedNewsApi extends UserApi {
       };
     })
     .catch((err) => {
-      alert('Ошибка при удалении статьи. Статья не удалена');
-      console.log(err);
+      return err;
     });
   }
 
@@ -84,8 +83,8 @@ export default class SavedNewsApi extends UserApi {
       }
     })
     .catch((err) => {
-      alert('Ошибка при доступе к серверу');
       console.log(err);
+      return ('connection error'); // не удалось поймать текст ошибки, по этому возвращаю это значени
     });
   }
 }

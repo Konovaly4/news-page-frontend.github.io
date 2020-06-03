@@ -100,21 +100,22 @@ export default class NewsCardList {
     this._removeEventListeners();
     this._preloaderToggler();
     this.newsApi.getNews(this.input.value)
-    .then((res) => {
-      this._preloaderToggler();
-      if(res.status && ((res.status === 400 || res.status === 401 || res.status === 429 || res.status === 500))) {
-        this._resultErrorBlockOpen();
-        return;
-      }
-      if(res.articles.length === 0) {
-        this._resultFailBlockOpen();
-        return;
-      }
-      this.result = res.articles;
-      this.resultsBlock.classList.add('results__news_active');
-      this.nextButton.classList.add('results__button_active');
-      this._showCards();
-    })
+      .then((res) => {
+        this._preloaderToggler();
+        if(res.status && ((res.status === 400 || res.status === 401 || res.status === 429 || res.status === 500))) {
+          this._resultErrorBlockOpen();
+          return;
+        }
+        if(res.articles.length === 0) {
+          this._resultFailBlockOpen();
+          return;
+        }
+        this.result = res.articles;
+        this.resultsBlock.classList.add('results__news_active');
+        this.nextButton.classList.add('results__button_active');
+        this._showCards();
+      })
+      .catch((err) => console.log(err));
     this._setEventListeners();
   }
 

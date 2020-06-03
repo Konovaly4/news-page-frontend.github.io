@@ -137,6 +137,7 @@ export default class RegistrationPopup {
       secondaryPopup.classList.add('popup_is-opened');
       return res;
     })
+    .catch((err) => console.log(err));
   }
 
   // смена попапа регистрации/входа
