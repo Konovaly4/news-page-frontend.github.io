@@ -56,7 +56,6 @@ export default class NewsCardList {
   // Обновление блока новостей при новом поиске
   _newsBlockRenewer() {
     const news = Array.from(this.container.querySelectorAll('.newscard'));
-    console.log(news.length);
     if (news.length === 0) {
       return;
     } else {

@@ -16,6 +16,7 @@ export default class NewsApi {
 // получение статей от сервиса
   getNews (keyword) {
     return fetch (`${this.reqData.reqUrl}q=${keyword}&from${this._currentDate}$to${this._prevousDate}&pageSize=100&apiKey=${this.reqData.apiKey}`, {
+    // return fetch (`https://praktikum.tk/news/v2/top-headlines?country=us&apiKey= 123123123123123123`, {
       method: 'GET',
     })
     .then((res) => {
