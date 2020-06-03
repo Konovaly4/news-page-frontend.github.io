@@ -120,13 +120,11 @@ export default class RegistrationPopup {
     event.preventDefault();
     this.api.createUser(this.popup.email.value, this.popup.password.value, this.popup.name.value)
     .then((res) => {
-      console.log(res);
-      console.log(secondaryPopup);
-      if (res == 'Email is already exists') {
+      if (res === 'Email is already exists') {
         this.popup.buttonErr.textContent = this.submitButtonAlerts.userIsExist;
         return;
       };
-      if (res == 'must be a valid') {
+      if (res === '"email" must be a valid email') {
         this.popup.buttonErr.textContent = this.submitButtonAlerts.regError;
         return;
       };

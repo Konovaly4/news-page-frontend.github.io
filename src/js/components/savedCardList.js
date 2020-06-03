@@ -2,11 +2,12 @@
 import SavedCard from './savedCard';
 
 export default class SavedCardList {
-  constructor (cardItem, container, api, cardAlerts) {
+  constructor (cardItem, container, api, cardAlerts, formErrors) {
     this.cardItem = cardItem;
     this.container = container;
     this.api = api;
     this.cardAlerts = cardAlerts;
+    this.formErrors = formErrors;
     this.cards = [];
   }
 
@@ -16,8 +17,8 @@ export default class SavedCardList {
   }
 
   // добавление карточки
-  _addCard (newsCardData, cardAlerts, api) {
-    this.card = this.cardItem(newsCardData, cardAlerts, api).setCardData();
+  _addCard (newsCardData, cardAlerts, api, formErrors) {
+    this.card = this.cardItem(newsCardData, cardAlerts, api, formErrors).setCardData();
     this.cards.push(this.card);
     this.container.append(this.card);
   }
@@ -26,7 +27,7 @@ export default class SavedCardList {
   _showCards (result) {
     if (!result) return;
     result.data.forEach((elem) => {
-      this._addCard(elem, this.cardAlerts, this.api);
+      this._addCard(elem, this.cardAlerts, this.api, this.formErrors);
     })
     return;
   }

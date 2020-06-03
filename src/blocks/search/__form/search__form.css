@@ -1,5 +1,6 @@
 @import url(../__input/search__input.css);
 @import url(../__button/search__button.css);
+@import url(../__input-error/search__input-error.css);
 
 .search__form {
   margin: 0;

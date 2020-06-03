@@ -68,9 +68,9 @@ export default class UserApi {
         return Promise.reject(`${res.status}-${res.statusText}`);
       };
     })
+    // проверка ошибки: приходит сразу текст ошибки || потеря соединения с сервером (failed to fetch)
     .catch((err) => {
       if (err === '400-Bad Request') {
-        console.log(err);
         return ('Bad Request');
       }
       if (!err) {
@@ -99,6 +99,7 @@ export default class UserApi {
     })
     .catch((err) => {
       console.log(err);
+      return err;
     })
     .finally(() => { return });
   }

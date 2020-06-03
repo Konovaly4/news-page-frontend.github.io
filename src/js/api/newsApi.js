@@ -26,7 +26,7 @@ export default class NewsApi {
       };
     })
     .catch((err) => {
-      console.log(err);
+      return err;
     });
   }
 }

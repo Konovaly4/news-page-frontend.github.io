@@ -1,10 +1,11 @@
 // класс создания карточки с новостями, получаемыми с новостного ресурса
 export default class NewsCard {
-  constructor (cardData, cardAlerts, inputValue, api) {
+  constructor (cardData, cardAlerts, inputValue, api, formErrors) {
     this.cardData = cardData;
     this.cardAlerts = cardAlerts;
     this.inputValue = inputValue;
     this.api = api;
+    this.formErrors = formErrors;
     this._alertOn = this._alertOn.bind(this);
     this._alertOff = this._alertOff.bind(this);
     this._sideBarButtonActivate = this._sideBarButtonActivate.bind(this);
@@ -101,13 +102,27 @@ export default class NewsCard {
       if (event.target.classList.contains('newscard__sidebar-button_flag')) {
         this.api.saveCard(this.cardData, this._wordParser(this.inputValue))
         .then((res) => {
+          if (!res || (res === 'connection error')) {
+            alert(this.formErrors.serverConnectionError);
+            return;
+          }
           this._element.setAttribute('id', res.data._id);
-        });
+          this.sideBarButton.classList.toggle('newscard__sidebar-button_flag');
+          this.sideBarButton.classList.toggle('newscard__sidebar-button_flag_saved');
+          return;
+        })
+        .catch((err) => {
+          console.log(err);
+          return;
+        })
       } else {
         this.api.deleteCard(this._element.getAttribute('id'));
+        this.sideBarButton.classList.toggle('newscard__sidebar-button_flag');
+        this.sideBarButton.classList.toggle('newscard__sidebar-button_flag_saved');
+        return
       };
-      this.sideBarButton.classList.toggle('newscard__sidebar-button_flag');
-      this.sideBarButton.classList.toggle('newscard__sidebar-button_flag_saved');
+      // this.sideBarButton.classList.toggle('newscard__sidebar-button_flag');
+      // this.sideBarButton.classList.toggle('newscard__sidebar-button_flag_saved');
     };
   }
 

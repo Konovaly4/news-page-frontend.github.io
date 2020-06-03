@@ -1,0 +1,14 @@
+@import url(./active/search__input-error_active.css);
+
+.search__input-error {
+  margin: 0;
+  position: absolute;
+  top: -20px;
+  left: 25px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #FF0000;
+  opacity: 0;
+}

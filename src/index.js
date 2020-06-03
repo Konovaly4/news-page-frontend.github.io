@@ -22,6 +22,7 @@ import UserLoginPopup from './js/components/userLoginPopup';
 import submitButtonAlerts from './js/constants/submitButtonAlerts';
 import Authorization from './js/components/authorization';
 import NewsCard from './js/components/newsCard';
+import InputValidatir from './js/utils/inputValidator';
 
 const popup = document.getElementById('popup');
 const container = document.querySelector('.news-container');
@@ -30,6 +31,9 @@ const secondaryPopup = document.getElementById('popup-authorized');
 const headerPopup = document.querySelector('.header__popup');
 const regFormTemplate = document.querySelector('#reg-form-template').content.querySelector('.popup__form');
 const loginFormTemplate = document.querySelector('#login-form-template').content.querySelector('.popup__form');
+
+// объявление класса валидатора инпута поиска новостей
+const inputValidator = new InputValidatir(formErrors);
 
 // объявление класса установки/снятия авторизации
 const authorization = new Authorization();
@@ -46,12 +50,12 @@ const savedNewsApi = new SavedNewsApi(serverData);
 // объявление класса NewsApi с ключом
 const newsApi = new NewsApi(newsReqData);
 
-const cardItem = (cardData, cardAlerts, inputValue, api) => {
-  return new NewsCard(cardData, cardAlerts, inputValue, api);
+const cardItem = (cardData, cardAlerts, inputValue, api, formErrors) => {
+  return new NewsCard(cardData, cardAlerts, inputValue, api, formErrors);
 };
 
 // объявление класса установки состояния кнопок хедера
-const mainHeaderRender = new MainHeaderRender(userApi, header, serverData, authorization);
+const mainHeaderRender = new MainHeaderRender(userApi, header, serverData, authorization, formButtons, formErrors);
 
 const registrationPopup = new RegistrationPopup(popup, popupTitles, placeholders, formNotes, formButtons, submitButtonAlerts, formValidator, userApi, mainHeaderRender, authorization);
 const userLoginPopup = new UserLoginPopup(popup, popupTitles, placeholders, formNotes, formButtons, submitButtonAlerts, formValidator, userApi, mainHeaderRender, authorization);
@@ -68,11 +72,9 @@ const mainPage = new MainPage(mainHeaderRender, header, userApi, registrationPop
 mainPage.pageState();
 
 // объявление класса создания блока карточек
-const newsCardList = new NewsCardList(cardItem, container, userApi, newsApi, savedNewsApi, searchMessages, cardAlerts);
+const newsCardList = new NewsCardList(cardItem, container, userApi, newsApi, savedNewsApi, searchMessages, cardAlerts, formErrors);
 
 // объявление класса поля ввода поиска новостей
-const searchInput = new SearchInput(newsCardList);
+const searchInput = new SearchInput(newsCardList, inputValidator);
 searchInput.setEventListeners();
-console.log(localStorage);
-
 

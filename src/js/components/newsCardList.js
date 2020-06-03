@@ -2,7 +2,7 @@ import NewsCard from './newsCard';
 
 // класс создания блока с карточками
 export default class NewsCardList {
-  constructor (cardItem, container, userapi, newsApi, savedNewsApi, searchMessages, cardAlerts) {
+  constructor (cardItem, container, userapi, newsApi, savedNewsApi, searchMessages, cardAlerts, formErrors) {
     this.cardItem = cardItem;
     this.container = container;
     this.cards = [];
@@ -13,6 +13,7 @@ export default class NewsCardList {
     this.savedNewsApi = savedNewsApi;
     this.searchMessages = searchMessages;
     this.cardAlerts = cardAlerts;
+    this.formErrors = formErrors;
     this._showCards = this._showCards.bind(this);
   }
 
@@ -72,8 +73,8 @@ export default class NewsCardList {
   }
 
   // добавление карточки в блок
-  _addCard (newsCardData, cardAlerts, inputValue, api) {
-    this.card = this.cardItem(newsCardData, cardAlerts, inputValue, api).setCardData();
+  _addCard (newsCardData, cardAlerts, inputValue, api, formErrors) {
+    this.card = this.cardItem(newsCardData, cardAlerts, inputValue, api, formErrors).setCardData();
     this.cards.push(this.card);
     this.container.append(this.card);
   }
@@ -85,7 +86,7 @@ export default class NewsCardList {
       this.nextButton.classList.remove('results__button_active');
     }
     resSlicer.forEach((elem) => {
-      this._addCard(elem, this.cardAlerts, this.input.value, this.savedNewsApi);
+      this._addCard(elem, this.cardAlerts, this.input.value, this.savedNewsApi, this.formErrors);
     })
     this.count = this.count + 3;
     return;
@@ -101,7 +102,7 @@ export default class NewsCardList {
     this.newsApi.getNews(this.input.value)
     .then((res) => {
       this._preloaderToggler();
-      if(!res) {
+      if(res.status && ((res.status === 400 || res.status === 401 || res.status === 429 || res.status === 500))) {
         this._resultErrorBlockOpen();
         return;
       }

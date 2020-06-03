@@ -9,6 +9,7 @@ import cardAlerts from './js/constants/cardAlerts';
 import NewsCounter from './js/components/newsCounter';
 import Authorization from './js/components/authorization';
 import SavedCard from './js/components/savedCard';
+import formErrors from './js/constants/formErrors';
 
 const header = document.querySelector('.header');
 const headerPopup = document.querySelector('.header__popup');
@@ -26,13 +27,13 @@ const userApi = new UserApi(serverData);
 
 const savedNewsApi = new SavedNewsApi(serverData);
 
-const cardItem = (cardData, cardAlerts, api) => {
-  return new SavedCard(cardData, cardAlerts, api);
+const cardItem = (cardData, cardAlerts, api, formErrors) => {
+  return new SavedCard(cardData, cardAlerts, api, formErrors);
 };
 
 const newsCounter = new NewsCounter(userNewsCount, wordsList, userSubtitle, otherWordsCount, userSpan);
 
-const savedCardList = new SavedCardList(cardItem, container, savedNewsApi, cardAlerts)
+const savedCardList = new SavedCardList(cardItem, container, savedNewsApi, cardAlerts, formErrors)
 
 const savedNewsHeaderRender = new SavedNewsHeaderRender(userApi, header, serverData, authorization);
 

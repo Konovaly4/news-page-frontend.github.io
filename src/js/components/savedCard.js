@@ -1,9 +1,10 @@
 // класс карточки сохраненной новости
 export default class SavedCard {
-  constructor (cardData, cardAlerts, api) {
+  constructor (cardData, cardAlerts, api, formErrors) {
     this.cardData = cardData;
     this.cardAlerts = cardAlerts;
     this.api = api;
+    this.formErrors = formErrors;
     this._alertOn = this._alertOn.bind(this);
     this._alertOff = this._alertOff.bind(this);
     this._deleteCard = this._deleteCard.bind(this);
@@ -90,7 +91,12 @@ export default class SavedCard {
   _deleteCard () {
     this.api.deleteCard(this.cardData._id)
     .then((res) => {
+      if (!res) {
+        alert(this.formErrors.serverConnectionError);
+        return;
+      }
       this._element.remove();
+      return;
     });
   }
 

@@ -2,6 +2,7 @@
 const formButtons = {
   regButton: 'Зарегистрироваться',
   enterButton: 'Войти',
+  headerAuthButton: 'Авторизироваться',
 }
 
 export default formButtons;

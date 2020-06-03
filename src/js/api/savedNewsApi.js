@@ -36,7 +36,7 @@ export default class SavedNewsApi extends UserApi {
     })
     .catch((err) => {
       console.log(err);
-      alert('Ошибка при сохранении статьию Статья не сохранена');
+      return ('connection error');
     });
   }
 

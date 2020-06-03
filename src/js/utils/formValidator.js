@@ -7,7 +7,7 @@ export default class FormValidator {
   checkValidity (inputElement) {
     let currentError = document.getElementById(`error-${inputElement.name}`);
     if (inputElement.value.length === 0) {
-      currentError.textContent = 'Это обязательное поле';
+      currentError.textContent = this.errors.required;
     } else if (!inputElement.validity.valid && inputElement.name === "email") {
       currentError.textContent = this.errors.emailIncorrect;
     } else if (!inputElement.validity.valid && inputElement.name === "password") {
