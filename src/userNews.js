@@ -27,21 +27,19 @@ const userApi = new UserApi(serverData);
 
 const savedNewsApi = new SavedNewsApi(serverData);
 
-const cardItem = (cardData, cardAlerts, api, formErrors) => {
-  return new SavedCard(cardData, cardAlerts, api, formErrors);
+const cardItem = (cardData, cardAlerts, api, formErrors, newsContainer, newsCounter) => {
+  return new SavedCard(cardData, cardAlerts, api, formErrors, newsContainer, newsCounter);
 };
 
 const newsCounter = new NewsCounter(userNewsCount, wordsList, userSubtitle, otherWordsCount, userSpan);
 
-const savedCardList = new SavedCardList(cardItem, container, savedNewsApi, cardAlerts, formErrors)
+const savedCardList = new SavedCardList(cardItem, container, savedNewsApi, cardAlerts, formErrors, newsCounter)
 
 const savedNewsHeaderRender = new SavedNewsHeaderRender(userApi, header, serverData, authorization);
 
 const newsPage = new NewsPage(savedNewsHeaderRender, header, userApi, headerPopup, authorization, savedCardList, formErrors);
 
-savedCardList.setDependencies({ newsCounter });
 savedNewsHeaderRender.setDependencies({ newsPage });
-savedNewsApi.setDependencies({savedCardList});
 
 newsPage.pageState();
 

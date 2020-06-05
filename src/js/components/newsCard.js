@@ -9,6 +9,7 @@ export default class NewsCard {
     this._alertOn = this._alertOn.bind(this);
     this._alertOff = this._alertOff.bind(this);
     this._sideBarButtonActivate = this._sideBarButtonActivate.bind(this);
+    this.goToLink = this._goToLink.bind(this);
   }
 
   // разметка карточки
@@ -96,6 +97,10 @@ export default class NewsCard {
     }
   }
 
+  _goToLink () {
+    document.location.href = this.cardData.url;
+  }
+
   // активация кнопки сохранения статей
   _sideBarButtonActivate () {
     if (!document.querySelector('.header__button').hasAttribute('name')) {
@@ -135,6 +140,11 @@ export default class NewsCard {
     this.sideBarButton.addEventListener('mouseover', this._alertOn);
     this.sideBarButton.addEventListener('mouseout', this._alertOff);
     this.sideBarButton.addEventListener('click', this._sideBarButtonActivate);
+    this._element.addEventListener('click', (event) => {
+      if (!event.target.classList.contains('newscard__sidebar-button')) {
+        this._goToLink();
+      }
+    });
   }
 }
 

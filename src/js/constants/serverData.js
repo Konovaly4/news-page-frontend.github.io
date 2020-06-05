@@ -1,7 +1,7 @@
 // данные сервера
 const serverData = {
-  ip: 'api.news-page.gq',
-  url: 'https://',
+  ip: 'localhost:3000',
+  url: 'http://',
 }
 
 export default serverData;

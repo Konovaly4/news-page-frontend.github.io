@@ -1,13 +1,16 @@
 // класс карточки сохраненной новости
 export default class SavedCard {
-  constructor (cardData, cardAlerts, api, formErrors) {
+  constructor (cardData, cardAlerts, api, formErrors, newsContainer, newsCounter) {
     this.cardData = cardData;
     this.cardAlerts = cardAlerts;
     this.api = api;
     this.formErrors = formErrors;
+    this.newsContainer = newsContainer;
+    this.newsCounter = newsCounter;
     this._alertOn = this._alertOn.bind(this);
     this._alertOff = this._alertOff.bind(this);
     this._deleteCard = this._deleteCard.bind(this);
+    this.goToLink = this._goToLink.bind(this);
   }
 
   // отрисовка разметки карточки
@@ -87,6 +90,10 @@ export default class SavedCard {
     this.sideBarAlert.classList.remove('newscard__sidebar-alert_active');
   }
 
+  _goToLink () {
+    document.location.href = this.cardSource.getAttribute('href');
+  }
+
   // удаление карточки
   _deleteCard () {
     this.api.deleteCard(this.cardData._id)
@@ -96,6 +103,7 @@ export default class SavedCard {
         return;
       }
       this._element.remove();
+      this.newsCounter.userBlockData(this.newsContainer);
       return;
     })
     .catch((err) => console.log(err));
@@ -106,6 +114,11 @@ export default class SavedCard {
     this.sideBarButton.addEventListener('mouseover', this._alertOn);
     this.sideBarButton.addEventListener('mouseout', this._alertOff);
     this.sideBarButton.addEventListener('click', this._deleteCard);
+    this._element.addEventListener('click', (event) => {
+      if (!event.target.classList.contains('newscard__sidebar-button')) {
+        this._goToLink();
+      }
+    });
   }
 
 }

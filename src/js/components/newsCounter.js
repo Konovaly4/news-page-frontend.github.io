@@ -21,9 +21,11 @@ export default class NewsCounter {
   }
 
   // сбор и сортировка ключевых слов по популярности
-  _keyWordsList (result) {
-    if (!result) return;
-    const mainWordsArray = result.data.map((elem) => { return elem.keyword; })
+  _keyWordsList (container) {
+    const mainWordsArray = Array.from(container.querySelectorAll('.newscard__sidebar-mainword')).map((item) => {
+      return item.textContent;
+    });
+    if (mainWordsArray.length === 0) return;
     const mainWordsList = [];
     mainWordsArray.forEach((item) => {
       if (mainWordsList.length === 0 || (!mainWordsList.some((elem) => { return elem === item}))) {
@@ -47,16 +49,17 @@ export default class NewsCounter {
   }
 
   // вывод имени пользователя и количества сохраненных статей
-  userBlockData (result) {
-    if (!result) {
+  userBlockData (container) {
+    const newsArray = Array.from(container.querySelectorAll('.newscard'));
+    if (newsArray.length === 0) {
       this.userSubtitle.style.display = 'none';
       this.userNewsCount.textContent = `${localStorage.getItem('userName')}, у вас нет сохраненных статей`;
-    } else if (result.data.length <= 4) {
-      this.userNewsCount.textContent = `${localStorage.getItem('userName')}, у вас ${result.data.length} сохраненные статьи`;
+    } else if (newsArray.length <= 4) {
+      this.userNewsCount.textContent = `${localStorage.getItem('userName')}, у вас ${newsArray.length} сохраненные статьи`;
     } else {
-      this.userNewsCount.textContent = `${localStorage.getItem('userName')}, у вас ${result.data.length} сохраненных статей`;
+      this.userNewsCount.textContent = `${localStorage.getItem('userName')}, у вас ${newsArray.length} сохраненных статей`;
     }
-    this._keyWordsList(result);
+    this._keyWordsList(container);
   }
 
 }
