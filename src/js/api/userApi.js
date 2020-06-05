@@ -26,22 +26,6 @@ export default class UserApi {
       } else {
         return Promise.reject(res);
       };
-    })
-    // Проверка ошибки - текст приходит в методе err.text
-    .catch((err) => {
-      if (!err.status) {
-        return ('ServerConnectionError'); // не удалось поймать текст ошибки, по этому возвращаю это значени
-      }
-      return err.text()
-      .then((text) => {
-        return JSON.parse(text);
-      })
-      .then((text) => {
-        return text.message;
-      })
-      .catch((err) => {
-        console.log(err);
-      })
     });
   }
 
@@ -66,16 +50,8 @@ export default class UserApi {
       } else {
         return Promise.reject(`${res.status}-${res.statusText}`);
       };
-    })
-    // проверка ошибки: приходит сразу текст ошибки || потеря соединения с сервером (failed to fetch)
-    .catch((err) => {
-      if (err === '400-Bad Request') {
-        return ('Bad Request');
-      }
-      if (!err) {
-        return ('Server connection error'); // не удалось поймать текст ошибки, по этому возвращаю это значени
-      }
     });
+
   }
 
   // запрос данных пользователя
@@ -96,11 +72,6 @@ export default class UserApi {
         return Promise.reject(`${res.status}-${res.statusText}`);
       };
     })
-    .catch((err) => {
-      console.log(err);
-      return err;
-    })
-    .finally(() => { return });
   }
 
   // изменение имени пользователя
@@ -124,10 +95,6 @@ export default class UserApi {
         return Promise.reject(`${res.status}-${res.statusText}`);
       };
     })
-    .catch((err) => {
-      alert('Ошибка при изменении данных пользователя');
-      console.log(err);
-    });
   }
 
   // выход из системы
@@ -148,8 +115,5 @@ export default class UserApi {
         return Promise.reject(`${res.status}-${res.statusText}`);
       };
     })
-    .catch((err) => {
-      return err;
-    });
   }
 }

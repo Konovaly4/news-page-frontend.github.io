@@ -35,22 +35,20 @@ export default class MainHeaderRender {
     }
     this.api.getUser()
     .then((res) => {
-      if ((res === 'TypeError: Failed to fetch')) {
-        this._removeAuthorization();
-        alert(this.formErrors.serverConnectionError);
-        return;
-      };
-      if ((res === '401-Unauthorized')) {
-        this._removeAuthorization();
-        return;
-      };
       this.headerButton.removeAttribute('name', 'authMode');
       this.headerButtonName.textContent = res.name;
       this.authorization.setAuthorization(res.name);
       this.headerButtonLogout.classList.add('header__button-logout_active');
       this.headerNewsLink.closest('.header__link-container').classList.add('header__link-container_visible');
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      if ((err !== '401-Unauthorized')) {
+        alert(this.formErrors.serverConnectionError);
+      }
+      this._removeAuthorization();
+      return;
+    });
   }
 
 }

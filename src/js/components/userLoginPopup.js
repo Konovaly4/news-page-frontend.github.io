@@ -23,18 +23,18 @@ export default class UserLoginPopup extends RegistrationPopup {
   // сбор DOM-элементов попапа
   _popupExtension () {
     this._popupForm()
-    this.popup.head = document.getElementById('main-title');
-    this.popup.closeButton = document.querySelector('.popup__close');
-    this.popup.form = document.forms.new;
-    this.popup.noteEmail = document.getElementById('note-email');
-    this.popup.notePassword = document.getElementById('note-password');
-    this.popup.noteButton = document.getElementById('button-note');
+    this.popup.head = this.popup.querySelector('#main-title');
+    this.popup.closeButton = this.popup.querySelector('.popup__close');
+    this.popup.form = this.popup.querySelector('.popup__form');
+    this.popup.noteEmail = this.popup.querySelector('#note-email');
+    this.popup.notePassword = this.popup.querySelector('#note-password');
+    this.popup.noteButton = this.popup.querySelector('#button-note');
     this.popup.email = this.popup.form.elements.email;
     this.popup.password = this.popup.form.elements.password;
-    this.popup.button = document.querySelector('.popup__button');
-    this.popup.emailErr = document.getElementById('error-email');
-    this.popup.passErr = document.getElementById('error-password');
-    this.popup.buttonErr = document.getElementById('button-err');
+    this.popup.button = this.popup.querySelector('.popup__button');
+    this.popup.emailErr = this.popup.querySelector('#error-email');
+    this.popup.passErr = this.popup.querySelector('#error-password');
+    this.popup.buttonErr = this.popup.querySelector('#button-err');
   }
 
   // открытие/закрытие попапа
@@ -75,11 +75,12 @@ export default class UserLoginPopup extends RegistrationPopup {
 
   // закрытие попапа при клике вне поля формы
   _popupCloseByClick (event) {
-    if (!event) {
-      return;
-    } else if (event.target.classList.contains('popup')) {
-      this.popupClose();
-    }
+    super._popupCloseByClick(event);
+  }
+
+  // закрытие попапа при нажатии на esc
+  _popupCloseByEsc (event) {
+    super._popupCloseByEsc(event);
   }
 
   // действия при отправке заполненной формы
@@ -87,24 +88,21 @@ export default class UserLoginPopup extends RegistrationPopup {
     event.preventDefault();
     this.api.login(this.popup.email.value, this.popup.password.value)
     .then((res) => {
-      if (res === 'Bad Request') {
+      this.authorization.setAuthorization();
+      this.popupClose();
+      this.pageReloader.setButtonState();
+      return res;
+    })
+    .catch((err) => {
+      console.log(err);
+      if (err === '400-Bad Request' || err === '401-Unauthorized') {
         this.popup.buttonErr.textContent = 'Ошибка. Проверьте введенные данные';
         return;
-      }
-      if (!res) {
+      } else {
         this.popup.buttonErr.textContent = 'Ошибка соединения с сервером';
         return;
       }
-      return res;
-    })
-    .then((res) => {
-      if (res) {
-        this.authorization.setAuthorization();
-        this.popupClose();
-        this.pageReloader.setButtonState();
-      }
-    })
-    .catch((err) => console.log(err));
+    });
   }
 
   // смена попапов

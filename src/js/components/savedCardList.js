@@ -18,9 +18,8 @@ export default class SavedCardList {
   }
 
   // отрисовка добавленных карточек
-  _showCards (result) {
-    if (!result) return;
-    result.data.forEach((elem) => {
+  _showCards (res) {
+    res.data.forEach((elem) => {
       this._addCard(elem, this.cardAlerts, this.api, this.formErrors, this.container, this.newsCounter);
     })
     return;
@@ -37,15 +36,13 @@ export default class SavedCardList {
     this._pageReloader();
     this.api.getCards()
     .then((res) => {
-      if (!res) {
-        alert('Ошибка при доступе к серверу');
-        return;
-      }
       this._showCards(res);
       this.newsCounter.userBlockData(this.container);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      alert(this.formErrors.serverConnectionError);
+      return;
+    });
   }
-
-
 }

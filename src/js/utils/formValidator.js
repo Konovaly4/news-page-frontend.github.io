@@ -4,8 +4,8 @@ export default class FormValidator {
     this.errors = errors;
   }
 
-  checkValidity (inputElement) {
-    let currentError = document.getElementById(`error-${inputElement.name}`);
+  checkValidity (popupForm,inputElement) {
+    let currentError = popupForm.querySelector(`#error-${inputElement.name}`);
     if (inputElement.value.length === 0) {
       currentError.textContent = this.errors.required;
     } else if (!inputElement.validity.valid && inputElement.name === "email") {
@@ -22,7 +22,7 @@ export default class FormValidator {
   validation (popupForm) {
     const inputList = Array.from(popupForm.querySelectorAll('.popup__input'));
     inputList.forEach((elem) => {
-      elem.addEventListener('input', this.checkValidity(elem));
+      elem.addEventListener('input', this.checkValidity(popupForm, elem));
     });
     inputList.every((elem) => {
       return elem.validity.valid;

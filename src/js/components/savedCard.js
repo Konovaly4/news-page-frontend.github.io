@@ -48,11 +48,12 @@ export default class SavedCard {
 
   // установка нужного формата даты
   _dataParser () {
-    return (new Date(this.cardData.date).toLocaleString('ru', {
+    const date = new Date(this.cardData.date).toLocaleString('ru', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
-    }));
+    });
+    return date;
   }
 
   // сбор DOM-элементов карточки
@@ -91,22 +92,22 @@ export default class SavedCard {
   }
 
   _goToLink () {
-    document.location.href = this.cardSource.getAttribute('href');
+    window.open(this.cardData.link, '_blank');
   }
 
   // удаление карточки
   _deleteCard () {
     this.api.deleteCard(this.cardData._id)
     .then((res) => {
-      if (!res) {
-        alert(this.formErrors.serverConnectionError);
-        return;
-      }
       this._element.remove();
       this.newsCounter.userBlockData(this.newsContainer);
-      return;
+      return res;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      alert(this.formErrors.serverConnectionError);
+      return;
+    });
   }
 
   // установка слушателей

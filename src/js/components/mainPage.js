@@ -1,5 +1,5 @@
 export default class MainPage {
-  constructor (headerRender, header, userApi, popup, headerPopup, serverData, authorization) {
+  constructor (headerRender, header, userApi, popup, headerPopup, serverData, authorization, formErrors) {
     this.headerRender = headerRender;
     this.header = header;
     this.userApi = userApi;
@@ -7,6 +7,7 @@ export default class MainPage {
     this.headerPopup = headerPopup;
     this.serverData = serverData;
     this.authorization = authorization;
+    this.formErrors = formErrors;
     this._logout = this._logout.bind(this);
     this._headerPopupToggler = this._headerPopupToggler.bind(this);
     this._changePage = this._changePage.bind(this);
@@ -30,13 +31,14 @@ export default class MainPage {
   _logout () {
     this.userApi.logout()
     .then((res) => {
-      if (!res) {
-        alert('ошибка при выходе из системы');
-        return;
-      }
       this.authorization.removeAuthorization();
       this.headerRender.setButtonState();
       return res;
+    })
+    .catch((err) => {
+      console.log(err);
+      alert(this.formErrors.serverConnectionError);
+      return;
     })
   }
 

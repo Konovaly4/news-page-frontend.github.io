@@ -5,18 +5,20 @@ export default class NewsApi {
 
   // текущая дата
   _currentDate () {
-    return new Date().toISOString();
+    const currentDate = new Date().toISOString();
+    return currentDate;
   }
 
   // дата на 7 дней позже
   _prevousDate () {
-    return new Date(date.setDate(date.getDate() - 7)).toISOString();
+    const dateInterval = 7;
+    const prevousDate = new Date(date.setDate(date.getDate() - dateInterval)).toISOString();
+    return prevousDate;
   }
 
 // получение статей от сервиса
   getNews (keyword) {
     return fetch (`${this.reqData.reqUrl}q=${keyword}&from${this._currentDate}$to${this._prevousDate}&pageSize=100&apiKey=${this.reqData.apiKey}`, {
-    // return fetch (`https://praktikum.tk/news/v2/top-headlines?country=us&apiKey= 123123123123123123`, {
       method: 'GET',
     })
     .then((res) => {
@@ -26,8 +28,5 @@ export default class NewsApi {
         return Promise.reject(res);
       };
     })
-    .catch((err) => {
-      return err;
-    });
   }
 }

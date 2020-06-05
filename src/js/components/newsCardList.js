@@ -1,13 +1,13 @@
-import NewsCard from './newsCard';
-
 // класс создания блока с карточками
 export default class NewsCardList {
-  constructor (cardItem, container, userapi, newsApi, savedNewsApi, searchMessages, cardAlerts, formErrors) {
+  constructor (serachBlock, newsResultsBlock, cardItem, container, userapi, newsApi, savedNewsApi, searchMessages, cardAlerts, formErrors) {
+    this.serachBlock = serachBlock;
+    this.newsResultsBlock = newsResultsBlock;
     this.cardItem = cardItem;
     this.container = container;
     this.cards = [];
-    this.result = [];
-    this.count = 0;
+    this.results = [];
+    this.newsCount = 0;
     this.userapi = userapi;
     this.newsApi = newsApi;
     this.savedNewsApi = savedNewsApi;
@@ -19,13 +19,14 @@ export default class NewsCardList {
 
   // сбор DOM-элементов блока с новостями
   _newsBlockItems () {
-    this.nextButton = document.querySelector('.results__button');
-    this.input = document.querySelector('.search__input');
-    this.preloader = document.querySelector('.results__loading')
-    this.resultErrorBlock = document.querySelector('.results__load-fail');
-    this.resultErrorTitle = document.querySelector('.results__fail-title');
-    this.resultErrorMessage = document.querySelector('.fail-message')
-    this.resultsBlock = document.querySelector('.results__news');
+    this.mainInput = this.serachBlock.querySelector('.search__input');
+    this.searchButton = this.serachBlock.querySelector('.search__button');
+    this.nextButton = this.newsResultsBlock.querySelector('.results__button');
+    this.preloader = this.newsResultsBlock.querySelector('.results__loading')
+    this.resultErrorBlock = this.newsResultsBlock.querySelector('.results__load-fail');
+    this.resultErrorTitle = this.newsResultsBlock.querySelector('.results__fail-title');
+    this.resultErrorMessage = this.newsResultsBlock.querySelector('.fail-message')
+    this.resultsBlock = this.newsResultsBlock.querySelector('.results__news');
   }
 
   // прелоадер
@@ -61,7 +62,7 @@ export default class NewsCardList {
     } else {
       news.forEach((elem) => {
         elem.remove();
-        this.count = 0;
+        this.newsCount = 0;
       });
     }
   }
@@ -80,14 +81,15 @@ export default class NewsCardList {
 
   // отрисовка карточек в блоке
   _showCards () {
-    const resSlicer = this.result.slice(this.count, this.count + 3);
-    if (resSlicer.length < 3) {
+    const newsCardsColumns = 3
+    const newsRow = this.results.slice(this.newsCount, this.newsCount + newsCardsColumns);
+    if (newsRow.length < newsCardsColumns) {
       this.nextButton.classList.remove('results__button_active');
     }
-    resSlicer.forEach((elem) => {
-      this._addCard(elem, this.cardAlerts, this.input.value, this.savedNewsApi, this.formErrors);
+    newsRow.forEach((elem) => {
+      this._addCard(elem, this.cardAlerts, this.mainInput.value, this.savedNewsApi, this.formErrors);
     })
-    this.count = this.count + 3;
+    this.newsCount = this.newsCount + newsCardsColumns;
     return;
   }
 
@@ -98,23 +100,28 @@ export default class NewsCardList {
     this._allBlocksClose();
     this._removeEventListeners();
     this._preloaderToggler();
-    this.newsApi.getNews(this.input.value)
+    this.searchButton.setAttribute('disabled', true);
+    this.mainInput.setAttribute('disabled', true);
+    this.newsApi.getNews(this.mainInput.value)
       .then((res) => {
+        this.searchButton.removeAttribute('disabled', true);
+        this.mainInput.removeAttribute('disabled', true);
         this._preloaderToggler();
-        if(res.status && ((res.status === 400 || res.status === 401 || res.status === 429 || res.status === 500))) {
-          this._resultErrorBlockOpen();
-          return;
-        }
         if(res.articles.length === 0) {
           this._resultFailBlockOpen();
           return;
         }
-        this.result = res.articles;
+        this.results = res.articles;
         this.resultsBlock.classList.add('results__news_active');
         this.nextButton.classList.add('results__button_active');
         this._showCards();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        this._preloaderToggler();
+        this._resultErrorBlockOpen();
+        console.log(err);
+        return;
+      });
     this._setEventListeners();
   }
 

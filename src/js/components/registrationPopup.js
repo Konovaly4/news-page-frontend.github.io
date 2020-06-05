@@ -17,6 +17,7 @@ export default class RegistrationPopup {
       this._submit = this._submit.bind(this);
       this._popupCloseByClick = this._popupCloseByClick.bind(this);
       this._changePopup = this._changePopup.bind(this);
+      this._popupCloseByEsc = this._popupCloseByEsc.bind(this);
   }
 
   // добавление зависимостей
@@ -35,21 +36,21 @@ export default class RegistrationPopup {
   // сбор DOM-элементов попапа
   _popupExtension () {
     this._popupForm()
-    this.popup.head = document.getElementById('main-title');
-    this.popup.closeButton = document.querySelector('.popup__close');
-    this.popup.form = document.forms.new;
-    this.popup.noteEmail = document.getElementById('note-email');
-    this.popup.notePassword = document.getElementById('note-password');
-    this.popup.noteName = document.getElementById('note-name');
-    this.popup.noteButton = document.getElementById('button-note');
+    this.popup.head = this.popup.querySelector('#main-title');
+    this.popup.closeButton = this.popup.querySelector('.popup__close');
+    this.popup.form = this.popup.querySelector('.popup__form');
+    this.popup.noteEmail = this.popup.querySelector('#note-email');
+    this.popup.notePassword = this.popup.querySelector('#note-password');
+    this.popup.noteName = this.popup.querySelector('#note-name');
+    this.popup.noteButton = this.popup.querySelector('#button-note');
     this.popup.email = this.popup.form.elements.email;
     this.popup.password = this.popup.form.elements.password;
     this.popup.name = this.popup.form.elements.name;
-    this.popup.button = document.querySelector('.popup__button');
-    this.popup.emailErr = document.getElementById('error-email');
-    this.popup.passErr = document.getElementById('error-password');
-    this.popup.nameErr = document.getElementById('error-name');
-    this.popup.buttonErr = document.getElementById('button-err');
+    this.popup.button = this.popup.querySelector('.popup__button');
+    this.popup.emailErr = this.popup.querySelector('#error-email');
+    this.popup.passErr = this.popup.querySelector('#error-password');
+    this.popup.nameErr = this.popup.querySelector('#error-name');
+    this.popup.buttonErr = this.popup.querySelector('#button-err');
   }
 
   // открытие/закрытие
@@ -102,6 +103,7 @@ export default class RegistrationPopup {
     this.popup.form.removeEventListener('input', this._setButtonState);
     this.popup.closeButton.removeEventListener('click', this.popupClose);
     this.popup.removeEventListener('click', this._popupCloseByClick);
+    document.removeEventListener('keydown', this._popupCloseByEsc);
     this.popup.form.remove();
   }
 
@@ -114,30 +116,46 @@ export default class RegistrationPopup {
     }
   }
 
+  // закрытие попапа при нажатии на esc
+  _popupCloseByEsc (event) {
+    if (event.key !== 'Escape') return;
+    if (this.popup.classList.contains('popup_is-opened')) {
+      this.popupClose();
+    }
+  }
+
   // отправка формы после заполнения
   _submit (event) {
-    const { secondaryPopup } = this.dependencies;
+    const { messagePopup } = this.dependencies;
     event.preventDefault();
     this.api.createUser(this.popup.email.value, this.popup.password.value, this.popup.name.value)
     .then((res) => {
-      if (res === 'Email is already exists') {
-        this.popup.buttonErr.textContent = this.submitButtonAlerts.userIsExist;
-        return;
-      };
-      if (res === '"email" must be a valid email') {
-        this.popup.buttonErr.textContent = this.submitButtonAlerts.regError;
-        return;
-      };
-      if (res == 'ServerConnectionError') {
+      this.popupClose();
+      this.pageReloader.setButtonState();
+      messagePopup.popupOpen();
+      return res;
+    })
+    .catch((err) => {
+      if (!err.status) {
         this.popup.buttonErr.textContent = this.submitButtonAlerts.connectionError;
         return;
       }
-      this.popupClose();
-      this.pageReloader.setButtonState();
-      secondaryPopup.classList.add('popup_is-opened');
-      return res;
+      return err.text();
     })
-    .catch((err) => console.log(err));
+    .then((text) => {
+      return JSON.parse(text);
+    })
+    .then((text) => {
+      console.log(text.message);
+      if (text.message === 'Email is already exists') {
+        this.popup.buttonErr.textContent = this.submitButtonAlerts.userIsExist;
+        return;
+      };
+      if (text.message === '"email" must be a valid email') {
+        this.popup.buttonErr.textContent = this.submitButtonAlerts.regError;
+        return;
+      };
+    });
   }
 
   // смена попапа регистрации/входа
@@ -151,10 +169,11 @@ export default class RegistrationPopup {
   _setEventListeners() {
     this.popup.form.addEventListener('input', this._validation);
     this.popup.form.addEventListener('input', this._setButtonState);
-    this.popup.button.addEventListener('click', this._submit);
+    this.popup.form.addEventListener('submit', this._submit);
     this.popup.noteButton.addEventListener('click', this._changePopup);
     this.popup.closeButton.addEventListener('click', this.popupClose);
     this.popup.addEventListener('click', this._popupCloseByClick);
+    document.addEventListener('keydown', this._popupCloseByEsc);
   }
 
 }

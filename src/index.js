@@ -24,11 +24,13 @@ import Authorization from './js/components/authorization';
 import NewsCard from './js/components/newsCard';
 import InputValidatir from './js/utils/inputValidator';
 
-const popup = document.getElementById('popup');
+const popup = document.querySelector('#popup');
 const container = document.querySelector('.news-container');
 const header = document.querySelector('.header');
-const secondaryPopup = document.getElementById('popup-authorized');
+const loginSuccessPopup = document.querySelector('#popup-authorized');
 const headerPopup = document.querySelector('.header__popup');
+const serachBlock = document.querySelector('.search');
+const newsResultsBlock = document.querySelector('.results');
 const regFormTemplate = document.querySelector('#reg-form-template').content.querySelector('.popup__form');
 const loginFormTemplate = document.querySelector('#login-form-template').content.querySelector('.popup__form');
 
@@ -61,20 +63,19 @@ const registrationPopup = new RegistrationPopup(popup, popupTitles, placeholders
 const userLoginPopup = new UserLoginPopup(popup, popupTitles, placeholders, formNotes, formButtons, submitButtonAlerts, formValidator, userApi, mainHeaderRender, authorization);
 
 // объявление класса попапа-сообщения об успешной авторизации
-const messagePopup = new MessagePopup(userLoginPopup);
-messagePopup.popupSetup();
-
-registrationPopup.setDependencies({ userLoginPopup, secondaryPopup, regFormTemplate});
-userLoginPopup.setDependencies({ registrationPopup, loginFormTemplate });
+const messagePopup = new MessagePopup(loginSuccessPopup, userLoginPopup);
 
 // объявление класса установки состояния главной страницы
-const mainPage = new MainPage(mainHeaderRender, header, userApi, registrationPopup, headerPopup, serverData, authorization);
+const mainPage = new MainPage(mainHeaderRender, header, userApi, registrationPopup, headerPopup, serverData, authorization, formErrors);
 mainPage.pageState();
 
 // объявление класса создания блока карточек
-const newsCardList = new NewsCardList(cardItem, container, userApi, newsApi, savedNewsApi, searchMessages, cardAlerts, formErrors);
+const newsCardList = new NewsCardList(serachBlock, newsResultsBlock, cardItem, container, userApi, newsApi, savedNewsApi, searchMessages, cardAlerts, formErrors);
 
 // объявление класса поля ввода поиска новостей
-const searchInput = new SearchInput(newsCardList, inputValidator);
+const searchInput = new SearchInput(serachBlock, newsCardList, inputValidator);
 searchInput.setEventListeners();
+
+registrationPopup.setDependencies({ userLoginPopup, messagePopup, regFormTemplate});
+userLoginPopup.setDependencies({ registrationPopup, loginFormTemplate });
 

@@ -9,7 +9,7 @@ export default class NewsCard {
     this._alertOn = this._alertOn.bind(this);
     this._alertOff = this._alertOff.bind(this);
     this._sideBarButtonActivate = this._sideBarButtonActivate.bind(this);
-    this.goToLink = this._goToLink.bind(this);
+    this._goToLink = this._goToLink.bind(this);
   }
 
   // разметка карточки
@@ -47,11 +47,12 @@ export default class NewsCard {
 
   // преобразователь даты в нужный формат
   _dataParser () {
-    return (new Date(this.cardData.publishedAt).toLocaleString('ru', {
+    const date = new Date(this.cardData.publishedAt).toLocaleString('ru', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
-    }));
+    });
+    return date;
   }
 
   // установка формата ключевого слова
@@ -98,7 +99,7 @@ export default class NewsCard {
   }
 
   _goToLink () {
-    document.location.href = this.cardData.url;
+    window.open(this.cardData.url, '_blank');
   }
 
   // активация кнопки сохранения статей
@@ -107,10 +108,6 @@ export default class NewsCard {
       if (event.target.classList.contains('newscard__sidebar-button_flag')) {
         this.api.saveCard(this.cardData, this._wordParser(this.inputValue))
         .then((res) => {
-          if (!res || (res === 'connection error')) {
-            alert(this.formErrors.serverConnectionError);
-            return;
-          }
           this._element.setAttribute('id', res.data._id);
           this.sideBarButton.classList.toggle('newscard__sidebar-button_flag');
           this.sideBarButton.classList.toggle('newscard__sidebar-button_flag_saved');
@@ -118,17 +115,19 @@ export default class NewsCard {
         })
         .catch((err) => {
           console.log(err);
+          alert(this.formErrors.serverConnectionError);
           return;
         })
       } else {
         this.api.deleteCard(this._element.getAttribute('id'))
         .then((res) => {
-          if (!res || (res === 'connection error')) {
-            alert(this.formErrors.serverConnectionError);
-            return;
-          };
           this.sideBarButton.classList.toggle('newscard__sidebar-button_flag');
           this.sideBarButton.classList.toggle('newscard__sidebar-button_flag_saved');
+          return res;
+        })
+        .catch((err) => {
+          console.log(err);
+          alert(this.formErrors.serverConnectionError);
           return;
         })
       };

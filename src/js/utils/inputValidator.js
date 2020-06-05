@@ -1,5 +1,3 @@
-import formErrors from "../constants/formErrors";
-
 export default class InputValidator {
   constructor(formErrors) {
     this.formErrors = formErrors;

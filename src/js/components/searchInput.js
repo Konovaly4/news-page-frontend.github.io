@@ -1,6 +1,7 @@
 // класс инпута поиска новостей
 export default class SearchInput {
-  constructor(newsAction, inputValidator) {
+  constructor(serachBlock, newsAction, inputValidator) {
+    this.serachBlock = serachBlock
     this.newsAction = newsAction;
     this.inputValidator = inputValidator;
     this._newsRequest = this._newsRequest.bind(this);
@@ -10,10 +11,10 @@ export default class SearchInput {
 
   // сбор DOM-элементов инпута
   _inputData () {
-    this.form = document.querySelector('.search__form');
-    this.input = document.querySelector('.search__input');
-    this.inputError = document.querySelector('.search__input-error');
-    this.button = document.querySelector('.search__button');
+    this.form = this.serachBlock.querySelector('.search__form');
+    this.input = this.serachBlock.querySelector('.search__input');
+    this.inputError = this.serachBlock.querySelector('.search__input-error');
+    this.button = this.serachBlock.querySelector('.search__button');
     this.button.setAttribute('disabled', true);
   }
 

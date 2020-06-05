@@ -21,17 +21,15 @@ export default class NewsPage extends MainPage {
   _logout () {
     this.userApi.logout()
     .then((res) => {
-      if (!res) {
-        alert(this.formErrors.serverConnectionError);
-        return;
-      }
       this.authorization.removeAuthorization();
       this.headerRender.setButtonState();
-      return res.status;
+      return res;
     })
     .catch((err) => {
       console.log(err);
-    });
+      alert(this.formErrors.serverConnectionError);
+      return;
+    })
   }
 
   // открытие/закрытие попапа в зависимости от ширины страницы
@@ -41,6 +39,9 @@ export default class NewsPage extends MainPage {
 
   // смена страницы на главную
   _changePage () {
+    this.headerPopupButton.removeEventListener('click', this._headerPopupToggler);
+    this.headerButton.removeEventListener('click', this._logout);
+    this.headerMainPageLink.removeEventListener('click', this._changePage)
     document.location = '/index.html';
   }
 

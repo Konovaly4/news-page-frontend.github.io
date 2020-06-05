@@ -3,8 +3,6 @@ import UserApi from "./userApi";
 // наследование класса от UserApi
 export default class SavedNewsApi extends UserApi {
 
-  // создание зависимостей (подгрузка функции обновления страницы после удаления карточки)
-
   // Сохранение карточки (клик на флаг)
   saveCard (cardData, inputValue) {
     return fetch(`${this.url}${this.ip}/articles`, {
@@ -31,10 +29,6 @@ export default class SavedNewsApi extends UserApi {
         return Promise.reject(`${res.status}-${res.statusText}`);
       }
     })
-    .catch((err) => {
-      console.log(err);
-      return ('connection error'); // не удалось поймать текст ошибки, по этому возвращаю это значение
-    });
   }
 
   // удаление карточки (клик на корзину)
@@ -54,9 +48,6 @@ export default class SavedNewsApi extends UserApi {
         return Promise.reject(`${res.status}-${res.statusText}`);
       };
     })
-    .catch((err) => {
-      return err;
-    });
   }
 
   // получение карточек
@@ -76,8 +67,5 @@ export default class SavedNewsApi extends UserApi {
         return Promise.reject(`${res.status}-${res.statusText}`);
       }
     })
-    .catch((err) => {
-      return err;
-    });
   }
 }
