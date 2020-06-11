@@ -1,0 +1,24 @@
+@import url(./style/black/header__title_style_black.css);
+
+.header__title {
+  margin-left: 104px;
+  font-family: 'Roboto Slab', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+  color: #FFFFFF;
+}
+
+@media screen and (max-width: 1279px) {
+  .header__title {
+    margin-left: 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header__title {
+    margin-left: 16px;
+    font-size: 16px;
+  }
+}

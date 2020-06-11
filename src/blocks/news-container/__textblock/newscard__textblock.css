@@ -1,0 +1,52 @@
+@import url(../__date/newscard__date.css);
+@import url(../__title/newscard__title.css);
+@import url(../__article/newscard__article.css);
+@import url(../__source/newscard__source.css);
+
+.newscard__textblock {
+  margin: 0 auto 24px;
+  padding-top: 20px;
+  width: 352px;
+  height: 304px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+}
+
+@media screen and (max-width: 1279px) {
+  .newscard__textblock {
+    width: 272px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .newscard__textblock {
+    margin: 0 auto 16px;
+    padding-top: 16px;
+    width: 192px;
+    height: 280px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .newscard__textblock {
+    width: 256px;
+    height: 244px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .newscard__textblock {
+    width: 192px;
+    height: 280px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .newscard__textblock {
+    width: 256px;
+    height: 244px;
+  }
+}

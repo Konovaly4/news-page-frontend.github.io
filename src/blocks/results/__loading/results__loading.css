@@ -1,0 +1,14 @@
+@import url(./_active/results__loading_active.css);
+@import url(../__preloader/results__preloader.css);
+@import url(../__loading-message/loading-message.css);
+@import url(../__message/results__message.css);
+
+.results__loading {
+  max-width: 280px;
+  margin: 0 auto;
+  padding-top: 80px;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}

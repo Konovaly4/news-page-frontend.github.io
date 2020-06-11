@@ -1,0 +1,36 @@
+@import url(../__sidebar__alert/newscard__sidebar-alert.css);
+@import url(../__sidebar-mainword/newscard__sidebar-mainword.css);
+@import url(../__sidebar__button/newscard__sidebar-button.css);
+
+.newscard__sidebar {
+  margin: 0 auto;
+  width: calc(100% - 48px);
+  height: 40px;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+@media screen and (max-width: 1024px) {
+  .newscard__sidebar {
+    width: calc(100% - 16px);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .newscard__sidebar {
+    width: calc(100% - 32px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .newscard__sidebar {
+    width: calc(100% - 16px);
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .newscard__sidebar {
+    width: calc(100% - 32px);
+  }
+}

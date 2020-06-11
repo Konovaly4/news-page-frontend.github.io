@@ -1,0 +1,31 @@
+@import url(../__link/header__link.css);
+@import url(./_visible/header__link-container_visible.css);
+@import url(./_active/header__link-container_active.css);
+
+.header__link-container {
+  height: calc(100% - 6px);
+  margin: 0 34px 0 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .header__link-container {
+    margin: 0 16px 0 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header__link-container {
+    height: 56px;
+  }
+
+  .header__link-container:nth-of-type(1) {
+    margin: 75px 0 0 16px;
+  }
+
+  .header__link-container:nth-of-type(2) {
+    margin: 0 0 22px 16px;
+  }
+}

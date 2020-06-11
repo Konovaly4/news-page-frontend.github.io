@@ -1,0 +1,16 @@
+@import url(../vendor/fonts.css);
+@import url(../blocks/root/root.css);
+@import url(../blocks/search/search.css);
+@import url(../blocks/results/results.css);
+@import url(../blocks/author/author.css);
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/popup/popup.css);
+
+body {
+  margin: 0;
+}
+
+a, button, input {
+  cursor: url(../images/Cursor.svg), pointer;
+  outline: none;
+}

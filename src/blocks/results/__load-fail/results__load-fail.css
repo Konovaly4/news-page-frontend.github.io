@@ -1,0 +1,15 @@
+@import url(../__fail-pic/results__fail-pic.css);
+@import url(../__fail-title/results__fail-title.css);
+@import url(../__message/results__message.css);
+@import url(../__fail-message/fail-message.css);
+@import url(./_active/results__load-fail_active.css);
+
+.results__load-fail {
+  max-width: 360px;
+  margin: 0 auto;
+  padding-top: 86px;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}

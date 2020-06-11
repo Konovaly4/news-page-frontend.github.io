@@ -1,0 +1,9 @@
+@import url(./__loading/results__loading.css);
+@import url(./__load-fail/results__load-fail.css);
+@import url(./__news/results__news.css);
+
+.results {
+  width: 100%;
+  background: #F5F6F7;
+  font-family: 'Roboto', 'Roboto Slab', 'Source Sans Pro', sans-serif;
+}

@@ -1,0 +1,12 @@
+.popup__button-err {
+  margin: 48px auto 8px;
+  text-align: center;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  color: #FF0000;
+  opacity: 0;
+}

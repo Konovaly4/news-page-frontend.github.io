@@ -1,0 +1,20 @@
+@import url(../__title/author__title.css);
+@import url(../__description/author__description.css);
+
+.author__about {
+  max-width: 600px;
+  height: 100%;
+}
+
+@media screen and (max-width: 1279px) {
+  .author__about {
+    max-width: 424px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .author__about {
+    max-width: calc(100% - 32px);
+    margin: 0 auto;
+  }
+}

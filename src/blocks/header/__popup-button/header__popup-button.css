@@ -1,0 +1,18 @@
+@import url(./style/black/header__popup-button_style_black.css);
+
+.header__popup-button {
+  margin: 0 16px 0 0;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  background-color: transparent;
+  background-image: url(../../../images/menu_white.svg); /*замена картинки при открытии попапа на крестик при помощи JS*/
+  display: none;
+  z-index: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .header__popup-button {
+    display: block;
+    }
+  }

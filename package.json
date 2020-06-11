@@ -1,0 +1,49 @@
+{
+  "name": "news-page-frontend.github.io",
+  "version": "0.0.1",
+  "description": "Frontend part of News-page project",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf dist && cross-env NODE_ENV=production webpack --mode production",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --watch",
+    "deploy": "cross-env NODE_ENV=production gh-pages -d dist",
+    "serverDeploy": "npm run build && scp -r ./dist/* konovalov@130.193.45.125:/home/konovalov/news-page-frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Konovaly4/news-page-frontend.github.io.git"
+  },
+  "author": "Maxim Konovalov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Konovaly4/news-page-frontend.github.io/issues"
+  },
+  "homepage": "https://github.com/Konovaly4/news-page-frontend.github.io",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "autoprefixer": "^9.7.6",
+    "babel-loader": "^8.1.0",
+    "cross-env": "^7.0.2",
+    "css-loader": "^3.5.3",
+    "cssnano": "^4.1.10",
+    "file-loader": "^6.0.0",
+    "gh-pages": "~2.0.1",
+    "html-webpack-plugin": "~3.2.0",
+    "image-webpack-loader": "^6.0.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-loader": "^3.0.0",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-md5-hash": "0.0.6"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "core-js": "^3.6.5",
+    "path": "^0.12.7"
+  }
+}

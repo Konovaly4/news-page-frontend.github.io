@@ -1,0 +1,7 @@
+.newscard__sidebar-button.newscard__sidebar-button_flag {
+  background-image: url(../../../../images/flag.svg);
+}
+
+.newscard__sidebar-button_flag:hover {
+  background-image: url(../../../../images/flag_hover.svg);
+}

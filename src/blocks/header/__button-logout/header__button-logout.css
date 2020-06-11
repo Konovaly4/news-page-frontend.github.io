@@ -1,0 +1,8 @@
+@import url(../__button-logout/_active/header__button-logout_active.css);
+
+.header__button-logout {
+  margin: 0 19px 0 0;
+  display: none;
+}
+
+

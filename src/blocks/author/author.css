@@ -1,0 +1,26 @@
+@import url(./__avatar/author__avatar.css);
+@import url(./__about/author__about.css);
+
+.author {
+  width: 100%;
+  height: 624px;
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: 'Roboto', 'Roboto Slab', 'Source Sans Pro', sans-serif;
+}
+
+@media screen and (max-width: 1279px) {
+  .author {
+    height: 354px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .author {
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

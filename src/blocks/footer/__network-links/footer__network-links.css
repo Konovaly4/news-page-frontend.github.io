@@ -1,0 +1,9 @@
+@import url(../__networks/footer__networks.css);
+
+.footer__network-links {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+}

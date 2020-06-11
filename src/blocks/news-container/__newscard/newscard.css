@@ -1,0 +1,49 @@
+@import url(../__pic/newscard__pic.css);
+@import url(../__textblock/newscard__textblock.css);
+
+.newscard {
+  margin: 0;
+  width: 400px;
+  height: 576px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@media screen and (max-width: 1279px) {
+  .newscard {
+    width: 320px;
+    height: 460px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .newscard {
+    width: 224px;
+    height: 420px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .newscard {
+    width: 288px;
+    height: 440px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .newscard {
+    width: 224px;
+    height: 420px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .newscard {
+    width: 288px;
+    height: 440px;
+  }
+}

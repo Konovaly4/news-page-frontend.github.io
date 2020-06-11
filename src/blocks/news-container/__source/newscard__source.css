@@ -1,0 +1,15 @@
+.newscard__source {
+  margin: 0;
+  font-family: 'Roboto Slab', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #B6BCBF;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}

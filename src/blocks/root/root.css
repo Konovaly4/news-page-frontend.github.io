@@ -1,0 +1,8 @@
+@import url(../user/user.css);
+
+.root {
+  max-width: 1440px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  position: relative;
+}

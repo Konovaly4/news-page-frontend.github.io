@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Сайт поиска новостей по ключевым словам. Страница пользователя">
+  <meta name="author" content="Автор проекта: Максим Коновалов">
+  <link rel="shortcut icon" href="<%=require('./images/N.jpg').default%>" type="image/jpg">
+  <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css %>">
+  <title>News Explorer Saved</title>
+</head>
+<body>
+  <div class="root">
+    <header class="header header_style_black">
+      <p class="header__title header__title_style_black">NewsExplorer</p>
+      <nav class="header__links header__links_visible">
+        <ul class="header__link-list">
+          <li class="header__link-container header__link-container_active_style_black header__link-container_visible">
+            <a href="#" class="header__link header__link_style_black header__link_mainpage">Главная</a>
+          </li>
+          <li class="header__link-container header__link-container_active header__link-container_active_style_black header__link-container_visible">
+            <a href="#" class="header__link header__link_style_black header__link_newspage">Сохранённые статьи</a>
+          </li>
+        </ul>
+        <button class="header__button header__button_style_black">
+          <span class="header__button-text header__button-text_style_black"></span>
+          <img class="header__button-logout header__button-logout_active" src="<%=require('./images/Logout-black.svg').default%>" alt="sign-out-button">
+        </button>
+      </nav>
+      <button class="header__popup-button header__popup-button_style_black"></button>
+    </header>
+    <div class="header__popup header__popup_visible">
+      <div class="header__popup-filling header__popup-filling_style_white"></div>
+    </div>
+    <section class="user">
+      <p class="user__title">Сохранённые статьи</p>
+      <h2 class="user__news-count"></h2>
+      <p class="user__subtitle" id="user__subtitle">По ключевым словам: <span class="user__keywords" id="user__keywordslist"></span><span class="user__subtitle" id="user__span"> и </span><span class="user__keywords" id="user__keywordscount"></span></p>
+    </section>
+    <div class="saved-news">
+      <div class="news-container">
+      </div>
+    </div>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2020 News-Explorer</p>
+      <nav class="footer__links">
+        <ul class="footer__links-list">
+          <li class="footer__link-item">
+            <a href="./index.html" class="footer__link">Главная</a>
+          </li>
+          <li class="footer__link-item">
+            <a href="https://praktikum.yandex.ru" target="blank" class="footer__link">Яндекс.Практикум</a>
+          </li>
+        </ul>
+        <ul class="footer__network-links">
+          <li class="footer__social-item">
+            <a href="https://www.github.com" target="blank" class="footer__networks">
+              <img class="footer__network_link" src="<%=require('./images/Github.svg').default%>" alt="github-link">
+            </a>
+          </li>
+          <li class="footer__social-item">
+            <a href="https://www.facebook.com" target="blank" class="footer__networks">
+              <img class="footer__network_link" src="<%=require('./images/Facebook.svg').default%>" alt="facebook-link">
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+  </div>
+  <script type="module" src="<%= htmlWebpackPlugin.files.js %>"></script>
+</body>
+</html>
+

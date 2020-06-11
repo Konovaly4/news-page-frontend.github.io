@@ -1,0 +1,16 @@
+@import url(../vendor/fonts.css);
+@import url(../blocks/root/root.css); /*imiport "user" here */
+@import url(../blocks/header/__popup/header__popup.css);
+@import url(../blocks/header/__popup/header__popup_visible.css);
+@import url(../blocks/header/header.css);
+@import url(../blocks/saved-news/saved-news.css);
+@import url(../blocks/footer/footer.css);
+
+body {
+  margin: 0;
+}
+
+a, button, input {
+  cursor: url(../images/Cursor.svg), pointer;
+  outline: none;
+}

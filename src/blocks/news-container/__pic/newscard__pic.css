@@ -1,0 +1,40 @@
+@import url(../__sidebar/newscard__sidebar.css);
+
+.newscard__pic {
+  margin: 0;
+  padding-top: 24px;
+  width: 100%;
+  height: 272px;
+  border-radius: 16px 16px 0 0;
+  background-image: url(../../../images/cardimage1.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+@media screen and (max-width: 1023px) {
+  .newscard__pic {
+    height: 150px;
+    padding-top: 8px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .newscard__pic {
+    height: 196px;
+    padding-top: 16px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .newscard__pic {
+    height: 150px;
+    padding-top: 8px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .newscard__pic {
+    height: 196px;
+    padding-top: 16px;
+  }
+}

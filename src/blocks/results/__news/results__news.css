@@ -1,0 +1,41 @@
+@import url(../__news-title/results__news-title.css);
+@import url(../../news-container/news-container.css);
+@import url(../__button/results__button.css);
+@import url(./_active/results__news_active.css);
+
+.results__news {
+  max-width: 1232px;
+  margin: 0 auto;
+  padding-top: 80px;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@media screen and (max-width: 1279px) {
+  .results__news {
+    max-width: 992px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .results__news {
+    max-width: 688px;
+    padding-top: 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .results__news {
+    max-width: 425px;
+    padding-top: 40px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .results__news {
+    max-width: 288px;
+    padding-top: 32px;
+  }
+}

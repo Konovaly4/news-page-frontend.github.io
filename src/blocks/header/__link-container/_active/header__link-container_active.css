@@ -1,0 +1,11 @@
+@import url(./style/black/header__link-container_active_style_black.css);
+
+.header__link-container_active {
+  border-bottom: 3px solid #FFFFFF;
+}
+
+@media screen and (max-width: 767px) {
+  .header__link-container_active {
+    border: 0;
+  }
+}

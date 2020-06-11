@@ -1,0 +1,29 @@
+@import url(../header/header.css);
+@import url(./__content/search__content.css);
+@import url(../header/__popup/header__popup.css);
+
+.search {
+  margin: 0;
+  width: 100%;
+  height: 576px;
+  background-image: url(../../images/search-pic.jpg);
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: 'Roboto', 'Roboto Slab', 'Source Sans Pro', sans-serif;
+}
+
+@media screen and (max-width: 1023px) {
+  .search {
+    height: 400px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .search {
+    height: 536px;
+  }
+}
