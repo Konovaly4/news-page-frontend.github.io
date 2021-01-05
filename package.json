@@ -7,7 +7,7 @@
     "build": "rimraf dist && cross-env NODE_ENV=production webpack --mode production",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --watch",
     "deploy": "cross-env NODE_ENV=production gh-pages -d dist",
-    "serverDeploy": "npm run build && scp -r ./dist/* root@82.148.31.49:/home/konovalov/news-page/news-page-frontend"
+    "serverDeploy": "npm run build && scp -r ./dist/* root@82.148.18.43:/projects/news-page/news-page-frontend"
   },
   "repository": {
     "type": "git",
