@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Сайт поиска новостей по ключевым словам. Главная страница">
+    <meta name="author" content="Автор проекта: Максим Коновалов">
+    <title>News Explorer</title>
+    <link rel="shortcut icon" href="./images/N.svg" type="image/jpg">
+    <link rel="stylesheet" href="index.1b9afa2696865d4e5562.css">
+</head>
+<body>
+  <div class="root">
+    <section class="search">
+      <header class="header">
+        <p class="header__title">NewsExplorer</p>
+        <nav class="header__links"> <!-- header__links_visible -->
+          <ul class="header__link-list">
+            <li class="header__link-container header__link-container_active header__link-container_visible">
+              <a href="#" class="header__link header__link_mainpage">Главная</a>  <!--./index.html-->
+            </li>
+            <li class="header__link-container header__link-container_visible">
+              <a href="#" class="header__link header__link_newspage">Сохранённые статьи</a> <!--./user-news.html-->
+            </li>
+          </ul>
+          <button class="header__button">
+            <span class="header__button-text"></span>
+            <img class="header__button-logout header__button-logout_active" src="./images/Logout-white.svg" alt="sign-out-button">
+          </button>
+        </nav>
+        <button class="header__popup-button"></button>
+      </header>
+      <div class="header__popup">  <!-- header__popup_visible -->
+        <div class="header__popup-filling"></div>
+      </div>
+      <div class="search__content">
+        <h1 class="search__title">Что в мире творится?</h1>
+        <p class="search__subtitle">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
+        <form class="search__form">
+          <span class="search__input-error"></span>
+          <input type="text" class="search__input" required minlength="2" placeholder="Введите тему новости">
+          <button class="search__button" type="submit">Искать</button>
+        </form>
+      </div>
+    </section>
+    <section class="results">
+      <div class="results__loading"> <!-- results__loading_active -->
+        <i class="results__preloader"></i>
+        <p class="results__message loading-message">Идет поиск новостей...</p>
+      </div>
+      <div class="results__load-fail"> <!-- results__load-fail_active -->
+        <svg class="results__fail-pic" width="96" height="96" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="43" cy="43" r="36.5" stroke="#D1D2D6"/><path d="M69 69l19.5 19.5M58.328 55.959c-3.667-4.261-9.1-6.96-15.164-6.96-6.063 0-11.496 2.699-15.164 6.96" stroke="#D1D2D6"/><circle cx="55.5" cy="33.5" r="1.5" fill="#D1D2D6"/><circle cx="30.5" cy="33.5" r="1.5" fill="#D1D2D6"/></svg>
+        <h2 class="results__fail-title">Ничего не найдено</h2>
+        <p class="results__message fail-message">К сожалению по вашему запросу ничего не найдено.</p>
+      </div>
+      <div class="results__news"> <!-- results__news_active -->
+        <h2 class="results__news-title">Результаты поиска</h2>
+        <div class="news-container">
+        </div>
+        <button class="results__button  results__button_active">Показать еще</button>
+      </div>
+    </section>
+    <section class="author">
+      <img src="./images/avatar.jpg" alt="author-avatar" class="author__avatar">
+      <div class="author__about">
+        <h2 class="author__title">Об авторе</h2>
+        <p class="author__description">Я - Максим Коновалов, разработчик данного проекта. На момент разработки, я - инженер по профессии и
+          студент Яндекс Практикума по веб-разработке. Сервис выполнен при помощи HTML, CSS, JavaScript, собран при помощи WebPack, на серверном окружении Express от Node JS.
+        </p>
+        <p class="author__description">Яндекс Практикум - платформа для обучения в IT сфере. Я выбрал web-разработку, где научился
+          созданию интерактивных веб-страниц и настройке сервера на Node JS.</p>
+      </div>
+    </section>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2020 News-Explorer</p>
+      <nav class="footer__links">
+        <ul class="footer__links-list">
+          <li class="footer__link-item">
+            <a href="./index.html" class="footer__link">Главная</a>
+          </li>
+          <li class="footer__link-item">
+            <a href="https://praktikum.yandex.ru" target="blank" class="footer__link">Яндекс.Практикум</a>
+          </li>
+        </ul>
+        <ul class="footer__network-links">
+          <li class="footer__social-item">
+            <a href="https://www.github.com" target="blank" class="footer__networks">
+              <img class="footer__network_link" src="./images/Github.svg" alt="github-link">
+            </a>
+          </li>
+          <li class="footer__social-item">
+            <a href="https://www.facebook.com" target="blank" class="footer__networks">
+              <img class="footer__network_link" src="./images/Facebook.svg" alt="facebook-link">
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+    <div class="popup" id="popup">
+      <!--popup_is-opened-->
+      <div class="popup__content">
+        <img src="./images/close.svg" alt="close-image" class="popup__close" id="popup-close-button">
+        <h3 id="main-title" class="popup__title"></h3>
+      </div>
+    </div>
+    <div class="popup" id="popup-authorized">
+      <!--popup_is-opened-->
+      <div class="popup__content popup__content_authorized">
+        <img src="./images/close.svg" alt="close-image" class="popup__close" id="popup-auth-close-button">
+        <h3 id="additional-title" class="popup__title">Пользователь успешно зарегистрирован!</h3>
+        <p id="login-note" class="popup__login-note">Выполнить вход</p>
+      </div>
+    </div>
+    <template id="reg-form-template">
+      <form class="popup__form" name="new">
+        <p id ="note-email" class="popup__note"></p>
+        <input type="email" required name="email" class="popup__input">
+        <span id ="error-email" class="popup__error-message"></span>
+        <p id ="note-password" class="popup__note"></p>
+        <input type="password" required minlength="5" name="password" class="popup__input">
+        <span id="error-password" class="popup__error-message"></span>
+        <p id ="note-name" class="popup__note"></p>
+        <input type="text" required minlength="2" maxlength="15" name="name" class="popup__input">
+        <span id="error-name" class="popup__error-message"></span>
+        <p id ="button-err" class="popup__button-err popup__button-err_active"></p>
+        <button name="submit" type="submit" class="button popup__button"></button>
+        <p class="popup__button-note popup__button-note_active">или <span id="button-note" class="popup__button-link"></span></p>
+      </form>
+    </template>
+    <template id="login-form-template">
+      <form class="popup__form" name="new">
+        <p id ="note-email" class="popup__note popup__note_active"></p>
+        <input type="email" required name="email" class="popup__input">
+        <span id ="error-email" class="popup__error-message"></span>
+        <p id ="note-password" class="popup__note popup__note_active"></p>
+        <input type="password" required minlength="5" name="password" class="popup__input">
+        <span id="error-password" class="popup__error-message"></span>
+        <p id ="button-err" class="popup__button-err popup__button-err_active"></p>
+        <button name="submit" type="submit" class="button popup__button"></button>
+        <p class="popup__button-note popup__button-note_active">или <span id="button-note" class="popup__button-link"></span></p>
+      </form>
+    </template>
+  </div>
+  <script type="module" src="index.8063c7ad673b72e64112.js"></script>
+</body>
+</html>
